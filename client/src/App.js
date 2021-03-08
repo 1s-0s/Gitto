@@ -1,14 +1,18 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
+import dashboard from "./components/Dashboard";
+import login from "./components/Login";
+import profile from "./components/Profile.js";
 class App extends React.Component{
     render(){
         return (
-            <div>
-                <Link className="ui github button" to="/auth/github">
-                    <i className="github icon"></i>
-                    Github
-                </Link>
-            </div>
+            <BrowserRouter>
+                <Route exact  path="/dashboard" component={dashboard}/>
+                <Route exact path="/" component={login}/>
+                {/* <Route exact="/profile" component={profile}/> */}
+                
+            </BrowserRouter>
+            
         )
     }
 }

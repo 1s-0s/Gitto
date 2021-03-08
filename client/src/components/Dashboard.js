@@ -1,6 +1,6 @@
 import React from "react";
 
-class Dashborad extends React.Components{
+class Dashboard extends React.Component{
     render(){
         return (
             <div className="ui components">
@@ -9,4 +9,4 @@ class Dashborad extends React.Components{
         )
     }
 }
-export default Dashborad;
+export default Dashboard;
