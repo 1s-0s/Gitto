@@ -34,13 +34,6 @@ passport.deserializeUser(function(obj,done){
     done(null,obj)
 })
 
-
-
-
-
-
-
-
 app.use(morgan('tiny'));
 
 app.use(express.json());
