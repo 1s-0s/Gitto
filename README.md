@@ -1,3 +1,0 @@
-# Gitto
-
-Tinder for Coders!!
