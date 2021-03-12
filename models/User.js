@@ -4,4 +4,4 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     githubId : String 
 })
-mongoose.model("users",userSchema);
+module.exports =  mongoose.model("users",userSchema);
