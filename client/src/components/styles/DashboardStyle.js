@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { Segment } from "semantic-ui-react";
-// Syntax highlighter
-import Gist from "react-gist";
-
+import {Image} from "semantic-ui-react";
+import {Link} from "react-router-dom";
 export const Div = styled.div`
   width: 100vw !important;
   height: 100vh !important;
@@ -18,8 +16,11 @@ export const LeftDiv = styled.div`
   height: 100% !important;
   float: left !important;
   border-collapse: collapse !important;
-  background-color: gray !important;
-  overflow-y: scroll !important;
+  background-color:rgba(0,77,64,0.4)  !important;
+  -webkit-box-shadow:0 0 20px rgba(0,77,64,0.4);
+  -moz-box-shadow:0 0 20px rgba(0,77,64,0.4);
+  box-shadow:0 0 20px rgba(0,77,64,0.4);
+  /* overflow-y: scroll !important; */
 `;
 export const MiddleDiv = styled.div`
   @media (max-width: 991px) {
@@ -29,7 +30,8 @@ export const MiddleDiv = styled.div`
   height: 100% !important;
   float: left !important;
   border-collapse: collapse !important;
-  background-color: black !important;
+  background-color: rgba(0,77,64,0.5) ; // #02231C
+  /* background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)) !important; */
   overflow-y: scroll !important;
 `;
 export const RightDiv = styled.div`
@@ -40,40 +42,23 @@ export const RightDiv = styled.div`
   height: 100% !important;
   float: right !important;
   border-collapse: collapse !important;
-  background-color: gray !important;
+  background-color: #EEE3E3 !important;
   overflow-y: scroll !important;
 `;
-export const CardSegment = styled(Segment)`
-  @media (min-width: 991px) {
-    margin-top: 10vh !important;
-    margin-left: 4vw !important;
-    margin-right: 4vw !important;
-  }
-
-  /* background-color: #0D1117 !important; */
+// sidebar
+export const Logo = styled(Image)`
+  margin-top: 2vh;
+  margin-left:auto;
+  margin-right:auto;
 `;
-export const CardDetails = styled.div`
-  margin-left: 1.5vh !important;
-  margin-right: 1.5vh !important;
+export const IconGroup = styled.div`
+  text-align:center;
+  margin-top: 10vh;
+  margin-bottom: 2vh;
 `;
-export const SubHeader = styled.p`
-  margin: 0 !important;
-  margin-bottom: 1vh !important;
-`;
-export const CardHeader = styled.h2`
-  margin-bottom: 0 !important;
-`;
-export const GistSegment = styled.div`
-  height: 30vh !important;
-  overflow-y: scroll !important;
-`;
-export const HeartButton = styled.div`
-  width: 100px ;
-  height: 100px ;
-  background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat ;
-  background-position: 0 0;
-  cursor: pointer;
-  transition: background-position 1s steps(28);
-  transition-duration: 0s ;
-  
+export const Icon = styled(Link)`
+  display: block;
+  margin-top: 2vh;
+  font-size: 2.5em;
+  color:#EEE3E3;
 `;
