@@ -67,3 +67,13 @@ export const GistSegment = styled.div`
   height: 30vh !important;
   overflow-y: scroll !important;
 `;
+export const HeartButton = styled.div`
+  width: 100px ;
+  height: 100px ;
+  background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat ;
+  background-position: 0 0;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
+  transition-duration: 0s ;
+  
+`;
