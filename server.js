@@ -6,19 +6,22 @@ const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const auth = require("./routes/auth");
 const mongoose = require("mongoose");
-const e = require("express");
 
+//dotenv configuration
+require("dotenv").config();
+//database
 require("./models/User");
+//github authentication
 require("./passport/githubConfig");
 
-mongoose.connect(
-    "mongodb+srv://RitiksDB:Ritik@307@gitto.irar2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    { useNewUrlParser: true,useUnifiedTopology: true },
+//MONGOOSE CONNECTION
+mongoose.connect(process.env.MONGODB_URI,
+    { useNewUrlParser: true, useUnifiedTopology: true },
     (err) => {
-        if(!err)
+        if (!err)
             console.log(chalk.yellow("database is connected"));
         else
-            console.log(err);
+            console.log(chalk.red("Error:", err));
     }
 );
 
@@ -32,12 +35,11 @@ app.use(session({
     secret: "samber_dosa",
     resave: false,
     saveUninitialized: false,
-  })
-);
+}));
+app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session())
 app.use("/", auth);
-//app.use("/auth/github/dashboard", auth);
 
 //! app.use(express.static)
 
