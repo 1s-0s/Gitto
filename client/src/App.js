@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 //Custome routes
 import dashboard from "./components/routes/Dashboard";
@@ -10,9 +10,11 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <Route exact path="/dashboard" component={dashboard} />
                 <Route exact path="/" component={login} />
-                <Route exact path="/profile" component={profile} />
+                <Switch>
+                    <Route exact path="/dashboard" component={dashboard} />
+                    <Route exact path="/profile" component={profile} />
+                </Switch>
             </Router>
         )
     }
