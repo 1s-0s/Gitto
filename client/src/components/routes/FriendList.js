@@ -5,11 +5,10 @@ import {
     CardText,
     CardHeader,
     Container
-} from "../styles/FrieindStyle";
+} from "../styles/FriendStyle";
 import avatar from "../images/logopen3.svg"
 
 class FriendList extends React.Component {
-
     render() {
         return (
             <Container>
