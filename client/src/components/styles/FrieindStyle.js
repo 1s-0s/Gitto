@@ -3,8 +3,7 @@ import { Segment } from "semantic-ui-react";
 
 // CARD SECTION
 export const Container = styled.div`
-    margin: 10vh 10vh !important;
-    /* margin-bottom: 5vh !important; */
+    margin: 6vh 10vh !important;
 `;
 export const Card = styled(Segment)`
   background-color:rgba(0,77,64,0.4)  !important;

@@ -64,3 +64,6 @@ export const Icon = styled(Link)`
   color:#EEE3E3;
   text-decoration: none;
 `;
+export const IconContent = styled.p`
+  font-size: 0.3em !important;
+`;

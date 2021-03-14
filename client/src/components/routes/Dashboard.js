@@ -6,6 +6,7 @@ import {
   RightDiv,
   Logo,
   IconGroup,
+  IconContent,
   Icon,
 } from "../styles/DashboardStyle";
 //Custome Component
@@ -14,6 +15,7 @@ import FriendList from "../elements/FriendList"
 // ICONS
 import { AiOutlineMessage as Chat } from "react-icons/ai";
 import { IoPeopleCircleOutline as Friends } from "react-icons/io5";
+import { CgProfile as Profile } from "react-icons/cg";
 import logo from "../images/logopen3.svg";
 
 
@@ -27,9 +29,15 @@ class Dashboard extends React.Component {
           <IconGroup>
             <Icon to="/profile">
               <Chat />
+              <IconContent>Chat</IconContent>
             </Icon>
             <Icon to="/friendlist">
               <Friends />
+              <IconContent>Friends</IconContent>
+            </Icon>
+            <Icon to="/friendlist">
+              <Profile />
+              <IconContent>Profile</IconContent>
             </Icon>
           </IconGroup>
           {/* <IconLink to="/"> */}
