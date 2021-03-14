@@ -41,8 +41,7 @@ class Card extends React.Component {
               HTML
               <Label.Detail>80%</Label.Detail>
             </Label>
-          </Label.Group>
-          <HeartButton
+            <HeartButton
             onClick={this.toggleLike}
             style={
               this.state.liked === true
@@ -50,6 +49,8 @@ class Card extends React.Component {
                 : { transitionDuration: "0s", backgroundPosition: "0 0" }
             }
           />
+          </Label.Group>
+          
         </CardDetails>
       </CardSegment>
     );

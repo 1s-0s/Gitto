@@ -26,23 +26,25 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        console.log(profile);
+        const newUser = new User({
+          githubId: profile._json.id,
+          name: profile._json.name,
+          email: profile._json.email,
+          follower: profile._json.followers,
+          following: profile._json.following,
+          gist: profile._json.public_gists,
+          bio: profile._json.bio,
+          repositry: profile._json.public_repos,
+          blog: profile._json.blog,
+          location: profile._json.location
+        });
+
+        console.log(chalk.red(newUser));
         const currUser = await User.findOne({ githubId: profile.id });
         if (currUser) {
-          return done(null, profile);
+          const savedUser = await newUser.update();
+          return done(null, savedUser);
         } else {
-          const newUser = new User({
-            githubId: profile.id,
-            name: profile.name,
-            email: profile.email,
-            follower: profile.followers,
-            following: profile.following,
-            gist: profile.public_gists,
-            bio: profile.bio,
-            repositry: profile.public_repos,
-            blog: profile.blog,
-            location: profile.location
-          });
           const savedUser = await newUser.save();
           done(null, savedUser);
         }
