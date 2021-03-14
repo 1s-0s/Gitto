@@ -5,6 +5,7 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import dashboard from "./components/routes/Dashboard";
 import login from "./components/routes/Login";
 import profile from "./components/routes/Profile";
+import friendList from "./components/elements/FriendList";
 
 class App extends React.Component {
     render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/dashboard" component={dashboard} />
                     <Route exact path="/profile" component={profile} />
+                    <Route exact path="/friendlist" component={friendList} />
                 </Switch>
             </Router>
         )

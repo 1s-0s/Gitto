@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {Image} from "semantic-ui-react";
-import {Link} from "react-router-dom";
+import { Image } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 export const Div = styled.div`
   width: 100vw !important;
   height: 100vh !important;
@@ -53,12 +53,14 @@ export const Logo = styled(Image)`
 `;
 export const IconGroup = styled.div`
   text-align:center;
-  margin-top: 10vh;
+  margin-top: 5vh;
   margin-bottom: 2vh;
 `;
 export const Icon = styled(Link)`
   display: block;
   margin-top: 2vh;
+  margin-bottom: 4vh;
   font-size: 2.5em;
   color:#EEE3E3;
+  text-decoration: none;
 `;

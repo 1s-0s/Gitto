@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model("users");
 //dotenv configuration
 require("dotenv").config();
-
+//Credentials
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
