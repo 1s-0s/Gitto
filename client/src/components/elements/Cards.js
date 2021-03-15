@@ -26,9 +26,20 @@ class Card extends React.Component {
           <Gist id="27eae9dd262f83cdede0613f614933de" />
         </GistSegment>
         <CardDetails>
-          <CardHeader>Samriddhi</CardHeader>
-          <SubHeader>Full stack web dev</SubHeader>
-          <Label.Group>
+          <HeartButton
+            onClick={this.toggleLike}
+            style={
+              this.state.liked === true
+                ? { transitionDuration: "1s ", backgroundPosition: "-2800px 0" }
+                : { transitionDuration: "0s", backgroundPosition: "0 0" }
+            }
+          />
+          <CardHeader>
+            Samriddhi
+          </CardHeader>
+          <SubHeader>Full stack web dev </SubHeader>
+
+          {/* <Label.Group>
             <Label as="a" color="green" image>
               MongoDB
               <Label.Detail>80%</Label.Detail>
@@ -41,16 +52,8 @@ class Card extends React.Component {
               HTML
               <Label.Detail>80%</Label.Detail>
             </Label>
-            <HeartButton
-            onClick={this.toggleLike}
-            style={
-              this.state.liked === true
-                ? { transitionDuration: "1s ", backgroundPosition: "-2800px 0" }
-                : { transitionDuration: "0s", backgroundPosition: "0 0" }
-            }
-          />
-          </Label.Group>
-          
+          </Label.Group> */}
+
         </CardDetails>
       </CardSegment>
     );

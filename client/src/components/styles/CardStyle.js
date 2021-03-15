@@ -20,10 +20,11 @@ export const SubHeader = styled.p`
   margin-bottom: 1vh ;
 `;
 export const CardHeader = styled.h2`
+  margin-top: 3vh !important;
   margin-bottom: 0 ;
 `;
 export const GistSegment = styled.div`
-  height: 30vh ;
+  height: 40vh ;
   overflow-y: scroll ;
 `;
 export const HeartButton = styled.div`
@@ -34,5 +35,5 @@ export const HeartButton = styled.div`
   cursor: pointer;
   transition: background-position 1s steps(28);
   transition-duration: 0s ;
-  
+  /* float: right; */
 `;
