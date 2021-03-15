@@ -12,6 +12,7 @@
     "react-embed-gist": "^1.0.11",
     "react-gist": "^1.2.2",
     "react-icons": "^4.2.0",
+    "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
