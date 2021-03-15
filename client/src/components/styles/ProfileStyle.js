@@ -12,7 +12,11 @@ export const FormContainer = styled(Segment)`
   box-shadow:0 0 20px rgba(0,77,64,0.4);  
 `;
 export const ImageContent = styled.p`
-  font-size: 2em !important;
+  font-size: 1.5em !important;
   text-align:center;
+  color:#EEE3E3;
+`;
+export const FormHeader = styled.h5`
+  margin-bottom: 0.5em;
   color:#EEE3E3;
 `;
