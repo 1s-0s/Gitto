@@ -1,15 +1,15 @@
 import React from "react";
 import {
-    Logo,
-    IconGroup,
-    IconContent,
-    Icon,
+  Logo,
+  IconGroup,
+  IconContent,
+  Icon,
 } from "../styles/DashboardStyle";
 // ICONS
 import { AiOutlineMessage as Chat, } from "react-icons/ai";
 import { RiGroup2Line as Friends } from "react-icons/ri";
-import { IoMdLogOut as Logout} from "react-icons/io";
-import { CgProfile as ProfilePic } from "react-icons/cg";
+import { IoMdLogOut as Logout } from "react-icons/io";
+import { CgProfile as ProfilePic, CgDarkMode as Darkmode } from "react-icons/cg";
 import logo from "../images/logopen3.svg";
 
 class Sidebar extends React.Component {
@@ -18,7 +18,7 @@ class Sidebar extends React.Component {
       <div>
         <Logo src={logo} color="white" size="mini" />
         <IconGroup>
-          <Icon to="/dashboard/">
+          <Icon to="#">
             <Chat />
             <IconContent>Chat</IconContent>
           </Icon>
@@ -26,13 +26,17 @@ class Sidebar extends React.Component {
             <Friends />
             <IconContent>Friends</IconContent>
           </Icon>
-          <Icon to="/dashboard/profile">
+          <Icon to="/dashboard/editprofile">
             <ProfilePic />
             <IconContent>Profile</IconContent>
           </Icon>
           <Icon to="/">
             <Logout />
             <IconContent>Logout</IconContent>
+          </Icon>
+          <Icon to="#">
+            <Darkmode />
+            <IconContent>Mode</IconContent>
           </Icon>
         </IconGroup>
       </div>
