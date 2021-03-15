@@ -42,8 +42,8 @@ passport.use(
         console.log(chalk.red(newUser));
         const currUser = await User.findOne({ githubId: profile.id });
         if (currUser) {
-          const savedUser = await newUser.update();
-          return done(null, savedUser);
+          // const savedUser = await newUser.update();
+          return done(null, profile);
         } else {
           const savedUser = await newUser.save();
           done(null, savedUser);

@@ -14,11 +14,15 @@ import { Form, Message, Image, Header } from 'semantic-ui-react';
 //Style-Component
 import { Container, FormContainer, ImageContent, FormHeader } from "../styles/ProfileStyle";
 import ProfileImg from "../images/profile.jpg";
+
+
+let languages;
 class Profile extends React.Component {
     state = {}
     handleChange = (e, { value }) => this.setState({ value })
     componentWillMount() {
         this.setState({
+            
             options: [
                 { key: 'angular', text: 'Angular', value: 'angular' },
                 { key: 'css', text: 'CSS', value: 'css' },
@@ -38,18 +42,23 @@ class Profile extends React.Component {
                 { key: 'ui', text: 'UI Design', value: 'ui' },
                 { key: 'ux', text: 'User Experience', value: 'ux' },
             ],
-            selected: "angular"
+            selected: "angular",
+            languages:[]
         })
     }
     renderBioField = (field) => {
         console.log("rendering Bio");
         return (
-            <Form.Input fluid type="text"  {...field.input} error={field.meta.touched ? field.meta.error : null} />
+            <Form.Input fluid type="text" {...field.input} error={field.meta.touched ? field.meta.error : null} />
         );
     }
     renderLangField = (field) => {
+        // console.log("this is values: ",this.state.values);
         return (
-            <Form.Dropdown fluid multiple selection {...field.input} options={this.state.options} error={field.meta.touched ? field.meta.error : null} />
+            <Form.Dropdown fluid multiple selection {...field.input} onChange={(e,data)=>{
+                return (data.value.length>0) ? field.input.onChange(field.input) : field.input.onChange("")
+            }}
+            value={"cpp"}  options={this.state.options} error={field.meta.touched ? field.meta.error : null} />
         );
     }
     renderLang1Field = (field) => {
@@ -119,6 +128,10 @@ class Profile extends React.Component {
     onSubmit(values) {
         console.log("onSubmit", values);
     }
+    showData(e,data){
+        languages=data.value;
+        console.log("from show data: ",languages);
+    }
     render() {
         const { handleSubmit } = this.props;
         return (
@@ -130,8 +143,8 @@ class Profile extends React.Component {
                         <FormHeader>Bio</FormHeader>
                         <Field required name="bio" component={this.renderBioField} />
                         <FormHeader>Top Languages</FormHeader>
-                        {/* <Form.Dropdown required fluid multiple selection options={this.state.options} /> */}
-                        <Field required name="language" component={this.renderLangField} />
+                        <Form.Dropdown required fluid multiple selection options={this.state.options} onChange={this.showData} />
+                        {/* <Field required name="language" component={this.renderLangField} /> */}
                         {/* <Form.Group widths="">
                             <Field required name="language1" component={this.renderLang1Field} />
                             <Field required name="language2" component={this.renderLang2Field} />
@@ -149,8 +162,9 @@ class Profile extends React.Component {
     }
 }
 function validate(values) {
+    values["languages"]=languages;
     //console.log(values.bio);
-    console.log("project", values.project);
+    console.log("values", values);
     const error = {}
     if (!values.bio || values.bio.length > 20) {
         error.bio = "Please enter a bio";
