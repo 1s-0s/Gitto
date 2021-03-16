@@ -6,7 +6,10 @@ import {
   CardHeader,
   SubHeader,
   GistSegment,
-  HeartButton,
+  HeartButtonRed,
+  HeartButtonBlack,
+  HeartButtonGreen,
+  ReactIcon
 } from "../styles/CardStyle";
 
 import Gist from "react-gist";
@@ -26,18 +29,22 @@ class Card extends React.Component {
           <Gist id="27eae9dd262f83cdede0613f614933de" />
         </GistSegment>
         <CardDetails>
-          <HeartButton
-            onClick={this.toggleLike}
-            style={
-              this.state.liked === true
-                ? { transitionDuration: "1s ", backgroundPosition: "-2800px 0" }
-                : { transitionDuration: "0s", backgroundPosition: "0 0" }
-            }
-          />
-          <CardHeader>
-            Samriddhi
-          </CardHeader>
-          <SubHeader>Full stack web dev </SubHeader>
+          <ReactIcon>
+            <CardHeader>
+              Samriddhi
+              <SubHeader> </SubHeader>
+            </CardHeader>
+
+            <HeartButtonRed
+              onClick={this.toggleLike}
+              style={
+                this.state.liked === true
+                  ? { transitionDuration: "1s ", backgroundPosition: "-2800px 0" }
+                  : { transitionDuration: "0s", backgroundPosition: "0 0" }
+              }
+            />
+          </ReactIcon>
+
 
           {/* <Label.Group>
             <Label as="a" color="green" image>

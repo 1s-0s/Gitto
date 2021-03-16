@@ -18,7 +18,7 @@ class Sidebar extends React.Component {
       <div>
         <Logo src={logo} color="white" size="mini" />
         <IconGroup>
-          <Icon to="#">
+          <Icon to="/dashboard/profile">
             <Chat />
             <IconContent>Chat</IconContent>
           </Icon>
@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
             <Friends />
             <IconContent>Friends</IconContent>
           </Icon>
-          <Icon to="/dashboard/editprofile">
+          <Icon to="/dashboard/profile">
             <ProfilePic />
             <IconContent>Profile</IconContent>
           </Icon>

@@ -48,6 +48,11 @@ class EditProfile extends React.Component {
     renderBioField = (field) => {
         console.log("rendering Bio");
         return (
+            <Form.Input fluid type="text" value="hey people"{...field.input} error={field.meta.touched ? field.meta.error : null} />
+        );
+    }
+    renderDesignationField = (field) => {
+        return (
             <Form.Input fluid type="text" {...field.input} error={field.meta.touched ? field.meta.error : null} />
         );
     }
@@ -94,13 +99,15 @@ class EditProfile extends React.Component {
                 <ImageContent>Dhruv Sehgal</ImageContent>
                 <FormContainer>
                     <Form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                        <FormHeader>Bio</FormHeader>
+                        <FormHeader>Bio*</FormHeader>
                         <Field required name="bio" component={this.renderBioField} />
-                        <FormHeader>Top Languages <em>(only 5)</em></FormHeader>
+                        <FormHeader>Designation*</FormHeader>
+                        <Field required name="designation" component={this.renderDesignationField} />
+                        <FormHeader>Top Languages* <em>(only 5)</em></FormHeader>
                         <Form.Dropdown required fluid multiple selection options={this.state.options} onChange={this.showData} />
-                        <FormHeader>Projects</FormHeader>
+                        <FormHeader>Projects*</FormHeader>
                         <Field required name="project" component={this.renderProjectField} />
-                        <FormHeader>Gist Reference</FormHeader>
+                        <FormHeader>Gist Reference*</FormHeader>
                         <Field required name="gist" component={this.renderGistField} />
                         <FormHeader>Additional Info <em>(optional)</em></FormHeader>
                         <Field name="additional" component={this.renderAdditionalField} />
@@ -117,6 +124,9 @@ function validate(values) {
     const error = {}
     if (!values.bio) {
         error.bio = "Please enter a bio ";
+    }
+    if (!values.designation) {
+        error.designation = "Please enter your designation ";
     }
     if (!values.project) {
         error.project = "Enter your top project"
