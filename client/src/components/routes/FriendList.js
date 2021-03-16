@@ -5,14 +5,14 @@ import FriendCard from "../elements/FriendCard";
 
 class FriendList extends React.Component {
   render() {
-    return(
-        <Container>
-            <FriendCard/>
-            <FriendCard/>
-            <FriendCard/>
-            <FriendCard/>
-        </Container>
-    ) ;
+    return (
+      <Container>
+        <FriendCard />
+        <FriendCard />
+        <FriendCard />
+        <FriendCard />
+      </Container>
+    );
   }
 }
 

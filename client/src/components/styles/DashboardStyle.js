@@ -63,7 +63,11 @@ export const Icon = styled(Link)`
   font-size: 2.5em;
   color:#EEE3E3;
   text-decoration: none;
+  &:hover{
+    color:#87B588;
+  }
 `;
+
 export const IconContent = styled.p`
   font-size: 0.3em !important;
 `;

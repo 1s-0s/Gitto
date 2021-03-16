@@ -36,6 +36,7 @@
     "passport": "^0.4.1",
     "passport-github2": "^0.1.12",
     "react-icons": "^4.2.0",
+    "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5"
   }

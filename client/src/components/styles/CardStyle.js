@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Segment } from "semantic-ui-react";
+import { Segment, Grid } from "semantic-ui-react";
 
 
 export const CardSegment = styled(Segment)`
@@ -27,13 +27,18 @@ export const GistSegment = styled.div`
   height: 40vh ;
   overflow-y: scroll ;
 `;
-export const HeartButton = styled.div`
+export const HeartButtonRed = styled.div`
   width: 100px ;
   height: 100px ;
+  display: flex;
+  flex-direction: row;
   background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat ;
   background-position: 0 0;
   cursor: pointer;
   transition: background-position 1s steps(28);
   transition-duration: 0s ;
-  /* float: right; */
+`;
+
+export const ReactIcon = styled(Grid)`
+  margin: auto auto;
 `;
