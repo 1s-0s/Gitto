@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import ModalCardBg from "../images/friendCard/friendCardBg2.svg";
+
 export const Container = styled.div`
-    margin: 5vh 2vh !important;
+  margin: 5vh 2vh !important;
 `;
 
 export const ProfileCard = styled(Segment)`
+  background-image:linear-gradient(rgba(0,77,64, 0.7),rgba(0,77,64, 0.7)),url(${ModalCardBg}) !important;
+  background-size: cover !important;
+  background-position: center !important;
   margin-top: 10vh !important;
   margin-left: 10vw !important;
   margin-right: 10vw !important;
