@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Segment, Grid } from "semantic-ui-react";
+import { Segment, Grid, Button } from "semantic-ui-react";
 
 
 export const CardSegment = styled(Segment)`
@@ -8,23 +8,21 @@ export const CardSegment = styled(Segment)`
     margin-left: 4vw !important;
     margin-right: 4vw !important;
   }
-
   /* background-color: #0D1117 ; */
 `;
 export const CardDetails = styled.div`
   margin-left: 1.5vh ;
   margin-right: 1.5vh ;
 `;
-export const SubHeader = styled.p`
-  margin: 0 ;
-  margin-bottom: 1vh ;
-`;
-export const CardHeader = styled.h2`
+export const CardHeader = styled.h3`
   margin-top: 3vh !important;
   margin-bottom: 0 ;
 `;
+export const SubHeader = styled.p`
+  margin-top: 5vh !important;
+`;
 export const GistSegment = styled.div`
-  height: 40vh ;
+  height: 50vh ;
   overflow-y: scroll ;
 `;
 export const HeartButtonRed = styled.div`
@@ -38,7 +36,17 @@ export const HeartButtonRed = styled.div`
   transition: background-position 1s steps(28);
   transition-duration: 0s ;
 `;
-
-export const ReactIcon = styled(Grid)`
-  margin: auto auto;
+export const CardButton = styled(Button)`
+  margin-top: 0vh !important;
+  color: #EEE3E3;
+  &:hover{
+    color: #AAB8C2;;
+  }
 `;
+export const ButtonGroup = styled.div`
+  margin-top: 0vh;
+  text-align:center;
+`;
+// export const ReactIcon = styled(Grid)`
+//   margin: auto auto;
+// `;
