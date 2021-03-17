@@ -26,9 +26,12 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
+        // console.log(chalk.green(profile.username,profile.photos[0].value));
         const newUser = new User({
           githubId: profile._json.id,
           name: profile._json.name,
+          username: profile.username,
+          avatar: profile.photos[0].value,
           email: profile._json.email,
           follower: profile._json.followers,
           following: profile._json.following,
@@ -38,7 +41,7 @@ passport.use(
           blog: profile._json.blog,
           location: profile._json.location
         });
-
+        Cookies.set('username', profile.username);
         console.log(chalk.blue(newUser));
         const currUser = await User.findOne({ githubId: profile.id });
         if (currUser) {

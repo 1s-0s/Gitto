@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.6.0",
     "github-contributions-canvas": "^0.5.2",
     "highlight.js": "^10.6.0",
+    "js-cookie": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-embed-gist": "^1.0.11",

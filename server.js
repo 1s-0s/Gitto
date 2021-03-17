@@ -5,6 +5,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const auth = require("./routes/auth");
+const userinfo = require("./routes/userinfoapi");
 const mongoose = require("mongoose");
 
 //dotenv configuration
@@ -35,11 +36,14 @@ app.use(session({
     secret: "samber_dosa",
     resave: false,
     saveUninitialized: false,
+    httpOnly: false,
+    secure: false
 }));
 app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session())
 app.use("/", auth);
+app.use("/userinfo",userinfo);
 
 //! app.use(express.static)
 

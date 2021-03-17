@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     githubId: String,
     name: String,
+    username: String,
+    avatar:String,
     email: String,
     likes: Number,
     follower: Number,
