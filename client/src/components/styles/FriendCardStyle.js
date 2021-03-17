@@ -16,8 +16,8 @@ export const CardHeader = styled.h3`
 export const CardText = styled.div`
   color: #EEE3E3  !important;
 `;
-export const Icon= styled.a`
-  
+
+export const Icon = styled.a`
   margin-left:1vw;
   margin-right:1vw;
   font-size:2em;
@@ -25,9 +25,14 @@ export const Icon= styled.a`
   &:hover{
     color: #87B588;
   }
-  
 `;
-
+export const InfoIcon = styled.span`
+  cursor: pointer;
+  float:right;
+  &:hover{
+    color: #87B588;
+  }
+`;
 export const IconGroup = styled.div`
   text-align:center;
 `; 
@@ -35,13 +40,14 @@ export const CancelButton = styled.p`
   font-size:2em;
   color: #AAB8C2;
   text-align:center;
-  margin-bottom:1000000vh;
+  /* margin-bottom:1000000vh; */
   margin-top:10vh;
   &:hover{
     color: #CA0B00;
   }
 `;
 export const RepoCard = styled(Image)`
+  align-items:center !important;
   margin-bottom: 2vh;
 `;
 // Modals
@@ -77,7 +83,7 @@ export const ModalProfileLeft = styled.div`
   background-color: rgba(0,77,64,0.4);
 `;
 export const ModalProfileRight = styled.div`
-  padding: 5vh;
+  padding:3vh;
   width: 50% ;
   height: 100% ;
   float: right ;

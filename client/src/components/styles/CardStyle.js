@@ -23,7 +23,7 @@ export const SubHeader = styled.p`
 `;
 export const GistSegment = styled.div`
   height: 50vh ;
-  overflow-y: scroll ;
+  overflow-y:auto;
 `;
 export const HeartButtonRed = styled.div`
   width: 100px ;

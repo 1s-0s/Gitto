@@ -11,6 +11,7 @@ import {
   ModalProfileContent,
   ModalHeading,
   ModalSubHeading,
+  InfoIcon,
   Icon,
   IconGroup,
   CancelButton,
@@ -37,13 +38,13 @@ class FriendCard extends React.Component {
   constructor(){
     super();
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      githubReps: [
+        "OnlyMeal",
+        "Rapid-NPM-Package",
+        "Captcha-IMHUMAN"
+      ]
     };
-    this.githubReps=[
-      "OnlyMeal",
-      "portfolio",
-      "Captcha-IMHUMAN"
-    ]
   }
   
   openModal = () => {
@@ -67,24 +68,28 @@ class FriendCard extends React.Component {
   };
   render() {
     // fetching repos
-    const username="ritik307"
-    const repos = this.githubReps.map((reponame)=>{
+    const username="1s-0s"
+    const repos = this.state.githubReps.map((reponame)=>{
       const currrepo=`https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${reponame}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`
       return(
-        <RepoCard key={reponame} src={currrepo}/>
+        <RepoCard key={reponame} centered size="large" src={currrepo}/>
       )
     })
     return (
       <Card raised>
-        <Item.Group divided onClick={this.openModal}>
+        <Item.Group divided >
           <Item>
             <Image alt={avatar} size="mini" src={avatar} />
             <Item.Content>
               <CardHeader>
                 <Item.Header>
                   Kavya Kulkarni
+                  <InfoIcon onClick={this.openModal}>
+                    <Dot/>
+                  </InfoIcon>
                   
                 </Item.Header>
+                
               </CardHeader>
               <Item.Meta></Item.Meta>
               <Item.Description>

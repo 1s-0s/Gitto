@@ -12,7 +12,7 @@ import { Field, reduxForm } from "redux-form";
 import { Form, Image } from 'semantic-ui-react';
 
 //Style-Component
-import { Container, FormContainer, ImageContent, FormHeader } from "../styles/EditProStyle";
+import { Container, FormContainer, ImageContent, FormHeader,Header } from "../styles/EditProStyle";
 import ProfileImg from "../images/profile.jpg";
 
 
@@ -95,8 +95,10 @@ class EditProfile extends React.Component {
         const { handleSubmit } = this.props;
         return (
             <Container>
-                <Image src={ProfileImg} circular centered size="tiny" />
-                <ImageContent>Dhruv Sehgal</ImageContent>
+                <Header>
+                    <Image src={ProfileImg} circular centered size="tiny" />
+                    <ImageContent>Dhruv Sehgal</ImageContent>
+                </Header>
                 <FormContainer>
                     <Form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                         <FormHeader>Bio*</FormHeader>
