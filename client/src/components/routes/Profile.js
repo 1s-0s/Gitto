@@ -12,8 +12,8 @@ import {
 } from "../styles/ProfileStyle";
 import { FaEdit as Edit } from "react-icons/fa";
 import ProfileImg from "../images/profile.jpg";
-const githubStat = "https://github-readme-stats.vercel.app/api?username=Samridhi-98&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true";
-const contributionAPI = "https://activity-graph.herokuapp.com/graph?username=Samridhi-98&theme=blue-green";
+let githubStat = "https://github-readme-stats.vercel.app/api?username=Samridhi-98&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true";
+// const contributionAPI = "https://activity-graph.herokuapp.com/graph?username=Samridhi-98&theme=blue-green";
 
 class Profile extends React.Component {
 

@@ -12,15 +12,16 @@ import {
   ModalSubHeading,
   Icon,
   IconGroup,
-  CancelButton,
+  CancelButton
 } from "../styles/FriendCardStyle";
+
 //React-Modal
 import Modal from "react-modal";
 import { style as ModalStyle } from "../styles/ModalStyle";
 import avatar from "../images/logopen3.svg";
 import ProfileImg from "../images/profile.jpg";
 //Icon
-import { BsInfoCircle } from "react-icons/bs";
+import { BsInfoCircle as Info, BsThreeDotsVertical as Dot } from "react-icons/bs";
 import { VscGlobe, VscGithub } from "react-icons/vsc";
 import { FiTwitter } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
@@ -32,21 +33,27 @@ Modal.setAppElement("#root");
 
 class FriendCard extends React.Component {
   state = {
-    modalIsOpen: false,
+    modalIsOpen: false
   };
 
   openModal = () => {
-    this.setState({ modalIsOpen: true }, function () {
-      console.log("openModal: ", this.state.modalIsOpen);
-    });
+    this
+      .setState({
+        modalIsOpen: true
+      }, function () {
+        console.log("openModal: ", this.state.modalIsOpen);
+      });
   };
   afterOpenModal = () => {
     console.log("after model is opened");
   };
   closeModal = () => {
-    this.setState({ modalIsOpen: false }, function () {
-      console.log("closeModal: ", this.state.modalIsOpen);
-    });
+    this
+      .setState({
+        modalIsOpen: false
+      }, function () {
+        console.log("closeModal: ", this.state.modalIsOpen);
+      });
   };
   render() {
     return (
@@ -56,7 +63,10 @@ class FriendCard extends React.Component {
             <Image alt={avatar} size="mini" src={avatar} />
             <Item.Content>
               <CardHeader>
-                <Item.Header>Kavya Kulkarni</Item.Header>
+                <Item.Header>
+                  Kavya Kulkarni
+                  
+                </Item.Header>
               </CardHeader>
               <Item.Meta></Item.Meta>
               <Item.Description>
@@ -69,15 +79,15 @@ class FriendCard extends React.Component {
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           style={ModalStyle}
-          contentLabel="Example Modal"
-        >
+          contentLabel="Example Modal">
           <ModalContent>
             <ModalProfileLeft>
               <ModalProfileContent>
                 <Image src={ProfileImg} centered circular size="small" />
-                <ModalHeading>Kavya Kulkarni</ModalHeading>
+                <ModalHeading>
+                  Kavya Kulkarni
+                </ModalHeading>
                 <ModalSubHeading>A Happy Soul</ModalSubHeading>
-
                 <IconGroup>
                   <Icon>
                     <VscGlobe />
@@ -92,14 +102,11 @@ class FriendCard extends React.Component {
                 </IconGroup>
 
                 <CancelButton>
-                    <ImCancelCircle onClick={this.closeModal}/>
+                  <ImCancelCircle onClick={this.closeModal} />
                 </CancelButton>
-
               </ModalProfileContent>
             </ModalProfileLeft>
-            <ModalProfileRight>
-              
-            </ModalProfileRight>
+            <ModalProfileRight></ModalProfileRight>
           </ModalContent>
         </Modal>
       </Card>
