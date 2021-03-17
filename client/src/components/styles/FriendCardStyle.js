@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Segment} from "semantic-ui-react";
+import { Segment,Image} from "semantic-ui-react";
 import ModalCardBg from "../images/friendCard/friendCardBg2.svg";
 
 export const Card = styled(Segment)`
@@ -35,11 +35,14 @@ export const CancelButton = styled.p`
   font-size:2em;
   color: #AAB8C2;
   text-align:center;
-  margin-bottom:10vh;
+  margin-bottom:1000000vh;
   margin-top:10vh;
   &:hover{
     color: #CA0B00;
   }
+`;
+export const RepoCard = styled(Image)`
+  margin-bottom: 2vh;
 `;
 // Modals
 export const ModalHeading = styled.h2`
@@ -74,9 +77,9 @@ export const ModalProfileLeft = styled.div`
   background-color: rgba(0,77,64,0.4);
 `;
 export const ModalProfileRight = styled.div`
-  
-  width: 50% !important;
-  height: 100% !important;
-  float: right !important;
-  border-collapse: collapse !important;
+  padding: 5vh;
+  width: 50% ;
+  height: 100% ;
+  float: right ;
+  border-collapse: collapse ;
 `;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Item, Image } from "semantic-ui-react";
+//Styles
 import {
   Card,
   CardText,
@@ -12,7 +13,8 @@ import {
   ModalSubHeading,
   Icon,
   IconGroup,
-  CancelButton
+  CancelButton,
+  RepoCard
 } from "../styles/FriendCardStyle";
 
 //React-Modal
@@ -32,10 +34,18 @@ import { drawContributions } from "github-contributions-canvas";
 Modal.setAppElement("#root");
 
 class FriendCard extends React.Component {
-  state = {
-    modalIsOpen: false
-  };
-
+  constructor(){
+    super();
+    this.state = {
+      modalIsOpen: false
+    };
+    this.githubReps=[
+      "OnlyMeal",
+      "portfolio",
+      "Captcha-IMHUMAN"
+    ]
+  }
+  
   openModal = () => {
     this
       .setState({
@@ -56,6 +66,14 @@ class FriendCard extends React.Component {
       });
   };
   render() {
+    // fetching repos
+    const username="ritik307"
+    const repos = this.githubReps.map((reponame)=>{
+      const currrepo=`https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${reponame}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`
+      return(
+        <RepoCard key={reponame} src={currrepo}/>
+      )
+    })
     return (
       <Card raised>
         <Item.Group divided onClick={this.openModal}>
@@ -81,6 +99,7 @@ class FriendCard extends React.Component {
           style={ModalStyle}
           contentLabel="Example Modal">
           <ModalContent>
+            {/*//? LEFT SECTION */}
             <ModalProfileLeft>
               <ModalProfileContent>
                 <Image src={ProfileImg} centered circular size="small" />
@@ -98,15 +117,19 @@ class FriendCard extends React.Component {
                   <Icon>
                     <FiTwitter />
                   </Icon>
-
                 </IconGroup>
 
                 <CancelButton>
                   <ImCancelCircle onClick={this.closeModal} />
                 </CancelButton>
+
               </ModalProfileContent>
+
             </ModalProfileLeft>
-            <ModalProfileRight></ModalProfileRight>
+            {/*//? RIGHT SECTION */}
+            <ModalProfileRight>
+              {repos}
+            </ModalProfileRight>
           </ModalContent>
         </Modal>
       </Card>
