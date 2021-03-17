@@ -36,8 +36,6 @@ app.use(session({
     secret: "samber_dosa",
     resave: false,
     saveUninitialized: false,
-    httpOnly: false,
-    secure: false
 }));
 app.use(express.static('public'));
 app.use(passport.initialize());

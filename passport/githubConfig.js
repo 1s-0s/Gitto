@@ -41,7 +41,7 @@ passport.use(
           blog: profile._json.blog,
           location: profile._json.location
         });
-        Cookies.set('username', profile.username);
+      
         console.log(chalk.blue(newUser));
         const currUser = await User.findOne({ githubId: profile.id });
         if (currUser) {
