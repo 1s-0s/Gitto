@@ -7,11 +7,7 @@ const methodOverride = require("method-override");
 const auth = require("./routes/auth");
 const userinfo = require("./routes/userinfo");
 const mongoose = require("mongoose");
-<<<<<<< HEAD
 const morgan = require("morgan"); //HTTP logger
-=======
-const morgan = require("morgan");
->>>>>>> 0bb3589af98dda02592438ca2c9439c388226cb2
 
 //dotenv configuration
 require("dotenv").config();
@@ -49,10 +45,6 @@ app.use(session({
 app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
-<<<<<<< HEAD
-=======
-app.use(morgan('tiny'));    // HTTP request logger
->>>>>>> 0bb3589af98dda02592438ca2c9439c388226cb2
 app.use("/", auth);
 app.use("/userinfo", userinfo);
 
