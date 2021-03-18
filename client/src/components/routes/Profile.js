@@ -22,18 +22,19 @@ class Profile extends React.Component {
         super();
         
         this.state={
-            userinfo:null
-           
+            userinfo:{},
+            userid:Cookies.get("userid")
         }
-        this.githubStat = `https://github-readme-stats.vercel.app/api?username=Samridhi-98&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
+        
     }
     componentDidMount(){
-        console.log(Cookies.get("username"));
+        //? proxy:5000 in package.json
         Axios({
-            url:"http://localhost:5000/userinfo/"+this.state.githubusername,
+            url:"/userinfo/"+this.state.userid,
             method:"GET"
         })
         .then((response)=>{
+            
             this.setState({userinfo:response.data},()=>{
                 console.log(this.state.userinfo);
             });
@@ -43,14 +44,13 @@ class Profile extends React.Component {
         })
     }
     render() {
-
+        const githubStat = `https://github-readme-stats.vercel.app/api?username=${this.state.userinfo.username}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
         return (
             <Container>
                 <ProfileCard>
-                    <Image src={ProfileImg} circular centered size="small" />
+                    <Image src={this.state.userinfo.avatar} circular centered size="small" />
                     <ImageContent>
-                        {/* {this.state.userinfo.fullname} */}
-                        Kavya Kulkarni
+                        {this.state.userinfo.name}
                         <ImageSubContent>
                             <ButtonLink to="/dashboard/editprofile">
                                 <Edit />
@@ -63,8 +63,8 @@ class Profile extends React.Component {
                         <Statistic.Group widths="three">
                             <Statistic>
                                 <Statistic.Value>
-                                    {/* <StatNum>{this.state.userinfo.followers}</StatNum> */}
-                                    <StatNum>10</StatNum>
+                                    <StatNum>{this.state.userinfo.follower}</StatNum>
+                                    {/* <StatNum>10</StatNum> */}
                                 </Statistic.Value>
                                 <Statistic.Label>
                                     <StatDesc>Followers</StatDesc>
@@ -72,8 +72,8 @@ class Profile extends React.Component {
                             </Statistic>
                             <Statistic>
                                 <Statistic.Value>
-                                    {/* <StatNum>{this.state.userinfo.following}</StatNum> */}
-                                    <StatNum>20</StatNum>
+                                    <StatNum>{this.state.userinfo.following}</StatNum>
+                                    {/* <StatNum>20</StatNum> */}
                                 </Statistic.Value>
                                 <Statistic.Label>
                                     <StatDesc>Followings</StatDesc>
@@ -81,8 +81,8 @@ class Profile extends React.Component {
                             </Statistic>
                             <Statistic>
                                 <Statistic.Value>
-                                    {/* <StatNum>{this.state.userinfo.repos}</StatNum> */}
-                                    <StatNum>51</StatNum>
+                                    <StatNum>{this.state.userinfo.repositry}</StatNum>
+                                    {/* <StatNum>51</StatNum> */}
                                 </Statistic.Value>
                                 <Statistic.Label>
                                     <StatDesc>Repositries</StatDesc>
@@ -92,7 +92,7 @@ class Profile extends React.Component {
                     </Section>
                     {/* https://github-readme-stats.vercel.app/api?username=Samridhi-98&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true */}
                     {/* <Image src={} /> */}
-                    <Image src={this.githubStat} />
+                    <Image src={githubStat} />
                 </ProfileCard>
             </Container>
         )

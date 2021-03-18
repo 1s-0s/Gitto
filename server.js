@@ -5,8 +5,9 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const auth = require("./routes/auth");
-const userinfo = require("./routes/userinfoapi");
+const userinfo = require("./routes/userinfo");
 const mongoose = require("mongoose");
+const morgan = require("morgan"); //HTTP logger
 
 //dotenv configuration
 require("dotenv").config();
@@ -27,6 +28,8 @@ mongoose.connect(process.env.MONGODB_URI,
 );
 
 const app = express();
+// HTTP request logger
+app.use(morgan('tiny'));
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -36,10 +39,11 @@ app.use(session({
     secret: "samber_dosa",
     resave: false,
     saveUninitialized: false,
+    maxAge: 7*24*60*60*1000
 }));
 app.use(express.static('public'));
 app.use(passport.initialize());
-app.use(passport.session())
+app.use(passport.session());
 app.use("/", auth);
 app.use("/userinfo",userinfo);
 

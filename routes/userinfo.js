@@ -4,13 +4,15 @@ const chalk = require("chalk");
 
 const userData= require("../models/User");
 
-router.get("/:githubusername",(req,res)=>{
-    const githubusername=req.params;
-    console.log(githubusername);
-    userData.findOne(githubusername,(err,user)=>{
+router.get("/:userid",(req,res)=>{
+    const userid=req.params.userid;
+    console.log(userid);
+    userData.findOne({githubId:userid},(err,user)=>{
         if(user){
-            console.log(chalk.green("user data sent successfully"));
+            console.log(chalk.green("user data sent successfully from server"));
+            console.log(user);
             res.json(user);
+
         }else{
             console.log(chalk.red("user dosent exist",err));
         }
