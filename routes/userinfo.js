@@ -18,6 +18,25 @@ router.get("/:userid",(req,res)=>{
         }
     })
 })
+router.post("/:userid/update",(req,res)=>{
+    const data=req.body.values;
+    console.log(chalk.magenta("recieved data to update",req.params.userid));
+    console.log(data);
+    userData.findOneAndUpdate({githubId:req.params.userid},{new:true},(err,user)=>{
+        if(user){
 
+            user.bio=data.bio;
+            user.technology=data.languages;
+            user.pinnedrepos.push(data.repositries);
+            user.gist=data.gist;
+            user.save();
+            console.log(chalk.magenta("data updated successfully on server"));
+            res.json({message:"Data updated"});
+        }
+        else{
+            console.log(chalk.red("error",err));
+        }
+    });
+})
 module.exports=router;
 

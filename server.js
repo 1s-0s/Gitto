@@ -19,7 +19,7 @@ require("./passport/githubConfig");
 
 //MONGOOSE CONNECTION
 mongoose.connect(process.env.MONGODB_URI,
-    { useNewUrlParser: true, useUnifiedTopology: true },
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
     (err) => {
         if (!err)
             console.log(chalk.yellow("database is connected"));
@@ -40,7 +40,9 @@ app.use(session({
     secret: "samber_dosa",
     resave: false,
     saveUninitialized: false,
-    maxAge: 7*24*60*60*1000
+    cookie: {
+        maxAge: 30 * 24 * 60 * 60 * 1000
+    }
 }));
 app.use(express.static('public'));
 app.use(passport.initialize());

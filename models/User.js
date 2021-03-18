@@ -13,6 +13,9 @@ const userSchema = new Schema({
     gist: String,
     bio: String,
     repositry: Number,
+    pinnedrepos:[{
+        type:String
+    }] ,
     blog: String,
     location: String,
     friends: [{

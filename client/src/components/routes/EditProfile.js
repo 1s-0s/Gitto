@@ -14,6 +14,7 @@ import { Form, Image } from 'semantic-ui-react';
 //Style-Component
 import { Container, FormContainer, ImageContent, FormHeader,Header } from "../styles/EditProStyle";
 import ProfileImg from "../images/profile.jpg";
+import addUserDescription from "../../reducer/addUserDescription";
 
 
 let languages;
@@ -46,7 +47,7 @@ class EditProfile extends React.Component {
         })
     }
     renderBioField = (field) => {
-        console.log("rendering Bio");
+        //console.log("rendering Bio");
         return (
             <Form.Input fluid type="text" value="hey people"{...field.input} error={field.meta.touched ? field.meta.error : null} />
         );
@@ -79,17 +80,20 @@ class EditProfile extends React.Component {
             <Form.TextArea  {...field.input} error={field.meta.touched ? field.meta.error : null} />
         );
     }
-    onSubmit(values) {
-        console.log("onSubmit", values);
-        this.props.history.push("/dashboard/profile");
-    }
+    
     showData(e, data) {
         if (languages === undefined || languages.length < 5) {
             languages = data.value;
-            console.log("from show data: ", languages.length);
+            //console.log("from show data: ", languages.length);
         } else {
             console.log("language should not be more than 5!", languages.length);
         }
+    }
+    onSubmit(values) {
+        this.props.userDescription({values})
+        //console.log("onSubmit", values);
+
+        this.props.history.push("/dashboard/profile");
     }
     render() {
         const { handleSubmit } = this.props;
@@ -108,7 +112,7 @@ class EditProfile extends React.Component {
                         <FormHeader>Top Languages* <em>(only 5)</em></FormHeader>
                         <Form.Dropdown required fluid multiple selection options={this.state.options} onChange={this.showData} />
                         <FormHeader>Projects*</FormHeader>
-                        <Field required name="project" component={this.renderProjectField} />
+                        <Field required name="repositries" component={this.renderProjectField} />
                         <FormHeader>Gist Reference*</FormHeader>
                         <Field required name="gist" component={this.renderGistField} />
                         <FormHeader>Additional Info <em>(optional)</em></FormHeader>
@@ -122,7 +126,7 @@ class EditProfile extends React.Component {
 }
 function validate(values) {
     values["languages"] = languages;
-    console.log("values", values);
+    // console.log("values", values);
     const error = {}
     if (!values.bio) {
         error.bio = "Please enter a bio ";
@@ -141,6 +145,7 @@ function validate(values) {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ userDescription }, dispatch);
 }
+
 export default reduxForm({
     validate: validate,
     form: "addUserDetails"
