@@ -12,5 +12,9 @@ router.get("/auth/github/dashboard", passport.authenticate("github", { failureRe
     console.log(chalk.green("successfully callback"));
     res.redirect("http://localhost:3000/#/dashboard");
 })
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 
 module.exports = router;

@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const auth = require("./routes/auth");
 const userinfo = require("./routes/userinfoapi");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
 
 //dotenv configuration
 require("dotenv").config();
@@ -14,6 +15,7 @@ require("dotenv").config();
 require("./models/User");
 //github authentication
 require("./passport/githubConfig");
+
 
 //MONGOOSE CONNECTION
 mongoose.connect(process.env.MONGODB_URI,
@@ -39,9 +41,10 @@ app.use(session({
 }));
 app.use(express.static('public'));
 app.use(passport.initialize());
-app.use(passport.session())
+app.use(passport.session());
+app.use(morgan('tiny'));    // HTTP request logger
 app.use("/", auth);
-app.use("/userinfo",userinfo);
+app.use("/userinfo", userinfo);
 
 //! app.use(express.static)
 
