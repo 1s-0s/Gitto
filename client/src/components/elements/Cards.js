@@ -1,14 +1,11 @@
 import React from "react";
-import { Icon } from "semantic-ui-react";
+// import { Icon } from "semantic-ui-react";
 import {
   CardSegment,
   CardDetails,
   CardHeader,
-  SubHeader,
   GistSegment,
-  ButtonGroup,
   CardButton,
-  // HeartButtonRed,
   // ReactIcon
 } from "../styles/CardStyle";
 
@@ -32,6 +29,7 @@ class Card extends React.Component {
           <CardHeader>
             Kavya Kulkarni
           {/* /<ButtonGroup> */}
+            {/* <CardButton circular color="teal" size="mini" floated="right" icon="github"></CardButton> */}
             <CardButton circular color="teal" size="mini" floated="right" icon="arrow down"></CardButton>
             <CardButton circular color="teal" size="mini" floated="right" icon="arrow up"></CardButton>
             <CardButton circular color="teal" size="mini" floated="right" icon="plus"></CardButton>
