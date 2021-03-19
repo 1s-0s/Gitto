@@ -18,30 +18,31 @@ import Cookies from 'js-cookie';
 
 // const contributionAPI = "https://activity-graph.herokuapp.com/graph?username=Samridhi-98&theme=blue-green";
 class Profile extends React.Component {
-    constructor(){
+    constructor() {
         super();
-        
-        this.state={
-            userinfo:{},
-            userid:Cookies.get("userid")
+
+        this.state = {
+            userinfo: {},
+            userid: Cookies.get("userid")
         }
-        
+
     }
-    componentDidMount(){
+    componentDidMount() {
+        // console.log("cookie: ", this.state.userid);
         //? proxy:5000 in package.json
         Axios({
-            url:"/userinfo/"+this.state.userid,
-            method:"GET"
+            url: "/userinfo/" + this.state.userid,
+            method: "GET"
         })
-        .then((response)=>{
-            
-            this.setState({userinfo:response.data},()=>{
-                console.log(this.state.userinfo);
-            });
-        })
-        .catch((err)=>{
-            console.log("-----error while fetching user info---",err);
-        })
+            .then((response) => {
+
+                this.setState({ userinfo: response.data }, () => {
+                    console.log(this.state.userinfo);
+                });
+            })
+            .catch((err) => {
+                console.log("-----error while fetching user info---", err);
+            })
     }
     render() {
         const githubStat = `https://github-readme-stats.vercel.app/api?username=${this.state.userinfo.username}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;

@@ -35,13 +35,13 @@ passport.use(
           email: profile._json.email,
           follower: profile._json.followers,
           following: profile._json.following,
-          gist: profile._json.public_gists,
           bio: profile._json.bio,
+          twitter_acc: profile._json.twitter_username,
           repositry: profile._json.public_repos,
           blog: profile._json.blog,
           location: profile._json.location
         });
-      
+
         console.log(chalk.blue(newUser));
         const currUser = await User.findOne({ githubId: profile.id });
         if (currUser) {

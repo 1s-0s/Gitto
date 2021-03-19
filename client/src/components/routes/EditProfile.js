@@ -12,7 +12,7 @@ import { Field, reduxForm } from "redux-form";
 import { Form, Image } from 'semantic-ui-react';
 
 //Style-Component
-import { Container, FormContainer, ImageContent, FormHeader,Header } from "../styles/EditProStyle";
+import { Container, FormContainer, ImageContent, FormHeader, Header } from "../styles/EditProStyle";
 import ProfileImg from "../images/profile.jpg";
 import addUserDescription from "../../reducer/addUserDescription";
 
@@ -52,11 +52,6 @@ class EditProfile extends React.Component {
             <Form.Input fluid type="text" value="hey people"{...field.input} error={field.meta.touched ? field.meta.error : null} />
         );
     }
-    renderDesignationField = (field) => {
-        return (
-            <Form.Input fluid type="text" {...field.input} error={field.meta.touched ? field.meta.error : null} />
-        );
-    }
     renderLangField = (field) => {
         return (
             <Form.Dropdown fluid multiple selection {...field.input} onChange={(e, data) => {
@@ -65,7 +60,17 @@ class EditProfile extends React.Component {
                 value={"cpp"} options={this.state.options} error={field.meta.touched ? field.meta.error : null} />
         );
     }
-    renderProjectField = (field) => {
+    renderProject1Field = (field) => {
+        return (
+            <Form.Input fluid type="text"  {...field.input} error={field.meta.touched ? field.meta.error : null} />
+        );
+    }
+    renderProject2Field(field) {
+        return (
+            <Form.Input fluid type="text"  {...field.input} error={field.meta.touched ? field.meta.error : null} />
+        );
+    }
+    renderProject3Field(field) {
         return (
             <Form.Input fluid type="text"  {...field.input} error={field.meta.touched ? field.meta.error : null} />
         );
@@ -75,12 +80,8 @@ class EditProfile extends React.Component {
             <Form.Input fluid type="text"  {...field.input} error={field.meta.touched ? field.meta.error : null} />
         );
     }
-    renderAdditionalField(field) {
-        return (
-            <Form.TextArea  {...field.input} error={field.meta.touched ? field.meta.error : null} />
-        );
-    }
-    
+
+
     showData(e, data) {
         if (languages === undefined || languages.length < 5) {
             languages = data.value;
@@ -90,10 +91,9 @@ class EditProfile extends React.Component {
         }
     }
     onSubmit(values) {
-        this.props.userDescription({values})
+        this.props.userDescription({ values })
         //console.log("onSubmit", values);
-
-        this.props.history.push("/dashboard/profile");
+        this.props.history.push("/dashboard/");
     }
     render() {
         const { handleSubmit } = this.props;
@@ -107,16 +107,16 @@ class EditProfile extends React.Component {
                     <Form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                         <FormHeader>Bio*</FormHeader>
                         <Field required name="bio" component={this.renderBioField} />
-                        <FormHeader>Designation*</FormHeader>
-                        <Field required name="designation" component={this.renderDesignationField} />
                         <FormHeader>Top Languages* <em>(only 5)</em></FormHeader>
                         <Form.Dropdown required fluid multiple selection options={this.state.options} onChange={this.showData} />
-                        <FormHeader>Projects*</FormHeader>
-                        <Field required name="repositries" component={this.renderProjectField} />
+                        <FormHeader>Repositry 1*</FormHeader>
+                        <Field required name="repositries1" component={this.renderProject1Field} />
+                        <FormHeader>Repositry 2</FormHeader>
+                        <Field required name="repositries2" component={this.renderProject2Field} />
+                        <FormHeader>Repositry 3</FormHeader>
+                        <Field required name="repositries3" component={this.renderProject3Field} />
                         <FormHeader>Gist Reference*</FormHeader>
                         <Field required name="gist" component={this.renderGistField} />
-                        <FormHeader>Additional Info <em>(optional)</em></FormHeader>
-                        <Field name="additional" component={this.renderAdditionalField} />
                         <Form.Button color="black">Submit</Form.Button>
                     </Form>
                 </FormContainer>
@@ -131,11 +131,8 @@ function validate(values) {
     if (!values.bio) {
         error.bio = "Please enter a bio ";
     }
-    if (!values.designation) {
-        error.designation = "Please enter your designation ";
-    }
-    if (!values.project) {
-        error.project = "Enter your top project"
+    if (!values.repositries1) {
+        error.repositries1 = "Enter your top project"
     }
     if (!values.gist) {
         error.gist = "Enter your gist reference"
