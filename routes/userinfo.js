@@ -12,7 +12,6 @@ router.get("/:userid", (req, res) => {
             console.log(chalk.green("user data sent successfully from server"));
             console.log(user);
             res.json(user);
-
         } else {
             console.log(chalk.red("user dosent exist", err));
         }

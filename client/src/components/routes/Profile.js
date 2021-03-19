@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Statistic } from "semantic-ui-react";
+import { Image, Statistic, Loader } from "semantic-ui-react";
 import {
     Container,
     ProfileCard,
@@ -8,7 +8,8 @@ import {
     StatDesc,
     StatNum,
     Section,
-    ButtonLink
+    ButtonLink,
+    Loading
 } from "../styles/ProfileStyle";
 import { FaEdit as Edit } from "react-icons/fa";
 import ProfileImg from "../images/profile.jpg";
@@ -23,7 +24,8 @@ class Profile extends React.Component {
 
         this.state = {
             userinfo: {},
-            userid: Cookies.get("userid")
+            userid: Cookies.get("userid"),
+            loading: true
         }
 
     }
@@ -35,8 +37,7 @@ class Profile extends React.Component {
             method: "GET"
         })
             .then((response) => {
-
-                this.setState({ userinfo: response.data }, () => {
+                this.setState({ userinfo: response.data, loading: false }, () => {
                     console.log(this.state.userinfo);
                 });
             })
@@ -45,58 +46,65 @@ class Profile extends React.Component {
             })
     }
     render() {
-        const githubStat = `https://github-readme-stats.vercel.app/api?username=${this.state.userinfo.username}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
-        return (
-            <Container>
-                <ProfileCard>
-                    <Image src={this.state.userinfo.avatar} circular centered size="small" />
-                    <ImageContent>
-                        {this.state.userinfo.name}
-                        <ImageSubContent>
-                            <ButtonLink to="/dashboard/editprofile">
-                                <Edit />
-                            </ButtonLink>
-                        </ImageSubContent>
-                    </ImageContent>
-
-
-                    <Section vertical>
-                        <Statistic.Group widths="three">
-                            <Statistic>
-                                <Statistic.Value>
-                                    <StatNum>{this.state.userinfo.follower}</StatNum>
-                                    {/* <StatNum>10</StatNum> */}
-                                </Statistic.Value>
-                                <Statistic.Label>
-                                    <StatDesc>Followers</StatDesc>
-                                </Statistic.Label>
-                            </Statistic>
-                            <Statistic>
-                                <Statistic.Value>
-                                    <StatNum>{this.state.userinfo.following}</StatNum>
-                                    {/* <StatNum>20</StatNum> */}
-                                </Statistic.Value>
-                                <Statistic.Label>
-                                    <StatDesc>Followings</StatDesc>
-                                </Statistic.Label>
-                            </Statistic>
-                            <Statistic>
-                                <Statistic.Value>
-                                    <StatNum>{this.state.userinfo.repositry}</StatNum>
-                                    {/* <StatNum>51</StatNum> */}
-                                </Statistic.Value>
-                                <Statistic.Label>
-                                    <StatDesc>Repositries</StatDesc>
-                                </Statistic.Label>
-                            </Statistic>
-                        </Statistic.Group>
-                    </Section>
-                    {/* https://github-readme-stats.vercel.app/api?username=Samridhi-98&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true */}
-                    {/* <Image src={} /> */}
-                    <Image src={githubStat} />
-                </ProfileCard>
-            </Container>
-        )
+        if (this.state.loading === true) {
+            return (
+                <div>
+                    <Loading active size="large"><strong>Loading</strong></Loading>
+                </div>
+            )
+        }
+        else {
+            const githubStat = `https://github-readme-stats.vercel.app/api?username=${this.state.userinfo.username}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
+            return (
+                <Container>
+                    <ProfileCard>
+                        <Image src={this.state.userinfo.avatar} circular centered size="small" />
+                        <ImageContent>
+                            {this.state.userinfo.name}
+                            <ImageSubContent>
+                                <ButtonLink to="/dashboard/editprofile">
+                                    <Edit />
+                                </ButtonLink>
+                            </ImageSubContent>
+                        </ImageContent>
+                        <Section vertical>
+                            <Statistic.Group widths="three">
+                                <Statistic>
+                                    <Statistic.Value>
+                                        <StatNum>{this.state.userinfo.follower}</StatNum>
+                                        {/* <StatNum>10</StatNum> */}
+                                    </Statistic.Value>
+                                    <Statistic.Label>
+                                        <StatDesc>Followers</StatDesc>
+                                    </Statistic.Label>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Value>
+                                        <StatNum>{this.state.userinfo.following}</StatNum>
+                                        {/* <StatNum>20</StatNum> */}
+                                    </Statistic.Value>
+                                    <Statistic.Label>
+                                        <StatDesc>Followings</StatDesc>
+                                    </Statistic.Label>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Value>
+                                        <StatNum>{this.state.userinfo.repositry}</StatNum>
+                                        {/* <StatNum>51</StatNum> */}
+                                    </Statistic.Value>
+                                    <Statistic.Label>
+                                        <StatDesc>Repositries</StatDesc>
+                                    </Statistic.Label>
+                                </Statistic>
+                            </Statistic.Group>
+                        </Section>
+                        {/* https://github-readme-stats.vercel.app/api?username=Samridhi-98&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true */}
+                        {/* <Image src={} /> */}
+                        <Image src={githubStat} />
+                    </ProfileCard>
+                </Container>
+            )
+        }
     }
 }
 

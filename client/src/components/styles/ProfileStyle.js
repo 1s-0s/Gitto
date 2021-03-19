@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Segment } from "semantic-ui-react";
+import { Segment, Loader } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ModalCardBg from "../images/friendCard/friendCardBg2.svg";
 
@@ -22,7 +22,7 @@ export const ProfileCard = styled(Segment)`
 `;
 export const ImageContent = styled.h4`
   font-size: 1.5em !important;
-  margin-top: 0em;
+  margin-top: 0.2em;
   margin-bottom:0.2em;
   text-align:center;
   color:#EEE3E3;
@@ -60,4 +60,8 @@ export const StatDesc = styled.p`
 export const StatNum = styled.p`
   color:#AAB8C2;
   font-size: 0.6em;
+`;
+export const Loading = styled(Loader)`
+  margin-left: -20vw !important;
+  color: #EEE3E3 !important;
 `;

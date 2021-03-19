@@ -14,7 +14,7 @@ import { Form, Image } from 'semantic-ui-react';
 //Style-Component
 import { Container, FormContainer, ImageContent, FormHeader, Header } from "../styles/EditProStyle";
 import ProfileImg from "../images/profile.jpg";
-import addUserDescription from "../../reducer/addUserDescription";
+// import addUserDescription from "../../reducer/addUserDescription";
 
 
 let languages;
