@@ -14,7 +14,7 @@ export const ProfileCard = styled(Segment)`
   margin-top: 10vh !important;
   margin-left: 10vw !important;
   margin-right: 10vw !important;
-  height: 70vh !important;
+  /* max-height: 70vh !important; */
   background-color:rgba(0,77,64,0.4)  !important;
   -webkit-box-shadow:0 0 20px rgba(0,77,64,0.4);
   -moz-box-shadow:0 0 20px rgba(0,77,64,0.4);

@@ -5,6 +5,11 @@ import {
   MiddleDiv,
   RightDiv,
 } from "../styles/DashboardStyle";
+// Action Creator
+import { saveUserData } from "../../action/index";
+//REACT-REDUX AND REDUX-FORM
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 //Custome Component
 import Card from "../elements/Cards";
 import Sidebar from "../elements/Sidebar";
@@ -12,12 +17,27 @@ import Sidebar from "../elements/Sidebar";
 import FriendList from "./FriendList";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
-
+import Axios from "axios";
 //Router
 import { Route } from "react-router-dom";
-
+//fetch cookie
+import Cookie from "js-cookie";
 
 class Dashboard extends React.Component {
+  componentDidMount(){
+    const userid=Cookie.get("userid");
+    Axios({
+      url:"/userinfo/"+userid,
+      method:"GET"
+    })
+    .then((res)=>{
+      console.log("response from dashboard",res.data);
+      this.props.saveUserData(res.data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
   render() {
     return (
       <Div>
@@ -41,4 +61,8 @@ class Dashboard extends React.Component {
     );
   }
 }
-export default Dashboard;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ saveUserData }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Dashboard);

@@ -100,8 +100,8 @@ class EditProfile extends React.Component {
         return (
             <Container>
                 <Header>
-                    <Image src={ProfileImg} circular centered size="tiny" />
-                    <ImageContent>Dhruv Sehgal</ImageContent>
+                    <Image src={this.props.userData.avatar} circular centered size="tiny" />
+                    <ImageContent>{this.props.userData.name}</ImageContent>
                 </Header>
                 <FormContainer>
                     <Form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -142,10 +142,14 @@ function validate(values) {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ userDescription }, dispatch);
 }
-
+const mapStateToProps = (state)=>{
+    return {
+        userData:state.userDescription
+    }
+}
 export default reduxForm({
     validate: validate,
     form: "addUserDetails"
 })(
-    connect(null, mapDispatchToProps)(EditProfile)
+    connect(mapStateToProps, mapDispatchToProps)(EditProfile)
 );

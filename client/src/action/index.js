@@ -8,12 +8,12 @@ export const userDescription = (values) => {
         }
     })
 }
-// export const saveUserData = values => {
-//     console.log("action for save user data",values);
-//     return ({
-//         type: SAVE_USER_DATA,
-//         payload: {
-//             values: values
-//         }
-//     });
-// }
+export const saveUserData = values => {
+    console.log("action for save user data",values);
+    return ({
+        type: SAVE_USER_DATA,
+        payload: {
+            values: values
+        }
+    });
+}

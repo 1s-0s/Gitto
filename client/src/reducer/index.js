@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 //Import Reducer
-import addUserDescription from "./addUserDescription";
+import userDescription from "./userDescription";
 import { reducer as formReducer} from "redux-form";
 //Export Reducer
 export default combineReducers({
     form: formReducer,
-    addUserDescription:addUserDescription,
+    userDescription:userDescription,
     
 });
