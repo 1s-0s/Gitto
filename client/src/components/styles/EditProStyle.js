@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Segment } from "semantic-ui-react";
+import { Segment,Form } from "semantic-ui-react";
 import ModalCardBg from "../images/friendCard/friendCardBg2.svg";
 
 export const Container = styled.div`
@@ -30,3 +30,5 @@ export const Header = styled.div`
   /* width:100%;
   height: 100% !important; */
 `;
+//FORM
+

@@ -41,12 +41,12 @@ passport.use(
           blog: profile._json.blog,
           location: profile._json.location
         });
-
+        console.log(chalk.blue("from githubconfig"));
         console.log(chalk.blue(newUser));
         const currUser = await User.findOne({ githubId: profile.id });
         if (currUser) {
           // const savedUser = await newUser.update();
-          return done(null, profile);
+          return done(null, currUser);
         } else {
           const savedUser = await newUser.save();
           done(null, savedUser);

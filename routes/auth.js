@@ -18,7 +18,10 @@ router.get("/auth/github", passport.authenticate("github", { scope: ["profile"] 
 router.get("/auth/github/dashboard", passport.authenticate("github", { failureRedirect: "http://localhost:3000/" }), (req, res) => {
     console.log(chalk.green("checking user print"));
     console.log(req.user);
-    res.cookie("userid",req.user.id);
+    console.log(chalk.magenta("githubid of user : ",req.user.githubId));
+    console.log(chalk.magenta("id of user : ",req.user.id));
+    res.cookie("userid",req.user.githubId);
+    
     console.log(chalk.green("successfully callback"));
     res.redirect("http://localhost:3000/#/dashboard");
     

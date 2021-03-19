@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from 'js-cookie';
 
 
-export default (state = [], action) => {
+export default (state = {}, action) => {
     switch (action.type) {
         case USER_DESCRIPTION:
             const userid = Cookies.get("userid");
