@@ -4,6 +4,16 @@ const chalk = require("chalk");
 
 const userData = require("../models/User");
 
+router.get("/",(req,res)=>{
+    userData.find({})
+    .then((data)=>{
+        console.log("sending data from /: ",data);
+        res.json(data);
+    })
+    .catch((err)=>{
+        console.log("error while fetching all users data",err);
+    })
+})
 router.get("/:userid", (req, res) => {
     const userid = req.params.userid;
     console.log(userid);

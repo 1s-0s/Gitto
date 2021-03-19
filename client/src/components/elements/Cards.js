@@ -12,9 +12,13 @@ import {
 import Gist from "react-gist";
 
 class Card extends React.Component {
-  state = {
-    liked: false,
-  };
+  constructor(props){
+    super(props);
+    this.state={
+      liked: false,
+    }
+  }
+  
   toggleLike = async () => {
     await this.setState({ liked: this.state.liked === true ? false : true });
     console.log(this.state.liked);
@@ -23,11 +27,11 @@ class Card extends React.Component {
     return (
       <CardSegment>
         <GistSegment>
-          <Gist id="27eae9dd262f83cdede0613f614933de" />
+          <Gist id={this.props.gistid} />
         </GistSegment>
         <CardDetails>
           <CardHeader>
-            Kavya Kulkarni
+            {this.props.name}
           {/* /<ButtonGroup> */}
             {/* <CardButton circular color="teal" size="mini" floated="right" icon="github"></CardButton> */}
             <CardButton circular color="teal" size="mini" floated="right" icon="arrow down"></CardButton>

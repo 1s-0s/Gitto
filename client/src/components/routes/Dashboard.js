@@ -24,6 +24,12 @@ import { Route } from "react-router-dom";
 import Cookie from "js-cookie";
 
 class Dashboard extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      users:[]
+    }
+  }
   componentDidMount(){
     const userid=Cookie.get("userid");
     Axios({
@@ -37,8 +43,23 @@ class Dashboard extends React.Component {
     .catch((err)=>{
       console.log(err);
     })
+    Axios({
+      url:"/userinfo/",
+      method:"GET"
+    })
+    .then((res)=>{
+      console.log("response to get all the users",res.data);
+      this.setState({users:res.data})
+    })
   }
+  
   render() {
+    const userData = this.state.users.map((currUser)=>{
+      return(
+        <Card name={currUser.name} gistid={currUser.gist}/>
+      )
+      
+    })
     return (
       <Div>
         {/* //? LEFT SECTION */}
@@ -54,7 +75,7 @@ class Dashboard extends React.Component {
         </MiddleDiv>
         {/* //? RIGHT SECTION */}
         <RightDiv>
-          <Card />
+          {userData}
           {/* <Card /> */}
         </RightDiv>
       </Div>
