@@ -43,6 +43,8 @@ passport.use(
         });
         console.log(chalk.blue("from githubconfig"));
         console.log(chalk.blue(newUser));
+        console.log(chalk.red("access token"));
+        console.log(chalk.red(accessToken));
         const currUser = await User.findOne({ githubId: profile.id });
         if (currUser) {
           // const savedUser = await newUser.update();
