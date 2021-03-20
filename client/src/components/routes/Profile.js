@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Statistic, Loader } from "semantic-ui-react";
+import { Image, Statistic } from "semantic-ui-react";
 import {
     Container,
     ProfileCard,
@@ -12,7 +12,7 @@ import {
     Loading
 } from "../styles/ProfileStyle";
 import { FaEdit as Edit } from "react-icons/fa";
-import ProfileImg from "../images/profile.jpg";
+// import ProfileImg from "../images/profile.jpg";
 import Axios from "axios";
 //to fetch data from cookie
 import Cookies from 'js-cookie';

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Segment,Form } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 import ModalCardBg from "../images/friendCard/friendCardBg2.svg";
 
 export const Container = styled.div`

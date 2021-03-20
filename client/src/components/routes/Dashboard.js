@@ -24,41 +24,43 @@ import { Route } from "react-router-dom";
 import Cookie from "js-cookie";
 
 class Dashboard extends React.Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
-      users:[]
+    this.state = {
+      users: []
     }
   }
-  componentDidMount(){
-    const userid=Cookie.get("userid");
+  componentDidMount() {
+    const userid = Cookie.get("userid");
     Axios({
-      url:"/userinfo/"+userid,
-      method:"GET"
+      url: "/userinfo/" + userid,
+      method: "GET"
     })
-    .then((res)=>{
-      console.log("response from dashboard",res.data);
-      this.props.saveUserData(res.data);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+      .then((res) => {
+        console.log("response from dashboard", res.data);
+        this.props.saveUserData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     Axios({
-      url:"/userinfo/",
-      method:"GET"
+      url: "/userinfo/",
+      method: "GET"
     })
-    .then((res)=>{
-      console.log("response to get all the users",res.data);
-      this.setState({users:res.data})
-    })
+      .then((res) => {
+        console.log("response to get all the users", res.data);
+        this.setState({ users: res.data })
+      })
   }
-  
+
   render() {
-    const userData = this.state.users.map((currUser)=>{
-      return(
-        <Card name={currUser.name} gistid={currUser.gist}/>
+    //! Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
+    //!Warning: Each child in a list should have a unique "key" prop.
+    const userData = this.state.users.map((currUser, i) => {
+      return (
+        <Card name={currUser.name} gistid={currUser.gist} key={i} />
       )
-      
+
     })
     return (
       <Div>

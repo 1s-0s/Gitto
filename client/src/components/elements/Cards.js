@@ -8,21 +8,30 @@ import {
   CardButton,
   // ReactIcon
 } from "../styles/CardStyle";
+//React-Redux
+import { connect } from "react-redux";
 
 import Gist from "react-gist";
 
 class Card extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      liked: false,
+    this.state = {
+      like: false,
+      dislike: false,
     }
   }
-  
+
   toggleLike = async () => {
-    await this.setState({ liked: this.state.liked === true ? false : true });
-    console.log(this.state.liked);
+    await this.setState({ like: this.state.like === true ? false : true });
+    console.log("like: ", this.state.like);
   };
+
+  toggleDisLike = async () => {
+    await this.setState({ dislike: this.state.dislike === true ? false : true });
+    console.log("dislike: ", this.state.dislike);
+  };
+
   render() {
     return (
       <CardSegment>
@@ -32,37 +41,20 @@ class Card extends React.Component {
         <CardDetails>
           <CardHeader>
             {this.props.name}
-          {/* /<ButtonGroup> */}
-            {/* <CardButton circular color="teal" size="mini" floated="right" icon="github"></CardButton> */}
-            <CardButton circular color="teal" size="mini" floated="right" icon="arrow down"></CardButton>
-            <CardButton circular color="teal" size="mini" floated="right" icon="arrow up"></CardButton>
+            <CardButton circular color="teal" size="mini" floated="right" icon="arrow down" onClick={this.toggleDisLike}></CardButton>
+            <CardButton circular color="teal" size="mini" floated="right" icon="arrow up" onClick={this.toggleLike}></CardButton>
             <CardButton circular color="teal" size="mini" floated="right" icon="plus"></CardButton>
-            {/* <CardButton circular color="black" animated="vertical">
-              <CardButton.Content hidden>Like</CardButton.Content>
-              <CardButton.Content visible>
-                <Icon name='arrow up' />
-              </CardButton.Content>
-            </CardButton>
-            <CardButton circular color="black" animated="vertical">
-              <CardButton.Content hidden>Dislike</CardButton.Content>
-              <CardButton.Content visible>
-                <Icon name='arrow down' />
-              </CardButton.Content>
-            </CardButton> */}
-            {/* </ButtonGroup> */}
           </CardHeader>
-          {/* <HeartButtonRed
-                onClick={this.toggleLike}
-                style={
-                  this.state.liked === true
-                    ? { transitionDuration: "1s ", backgroundPosition: "-2800px 0" }
-                    : { transitionDuration: "0s", backgroundPosition: "0 0" }
-                }
-              >
-              </HeartButtonRed> */}
         </CardDetails>
       </CardSegment>
     );
   }
 }
-export default Card;
+
+const mapStateToProps = (state) => {
+  return {
+    userData: state.userDescription
+  }
+}
+
+export default connect(mapStateToProps)(Card);

@@ -13,7 +13,7 @@ import { Form, Image } from 'semantic-ui-react';
 
 //Style-Component
 import { Container, FormContainer, ImageContent, FormHeader, Header } from "../styles/EditProStyle";
-import ProfileImg from "../images/profile.jpg";
+// import ProfileImg from "../images/profile.jpg";
 // import addUserDescription from "../../reducer/addUserDescription";
 
 
@@ -142,9 +142,9 @@ function validate(values) {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ userDescription }, dispatch);
 }
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state) => {
     return {
-        userData:state.userDescription
+        userData: state.userDescription
     }
 }
 export default reduxForm({

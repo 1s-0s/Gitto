@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Segment, Grid, Button } from "semantic-ui-react";
+import { Segment, Button } from "semantic-ui-react";
 
 
 export const CardSegment = styled(Segment)`
