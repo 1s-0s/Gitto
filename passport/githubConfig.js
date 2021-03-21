@@ -11,10 +11,17 @@ const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
 passport.serializeUser((user, done) => {
-  done(null, user);
+  console.log(chalk.cyan("serialize called"));
+  console.log(chalk.cyan(user));
+  done(null, {_id:user._id});
 })
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
+passport.deserializeUser((id, done) => {
+  console.log(chalk.cyan("deserialize called1"));
+  User.findOne({_id:id},(err,user)=>{
+    console.log(chalk.cyan("deserialize called2"));
+    console.log(chalk.cyan(user));
+    done(null,user);
+  })
 })
 
 passport.use(

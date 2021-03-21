@@ -27,7 +27,8 @@ class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
-      users: []
+      users: [],
+      curruser:null
     }
   }
   componentDidMount() {
@@ -38,6 +39,7 @@ class Dashboard extends React.Component {
     })
       .then((res) => {
         console.log("response from dashboard", res.data);
+        this.setState({curruser:res.data})
         this.props.saveUserData(res.data);
       })
       .catch((err) => {
@@ -52,7 +54,9 @@ class Dashboard extends React.Component {
         this.setState({ users: res.data })
       })
   }
-
+  logOutRedirect = ()=>{
+    this.props.history.push("/");
+  }
   render() {
     //! Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
     //!Warning: Each child in a list should have a unique "key" prop.
@@ -62,11 +66,12 @@ class Dashboard extends React.Component {
       )
 
     })
+    
     return (
       <Div>
         {/* //? LEFT SECTION */}
         <LeftDiv>
-          <Sidebar />
+          <Sidebar isLoggedin="true" user={this.state.curruser} logOutRedirect={this.logOutRedirect.bind(this)} />
         </LeftDiv>
         {/* //? MIDDLE SECTION */}
         {/* <script src="https://gist.github.com/ritik307/27eae9dd262f83cdede0613f614933de.js"></script> */}

@@ -8,6 +8,7 @@ const auth = require("./routes/auth");
 const userinfo = require("./routes/userinfo");
 const mongoose = require("mongoose");
 const morgan = require("morgan"); //HTTP logger
+const cors = require("cors");
 //dotenv configuration
 require("dotenv").config();
 //database
@@ -28,6 +29,13 @@ mongoose.connect(process.env.MONGODB_URI,
 );
 
 const app = express();
+app.use(
+    cors({
+         origin: "http://localhost:3000", // allow to server to accept request from different origin
+         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+         credentials: true, // allow session cookie from browser to pass through
+   })
+);
 // HTTP request logger
 app.use(morgan('tiny'));
 
@@ -46,7 +54,7 @@ app.use(session({
 app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/", auth);
+app.use("/auth", auth);
 app.use("/userinfo", userinfo);
 
 //! app.use(express.static)
