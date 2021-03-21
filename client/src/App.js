@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 //Custome routes
@@ -10,13 +10,22 @@ import Cookie from "js-cookie";
 // import friendList from "./components/elements/FriendList";
 
 class App extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            userId: Cookie.get("userid")
+        }
+    }
+
     render() {
-        
+        console.log("connect:", Cookie.get("connect.sid"));
         return (
             <Router>
                 <Route exact path="/" component={login} />
                 <Switch>
-                    <PrivateRoute authed={Cookie.get("userid")} path="/dashboard" component={dashboard} />
+                    {console.log("cookie", Cookie.get("userid"))}
+                    <PrivateRoute authed={this.state.userId} path="/dashboard" component={dashboard} />
                 </Switch>
             </Router>
         )

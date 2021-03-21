@@ -8,7 +8,6 @@ const auth = require("./routes/auth");
 const userinfo = require("./routes/userinfo");
 const mongoose = require("mongoose");
 const morgan = require("morgan"); //HTTP logger
-
 //dotenv configuration
 require("dotenv").config();
 //database
@@ -16,7 +15,7 @@ require("./models/User");
 //github authentication
 require("./passport/githubConfig");
 
-
+const PORT = process.env.PORT || 5000;
 //MONGOOSE CONNECTION
 mongoose.connect(process.env.MONGODB_URI,
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
@@ -52,15 +51,6 @@ app.use("/userinfo", userinfo);
 
 //! app.use(express.static)
 
-// app.get("/auth/github", passport.authenticate("github", { scope: ["profile"] }), (req, res) => {
-//     console.log(chalk.red("Wasnt ment to run"));
-// })
-
-// app.get("/auth/github/dashboard", passport.authenticate("github", { failureRedirect: "http://localhost:3000/" }), (req, res) => {
-//     console.log(chalk.green("successfully callback"));
-//     res.redirect("http://localhost:3000/#/dashboard");
-// })
-
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log(chalk.blue("Server is running boiss"));
 })
