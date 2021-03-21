@@ -13,11 +13,23 @@ import { RiGroup2Line as Friends } from "react-icons/ri";
 import { IoMdLogOut as Logout } from "react-icons/io";
 import { CgProfile as ProfilePic, CgDarkMode as Darkmode } from "react-icons/cg";
 import logo from "../images/logopen3.svg";
+import Axios from "axios";
 
 class Sidebar extends React.Component {
 
   onLogOutUser = () => {
-    Cookie.remove("userid", { path: "/" });
+    console.log("Insidde logout")
+    Axios({
+      url: "/auth/logout",
+      method: "GET"
+    })
+      .then((res) => {
+        console.log("response of logout", res);
+
+      })
+      .catch((err) => {
+        console.log("error from logout", err);
+      })
   }
   render() {
     return (

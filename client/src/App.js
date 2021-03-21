@@ -11,12 +11,12 @@ import Cookie from "js-cookie";
 
 class App extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            userId: Cookie.get("userid")
-        }
-    }
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //         userId: Cookie.get("userid")
+    //     }
+    // }
 
     render() {
         console.log("connect:", Cookie.get("connect.sid"));
@@ -25,7 +25,7 @@ class App extends React.Component {
                 <Route exact path="/" component={login} />
                 <Switch>
                     {console.log("cookie", Cookie.get("userid"))}
-                    <PrivateRoute authed={this.state.userId} path="/dashboard" component={dashboard} />
+                    <PrivateRoute authed={Cookie.get("userid")} path="/dashboard" component={dashboard} />
                 </Switch>
             </Router>
         )
