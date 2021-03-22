@@ -1,15 +1,8 @@
 import axios from "axios";
 
-export const USER_DESCRIPTION = "add-user-description";
 export const SAVE_USER_DATA = "SAVE_USER_DATA";
-export const userDescription = (values) => {
-    return ({
-        type: USER_DESCRIPTION,
-        payload : {
-            values:values
-        }
-    })
-}
+export const GET_USER="GET_USER";
+//? CORRECT
 export const saveUserData = values => {
     //console.log("action for save user data",values);
     return ({
@@ -20,7 +13,7 @@ export const saveUserData = values => {
     });
 }
 
-
+//? CORRECT
 export const fetchUserAction = ()=>{
     return (dispatch)=>{
         axios({
@@ -30,7 +23,7 @@ export const fetchUserAction = ()=>{
         })
         .then((response)=>{
             dispatch({
-                type:"GET_USER",
+                type:GET_USER,
                 payload:response.data
         
             })

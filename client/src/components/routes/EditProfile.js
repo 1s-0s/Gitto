@@ -1,7 +1,7 @@
 import React from "react";
 
 // Action Creator
-import { userDescription } from "../../action/index";
+import { saveUserData } from "../../action/index";
 
 //REACT-REDUX AND REDUX-FORM
 import { bindActionCreators } from "redux";
@@ -19,7 +19,7 @@ import { Container, FormContainer, ImageContent, FormHeader, Header } from "../s
 
 let languages;
 class EditProfile extends React.Component {
-    state = {}
+    
     handleChange = (e, { value }) => this.setState({ value })
     componentWillMount() {
         this.setState({
@@ -140,11 +140,12 @@ function validate(values) {
     return error;
 }
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userDescription }, dispatch);
+    return bindActionCreators({ saveUserData }, dispatch);
 }
 const mapStateToProps = (state) => {
+    console.log("edit profile- ",state.auth);
     return {
-        userData: state.userDescription
+        userData: state.auth
     }
 }
 export default reduxForm({

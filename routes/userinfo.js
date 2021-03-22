@@ -17,7 +17,7 @@ router.get("/",(req,res)=>{
 //return current-user
 router.get("/current_user",(req,res)=>{
     console.log(chalk.cyan("current_user called"));
-    res.send(req.user);
+    res.json(req.user);
 })
 
 router.get("/:userid", (req, res) => {

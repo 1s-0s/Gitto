@@ -12,9 +12,6 @@ import { IoMdLogOut as Logout } from "react-icons/io";
 import { CgProfile as ProfilePic, CgDarkMode as Darkmode } from "react-icons/cg";
 import logo from "../images/logopen3.svg";
 import axios from "axios";
-import Cookie from "js-cookie";
-import {Redirect} from "react-router";
-
 class Sidebar extends React.Component {
   constructor(props){
     super(props);

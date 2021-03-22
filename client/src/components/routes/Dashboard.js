@@ -17,35 +17,20 @@ import Sidebar from "../elements/Sidebar";
 import FriendList from "./FriendList";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
-import Axios from "axios";
 //Router
 import { Route } from "react-router-dom";
-//fetch cookie
-import Cookie from "js-cookie";
+//axios call
+import axios from "axios";
 
 class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
       users: [],
-      curruser:null
     }
   }
   componentDidMount() {
-    const userid = Cookie.get("userid");
-    Axios({
-      url: "/userinfo/" + userid,
-      method: "GET"
-    })
-      .then((res) => {
-        //console.log("response from dashboard", res.data);
-        this.setState({curruser:res.data})
-        this.props.saveUserData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    Axios({
+    axios({
       url: "/userinfo/",
       method: "GET"
     })
@@ -60,7 +45,7 @@ class Dashboard extends React.Component {
   render() {
     //! Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
     //!Warning: Each child in a list should have a unique "key" prop.
-    const userData = this.state.users.map((currUser, i) => {
+    const users = this.state.users.map((currUser, i) => {
       return (
         <Card name={currUser.name} gistid={currUser.gist} key={i} />
       )
@@ -71,10 +56,10 @@ class Dashboard extends React.Component {
       <Div>
         {/* //? LEFT SECTION */}
         <LeftDiv>
-          <Sidebar isLoggedin="true" user={this.state.curruser} logOutRedirect={this.logOutRedirect.bind(this)} />
+          <Sidebar />
         </LeftDiv>
         {/* //? MIDDLE SECTION */}
-        {/* <script src="https://gist.github.com/ritik307/27eae9dd262f83cdede0613f614933de.js"></script> */}
+       
         <MiddleDiv>
           <Route exact path="/" component={FriendList} />
           <Route exact path="/profile" component={Profile} />
@@ -82,8 +67,7 @@ class Dashboard extends React.Component {
         </MiddleDiv>
         {/* //? RIGHT SECTION */}
         <RightDiv>
-          {userData}
-          {/* <Card /> */}
+          {users}
         </RightDiv>
       </Div>
     );
