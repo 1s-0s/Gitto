@@ -14,6 +14,12 @@ router.get("/",(req,res)=>{
         console.log("error while fetching all users data",err);
     })
 })
+//return current-user
+router.get("/current_user",(req,res)=>{
+    console.log(chalk.cyan("current_user called"));
+    res.send(req.user);
+})
+
 router.get("/:userid", (req, res) => {
     const userid = req.params.userid;
     console.log(userid);
@@ -27,7 +33,7 @@ router.get("/:userid", (req, res) => {
         }
     })
 })
-router.post("/:userid/update", (req, res) => {
+router.get("/:userid/update", (req, res) => {
     const data = req.body.values;
     console.log(chalk.magenta("recieved data to update", req.params.userid));
     console.log(data);
@@ -52,5 +58,6 @@ router.post("/:userid/update", (req, res) => {
         }
     });
 })
+
 module.exports = router;
 

@@ -11,11 +11,11 @@ export default (state = {}, action) => {
             console.log("from axios: ", userid);
             axios({
                 url: "/userinfo/" + userid + "/update",
-                method: "POST",
+                method: "GET",
                 data: action.payload.values
             })
-                .then(() => {
-                    console.log("successfully updated data");
+                .then((response) => {
+                    console.log(response.data);
                 })
                 .catch((err) => {
                     console.log("error while updating user data ", err);
@@ -29,4 +29,5 @@ export default (state = {}, action) => {
         default:
             return state;
     }
+
 }

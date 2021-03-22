@@ -24,18 +24,13 @@ class Sidebar extends React.Component {
     }
   }
   onLogOutUser = (event) => {
-    event.preventDefault();
-    Cookie.remove("userid");
-    console.log("logging user out");
-    axios.post("/auth/logout").then((response)=>{
-      console.log(response.data);
-      if(response.status === 200){
-        this.setState({
-          loggedIn:false,
-          user:null
-        })
-        this.props.logOutRedirect();
-      }
+    
+    axios({
+      url:"/auth/logout",
+      method:"GET"
+    })
+    .then((response)=>{
+      console.log("logged out success");
     })
   }
   render() {
@@ -44,19 +39,19 @@ class Sidebar extends React.Component {
         <div>
           <Logo src={logo} color="white" size="mini" />
           <IconGroup>
-            <Icon to="/dashboard/profile">
+            <Icon to="/profile">
               <Chat />
               <IconContent>Chat</IconContent>
             </Icon>
-            <Icon to="/dashboard/">
+            <Icon to="/">
               <Friends />
               <IconContent>Friends</IconContent>
             </Icon>
-            <Icon to="/dashboard/profile">
+            <Icon to="/profile">
               <ProfilePic />
               <IconContent>Profile</IconContent>
             </Icon>
-            <Icon onClick={this.onLogOutUser} to="/">
+            <Icon onClick={this.onLogOutUser} to="/login">
               <Logout />
               <IconContent>Logout</IconContent>
             </Icon>

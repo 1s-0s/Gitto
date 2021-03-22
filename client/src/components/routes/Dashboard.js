@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
       method: "GET"
     })
       .then((res) => {
-        console.log("response from dashboard", res.data);
+        //console.log("response from dashboard", res.data);
         this.setState({curruser:res.data})
         this.props.saveUserData(res.data);
       })
@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
       method: "GET"
     })
       .then((res) => {
-        console.log("response to get all the users", res.data);
+        //console.log("response to get all the users", res.data);
         this.setState({ users: res.data })
       })
   }
@@ -76,9 +76,9 @@ class Dashboard extends React.Component {
         {/* //? MIDDLE SECTION */}
         {/* <script src="https://gist.github.com/ritik307/27eae9dd262f83cdede0613f614933de.js"></script> */}
         <MiddleDiv>
-          <Route exact path="/dashboard/" component={FriendList} />
-          <Route exact path="/dashboard/profile" component={Profile} />
-          <Route exact path="/dashboard/editprofile" component={EditProfile} />
+          <Route exact path="/" component={FriendList} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/editprofile" component={EditProfile} />
         </MiddleDiv>
         {/* //? RIGHT SECTION */}
         <RightDiv>
