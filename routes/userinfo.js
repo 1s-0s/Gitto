@@ -3,6 +3,7 @@ const router = express.Router();
 const chalk = require("chalk");
 
 const userData = require("../models/User");
+const User = require("../models/User");
 
 router.get("/",(req,res)=>{
     userData.find({})
@@ -43,6 +44,23 @@ router.get("/:userid/update", (req, res) => {
             console.log(chalk.red("error", err));
         }
     });
+})
+router.post("/addfriend",(req,res)=>{
+    const friendId= req.body;
+    const userId=req.user.id;
+    console.log("friendId: ",friendId);
+    console.log("userId: ",userId);
+
+    // User.findById(userId,(err,user)=>{
+    //     if(user && userId!==friendId){
+    //         user.friends.addToSet(friendId);
+    //         user.save();
+    //         console.log(chalk.magenta("user",user));
+    //     }
+    //     else{
+    //         console.log(chalk.magenta("err while adding friend: ",err));
+    //     }
+    // })
 })
 
 module.exports = router;

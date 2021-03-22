@@ -48,8 +48,9 @@ class Dashboard extends React.Component {
     //! Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
     //!Warning: Each child in a list should have a unique "key" prop.
     const users = this.state.users.map((currUser, i) => {
+      //console.log("currUser: ",currUser._id);
       return (
-        <Card name={currUser.name} gistid={currUser.gist} key={i} />
+        <Card name={currUser.name} gistid={currUser.gist} fid={currUser._id} key={i} />
       )
 
     })
@@ -64,7 +65,6 @@ class Dashboard extends React.Component {
        
         <MiddleDiv>
          <Switch>
-            
             <PrivateRoute exact  path="/profile" component={Profile} />
             <PrivateRoute exact path="/editprofile" component={EditProfile} />
             <PrivateRoute exact path="/" component={FriendList} />

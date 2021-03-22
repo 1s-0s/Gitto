@@ -12,6 +12,7 @@ import {
 import { connect } from "react-redux";
 
 import Gist from "react-gist";
+import axios from "axios";
 
 class Card extends React.Component {
   constructor(props) {
@@ -31,8 +32,23 @@ class Card extends React.Component {
     await this.setState({ dislike: this.state.dislike === true ? false : true });
     console.log("dislike: ", this.state.dislike);
   };
-
+  //? adding card user to users friendlist
+  addToFriends(friendId){
+    console.log("friendId: ",friendId);
+    axios({
+      url:"/userinfo/addfriend",
+      method:"POST",
+      data:friendId
+    })
+    .then((response)=>{
+        console.log("friend added successfully");
+    })
+    .catch((err)=>{
+      console.log("error while saving friend: ",err);
+    })
+  }
   render() {
+    console.log(this.props.key);
     return (
       <CardSegment>
         <GistSegment>
@@ -43,7 +59,7 @@ class Card extends React.Component {
             {this.props.name}
             <CardButton circular color="teal" size="mini" floated="right" icon="arrow down" onClick={this.toggleDisLike}></CardButton>
             <CardButton circular color="teal" size="mini" floated="right" icon="arrow up" onClick={this.toggleLike}></CardButton>
-            <CardButton circular color="teal" size="mini" floated="right" icon="plus"></CardButton>
+            <CardButton circular color="teal" size="mini" floated="right" icon="plus" onClick={this.addToFriends(this.props.fid)}></CardButton>
           </CardHeader>
         </CardDetails>
       </CardSegment>
@@ -53,7 +69,7 @@ class Card extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    userData: state.userDescription
+    user: state.auth.user
   }
 }
 
