@@ -24,12 +24,10 @@ class App extends React.Component {
         // console.log("connect:", Cookie.get("connect.sid"));
         return (
             <Router>
-                 
                 <Switch>
                     <Route exact path="/login" component={login} />
-                    {/* {console.log("cookie", Cookie.get("userid"))} */}
                     <PrivateRoute fetchUser={this.props.fetch_user} path="/" component={dashboard} />
-                    {/* <Route path="/" component={dashboard} /> */}
+                    
                 </Switch>
             </Router>
         )
