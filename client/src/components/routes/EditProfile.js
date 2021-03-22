@@ -145,7 +145,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     console.log("edit profile- ",state.auth);
     return {
-        userData: state.auth
+        userData: state.auth.user
     }
 }
 export default reduxForm({

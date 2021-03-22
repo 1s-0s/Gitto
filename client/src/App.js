@@ -14,6 +14,7 @@ import Cookie from "js-cookie";
 class App extends React.Component {
     constructor(props){
         super(props);
+        
     }
     componentDidMount(){
         this.props.fetch_user();
@@ -23,19 +24,25 @@ class App extends React.Component {
         // console.log("connect:", Cookie.get("connect.sid"));
         return (
             <Router>
-                <Route exact path="/login" component={login} />
+                 
                 <Switch>
+                    <Route exact path="/login" component={login} />
                     {/* {console.log("cookie", Cookie.get("userid"))} */}
-                    {/* <PrivateRoute authed={Cookie.get("userid")} path="/dashboard" component={dashboard} /> */}
-                    <Route path="/" component={dashboard} />
+                    <PrivateRoute fetchUser={this.props.fetch_user} path="/" component={dashboard} />
+                    {/* <Route path="/" component={dashboard} /> */}
                 </Switch>
             </Router>
         )
     }
 }
-const mapDispatchToProps= (dispatch)=>{
+const mapStateToProps = (state)=>{
+    return{
+        isAuthenticated:state.auth.isAuthenticated
+    }
+}
+const mapDispatchToProps = (dispatch)=>{
     return{
         fetch_user:()=>{dispatch(fetchUserAction())}
     }
 }
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

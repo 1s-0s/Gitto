@@ -19,20 +19,6 @@ router.get("/current_user",(req,res)=>{
     console.log(chalk.cyan("current_user called"));
     res.json(req.user);
 })
-
-router.get("/:userid", (req, res) => {
-    const userid = req.params.userid;
-    console.log(userid);
-    userData.findOne({ githubId: userid }, (err, user) => {
-        if (user) {
-            console.log(chalk.green("user data sent successfully from server"));
-            console.log(user);
-            res.json(user);
-        } else {
-            console.log(chalk.red("user dosent exist", err));
-        }
-    })
-})
 router.get("/:userid/update", (req, res) => {
     const data = req.body.values;
     console.log(chalk.magenta("recieved data to update", req.params.userid));

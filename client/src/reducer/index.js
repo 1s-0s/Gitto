@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import updateUserData from "./updateUserData";
 import authReducer from "./authReducer";
 import { reducer as formReducer} from "redux-form";
+
 //Export Reducer
 export default combineReducers({
     form: formReducer,

@@ -18,15 +18,18 @@ import FriendList from "./FriendList";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 //Router
-import { Route } from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 //axios call
 import axios from "axios";
 
 class Dashboard extends React.Component {
   constructor() {
     super();
+    console.log("dashboard");
     this.state = {
       users: [],
+      cardsLoading:true
     }
   }
   componentDidMount() {
@@ -36,11 +39,10 @@ class Dashboard extends React.Component {
     })
       .then((res) => {
         //console.log("response to get all the users", res.data);
-        this.setState({ users: res.data })
+        this.setState({ users: res.data },()=>{
+          this.setState({cardsLoading:false})
+        })
       })
-  }
-  logOutRedirect = ()=>{
-    this.props.history.push("/");
   }
   render() {
     //! Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
@@ -61,9 +63,14 @@ class Dashboard extends React.Component {
         {/* //? MIDDLE SECTION */}
        
         <MiddleDiv>
-          <Route exact path="/" component={FriendList} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/editprofile" component={EditProfile} />
+         <Switch>
+            
+            <PrivateRoute exact  path="/profile" component={Profile} />
+            <PrivateRoute exact path="/editprofile" component={EditProfile} />
+            <PrivateRoute exact path="/" component={FriendList} />
+          </Switch>
+          
+          
         </MiddleDiv>
         {/* //? RIGHT SECTION */}
         <RightDiv>
