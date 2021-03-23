@@ -6,20 +6,20 @@ const router = express.Router();
 const chalk = require("chalk");
 
 const userData = require("../models/User");
-const User = require("../models/User");
 
-router.get("/",(req,res)=>{
+
+router.get("/", (req, res) => {
     userData.find({})
-    .then((data)=>{
-        console.log(chalk.hex("#61F2F5").bold("sending data from /: ",data));
-        res.json(data);
-    })
-    .catch((err)=>{
-        console.log(chalk.hex("#61F2F5").bold("error while fetching all users data",err));
-    })
+        .then((data) => {
+            console.log(chalk.hex("#61F2F5").bold("sending data from /: ", data));
+            res.json(data);
+        })
+        .catch((err) => {
+            console.log(chalk.hex("#61F2F5").bold("error while fetching all users data", err));
+        })
 })
 //return current-user
-router.get("/current_user",(req,res)=>{
+router.get("/current_user", (req, res) => {
     console.log(chalk.hex("#61F2F5").bold("current_user called"));
     res.json(req.user);
 })
@@ -48,12 +48,12 @@ router.get("/:userid/update", (req, res) => {
         }
     });
 })
-router.post("/addfriend",(req,res)=>{
-    const friendId= req.body;
-    const userId=req.user.id;
+router.post("/addfriend", (req, res) => {
+    const friendId = req.body;
+    const userId = req.user.id;
     console.log(chalk.hex("#61F2F5").bold("friendId: "));
     console.log(chalk.hex("#61F2F5").bold(friendId));
-    console.log(chalk.hex("#61F2F5").bold("userId: ",userId));
+    console.log(chalk.hex("#61F2F5").bold("userId: ", userId));
 })
 
 module.exports = router;

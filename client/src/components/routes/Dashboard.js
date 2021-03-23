@@ -18,43 +18,43 @@ import FriendList from "./FriendList";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 //Router
-import { Route, Switch} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./privateRoute/PrivateRoute";
 //axios call
 import axios from "axios";
 
 class Dashboard extends React.Component {
-  constructor() {
-    super();
-    console.log("dashboard");
-    this.state = {
-      users: [],
-      cardsLoading:true
-    }
-  }
-  componentDidMount() {
-    axios({
-      url: "/userinfo/",
-      method: "GET"
-    })
-      .then((res) => {
-        //console.log("response to get all the users", res.data);
-        this.setState({ users: res.data },()=>{
-          this.setState({cardsLoading:false})
-        })
-      })
-  }
+  // constructor() {
+  //   super();
+  //   console.log("dashboard");
+  //   this.state = {
+  //     users: [],
+  //     cardsLoading:true
+  //   }
+  // }
+  // componentDidMount() {
+  //   axios({
+  //     url: "/userinfo/",
+  //     method: "GET"
+  //   })
+  //     .then((res) => {
+  //       //console.log("response to get all the users", res.data);
+  //       this.setState({ users: res.data },()=>{
+  //         this.setState({cardsLoading:false})
+  //       })
+  //     })
+  // }
   render() {
     //! Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
     //!Warning: Each child in a list should have a unique "key" prop.
-    const users = this.state.users.map((currUser, i) => {
-      //console.log("currUser: ",currUser._id);
-      return (
-        <Card name={currUser.name} gistid={currUser.gist} fid={currUser._id} key={i} />
-      )
+    // const users = this.state.users.map((currUser, i) => {
+    //   console.log("currUser: ",currUser._id);
+    //   return (
+    //     <Card name={currUser.name} gistid={currUser.gist} fid={currUser._id} key={i} />
+    //   )
 
-    })
-    
+    // })
+
     return (
       <Div>
         {/* //? LEFT SECTION */}
@@ -62,19 +62,19 @@ class Dashboard extends React.Component {
           <Sidebar />
         </LeftDiv>
         {/* //? MIDDLE SECTION */}
-       
+
         <MiddleDiv>
-         <Switch>
-            <PrivateRoute exact  path="/profile" component={Profile} />
+          <Switch>
+            <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path="/editprofile" component={EditProfile} />
             <PrivateRoute exact path="/" component={FriendList} />
           </Switch>
-          
-          
+
+
         </MiddleDiv>
         {/* //? RIGHT SECTION */}
         <RightDiv>
-          {users}
+          {/* {users} */}
         </RightDiv>
       </Div>
     );

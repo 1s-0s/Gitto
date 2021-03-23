@@ -11,11 +11,11 @@ router.get("/github", passport.authenticate("github", { scope: ["profile"] }), (
     console.log(chalk.hex("#FFA45B").bold("Wasnt meant to run"));
 })
 
-router.get("/github/dashboard", passport.authenticate("github", { failureRedirect: "http://localhost:3000/" }), (req, res) => {
+router.get("/github/dashboard", passport.authenticate("github", { failureRedirect: "http://localhost:3000/login" }), (req, res) => {
     res.redirect("http://localhost:3000/");
 })
 
-router.get("/logout",(req,res)=>{
+router.get("/logout", (req, res) => {
     console.log(chalk.hex("#FFA45B").bold("loggedout user"));
     req.logout();
     res.redirect("/");

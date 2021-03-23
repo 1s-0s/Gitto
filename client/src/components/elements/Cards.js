@@ -11,7 +11,7 @@ import {
 //React-Redux
 import { connect } from "react-redux";
 
-import Gist from "react-gist";
+//import Gist from "react-gist";
 import axios from "axios";
 
 class Card extends React.Component {
@@ -33,26 +33,26 @@ class Card extends React.Component {
     console.log("dislike: ", this.state.dislike);
   };
   //? adding card user to users friendlist
-  addToFriends(friendId){
-    console.log("friendId: ",friendId);
+  addToFriends(friendId) {
+    console.log("friendId: ", friendId);
     axios({
-      url:"/userinfo/addfriend",
-      method:"POST",
-      data:friendId
+      url: "/userinfo/addfriend",
+      method: "POST",
+      data: friendId
     })
-    .then((response)=>{
-        console.log("friend added successfully");
-    })
-    .catch((err)=>{
-      console.log("error while saving friend: ",err);
-    })
+      .then((response) => {
+        console.log("friend added successfully", response);
+      })
+      .catch((err) => {
+        console.log("error while saving friend: ", err);
+      })
   }
   render() {
     console.log(this.props.key);
     return (
       <CardSegment>
         <GistSegment>
-          <Gist id={this.props.gistid} />
+          {/* <Gist id={this.props.gistid} /> */}
         </GistSegment>
         <CardDetails>
           <CardHeader>
