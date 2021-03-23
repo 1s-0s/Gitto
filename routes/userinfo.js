@@ -52,8 +52,10 @@ router.get("/:userid/update", (req, res) => {
 router.post("/addfriend", (req, res) => {
     const friend = req.body.friend;
     const userId = req.user.id;
-    console.log(chalk.hex("#61F2F5").bold(`friendId: ${friend._id}`));
+
     console.log(chalk.hex("#61F2F5").bold(`userId: ${userId}`));
+    console.log(chalk.hex("#61F2F5").bold(`friendId: ${friend._id}`));
+    console.log();
     userData.findById(userId, (err, user) => {
         if (user && userId !== friend._id) {
             //? addToSet- to maintain uniqueness
@@ -66,18 +68,28 @@ router.post("/addfriend", (req, res) => {
         }
     })
 })
+<<<<<<< HEAD
 router.get("/friends", (req, res) => {
     const userId = req.user.id;
     let friendsList = null;
     userData.findById(userId, (err, user) => {
         if (user) {
             friendsList = user.friends;
+=======
+router.get("/friends",(req,res)=>{
+    console.log(chalk.hex("#61F2F5").bold("/friends"));
+    const userId=req.user.id;
+    let friendsList=null;
+    userData.findById(userId,(err,user)=>{
+        if(user){
+            friendsList=user.friends;
+>>>>>>> eb92e0edfc87ea8f6192d82039040fbda36aa721
             console.log(chalk.hex("#61F2F5").bold(`friendsList : ${friendsList}`));
         }
         else {
             console.log(chalk.hex("#61F2F5").bold("error while fetching friends: ", err));
         }
-        return friendsList;
+        return res.json({ friendsList });
     })
 })
 

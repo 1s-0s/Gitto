@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchUserAction } from "../../../action";
+import { fetchFriendsAction, fetchUserAction } from "../../../action";
 
 class PrivateRoute extends Route {
     constructor(props) {
