@@ -93,7 +93,7 @@ class EditProfile extends React.Component {
     onSubmit(values) {
         this.props.userDescription({ values })
         //console.log("onSubmit", values);
-        this.props.history.push("/dashboard/");
+        this.props.history.push("/");
     }
     render() {
         const { handleSubmit } = this.props;

@@ -21,7 +21,7 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path="/login" component={login} />
-                    <PrivateRoute fetchUser={this.props.fetch_user} path="/" component={dashboard} />
+                    <PrivateRoute path="/" component={dashboard} />
                 </Switch>
             </Router>
         )

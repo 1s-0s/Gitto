@@ -8,6 +8,7 @@ const chalk = require("chalk");
 const userData = require("../models/User");
 
 
+
 router.get("/", (req, res) => {
     userData.find({})
         .then((data) => {
@@ -49,11 +50,21 @@ router.get("/:userid/update", (req, res) => {
     });
 })
 router.post("/addfriend", (req, res) => {
-    const friendId = req.body;
+    const friendId = req.body.friendId;
     const userId = req.user.id;
-    console.log(chalk.hex("#61F2F5").bold("friendId: "));
-    console.log(chalk.hex("#61F2F5").bold(friendId));
-    console.log(chalk.hex("#61F2F5").bold("userId: ", userId));
+    console.log(chalk.hex("#61F2F5").bold(`friendId: ${friendId}`));
+    console.log(chalk.hex("#61F2F5").bold(`userId: ${userId}`));
+    userData.findById(userId,(err,user)=>{
+        if(user && userId !== friendId){
+            //? addToSet- to maintain uniqueness
+            user.friends.addToSet(friendId);
+            user.save();
+            console.log(chalk.hex("#61F2F5").bold("friend added to DB sucessfully"));
+        }
+        else{
+            console.log(chalk.hex("#61F2F5").bold(`error while adding friend to DB ${err}`));
+        }
+    })
 })
 
 module.exports = router;

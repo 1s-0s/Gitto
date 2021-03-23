@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Image } from "semantic-ui-react";
+import { Image,Loader } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 export const Div = styled.div`
   width: 100vw !important;
@@ -70,4 +70,8 @@ export const Icon = styled(Link)`
 
 export const IconContent = styled.p`
   font-size: 0.3em !important;
+`;
+export const Loading = styled(Loader)`
+  /* margin-left: -20vw !important; */
+  /* color: #EEE3E3 !important; */
 `;
