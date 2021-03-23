@@ -7,6 +7,7 @@ export const CardSegment = styled(Segment)`
     margin-top: 10vh !important;
     margin-left: 4vw !important;
     margin-right: 4vw !important;
+    background-color:${(props)=>props.theme.cardbg} !important;
   }
   /* background-color: #0D1117 ; */
 `;
@@ -17,6 +18,7 @@ export const CardDetails = styled.div`
 export const CardHeader = styled.h3`
   margin-top: 3vh !important;
   margin-bottom: 0 ;
+  color:${(props)=>props.theme.text};
 `;
 export const SubHeader = styled.p`
   margin-top: 5vh !important;

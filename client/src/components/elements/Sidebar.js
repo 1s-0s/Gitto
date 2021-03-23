@@ -12,6 +12,7 @@ import { IoMdLogOut as Logout } from "react-icons/io";
 import { CgProfile as ProfilePic, CgDarkMode as Darkmode } from "react-icons/cg";
 import logo from "../images/logopen3.svg";
 import axios from "axios";
+
 class Sidebar extends React.Component {
   constructor(props){
     super(props);
@@ -29,6 +30,12 @@ class Sidebar extends React.Component {
     .then((response)=>{
       console.log("logged out success");
     })
+  }
+  //? THEME TOGGLER
+  themeToggler=()=>{
+    console.log("before: ",this.props.theme.name);
+    (this.props.theme.name==="light") ? this.props.handleChange("dark") : this.props.handleChange("light");
+    console.log("after: ",this.props.theme.name);
   }
   render() {
     
@@ -52,7 +59,7 @@ class Sidebar extends React.Component {
               <Logout />
               <IconContent>Logout</IconContent>
             </Icon>
-            <Icon to="#">
+            <Icon to="#" onClick={this.themeToggler}>
               <Darkmode />
               <IconContent>Mode</IconContent>
             </Icon>

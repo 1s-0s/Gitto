@@ -50,20 +50,34 @@ router.get("/:userid/update", (req, res) => {
     });
 })
 router.post("/addfriend", (req, res) => {
-    const friendId = req.body.friendId;
+    const friendId = req.body.friend;
     const userId = req.user.id;
-    console.log(chalk.hex("#61F2F5").bold(`friendId: ${friendId}`));
+    console.log(chalk.hex("#61F2F5").bold(`friendId: ${friend}`));
     console.log(chalk.hex("#61F2F5").bold(`userId: ${userId}`));
     userData.findById(userId,(err,user)=>{
-        if(user && userId !== friendId){
+        if(user && userId !== friend.id){
             //? addToSet- to maintain uniqueness
-            user.friends.addToSet(friendId);
+            user.friends.addToSet(friend);
             user.save();
             console.log(chalk.hex("#61F2F5").bold("friend added to DB sucessfully"));
         }
         else{
             console.log(chalk.hex("#61F2F5").bold(`error while adding friend to DB ${err}`));
         }
+    })
+})
+router.get("/friends",(req,res)=>{
+    const userId=req.user.id;
+    let friendsList=null;
+    userData.findById(userId,(err,user)=>{
+        if(user){
+            friendsList=user.friends;
+            console.log(chalk.hex("#61F2F5").bold(`friendsList : ${friendsList}`));
+        }
+        else{
+            console.log(chalk.hex("#61F2F5").bold("error while fetching friends: ",err));
+        }
+        return friendsList;
     })
 })
 

@@ -33,12 +33,12 @@ class Card extends React.Component {
     console.log("dislike: ", this.state.dislike);
   };
   //? adding card user to users friendlist
-  addToFriends(friendId) {
+  addToFriends(friend) {
     console.log("current user name: ",this.props.name);
     axios({
       url: "/userinfo/addfriend",
       method: "POST",
-      data: {"friendId":friendId}
+      data: {"friend":friend}
     })
       .then((response) => {
         console.log("friend added successfully", response);
@@ -60,7 +60,7 @@ class Card extends React.Component {
             {this.props.name}
             <CardButton circular color="teal" size="mini" floated="right" icon="arrow down" onClick={this.toggleDisLike}></CardButton>
             <CardButton circular color="teal" size="mini" floated="right" icon="arrow up" onClick={this.toggleLike}></CardButton>
-            <CardButton circular color="teal" size="mini" floated="right" icon="plus" onClick={()=>this.addToFriends(this.props.fid)}></CardButton>
+            <CardButton circular color="teal" size="mini" floated="right" icon="plus" onClick={()=>this.addToFriends(this.props.friend)}></CardButton>
           </CardHeader>
         </CardDetails>
       </CardSegment>

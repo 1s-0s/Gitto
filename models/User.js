@@ -21,7 +21,10 @@ const userSchema = new Schema({
     blog: String,
     location: String,
     friends: [{
-        fid: mongoose.Schema.Types.ObjectId
+        fid: mongoose.Schema.Types.ObjectId,
+        name:String,
+        avatar:String,
+        bio:String
     }],
     technology: [{
         type: String

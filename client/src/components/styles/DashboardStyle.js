@@ -42,7 +42,7 @@ export const RightDiv = styled.div`
   height: 100% !important;
   float: right !important;
   border-collapse: collapse !important;
-  background-color: #EEE3E3 !important;
+  background-color: ${(props)=>props.theme.body}  !important;
   overflow-y: scroll !important;
 `;
 // sidebar
