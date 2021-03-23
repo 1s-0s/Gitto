@@ -1,3 +1,6 @@
+//?--------------------------
+//?COMMENT COLOR: #FF75A0
+//?--------------------------
 const passport = require("passport");
 const chalk = require("chalk");
 const GitHubStrategy = require("passport-github2").Strategy;
@@ -14,7 +17,7 @@ passport.serializeUser((user, done) => {
   done(null,user.id);
 })
 passport.deserializeUser((id, done) => {
-  console.log(chalk.cyan("deserialize called1"));
+  console.log(chalk.hex("#FF75A0").bold("deserialize called1"));
   User.findById(id).then((user)=>{
     done(null,user);
   })
@@ -44,10 +47,10 @@ passport.use(
           blog: profile._json.blog,
           location: profile._json.location
         });
-        console.log(chalk.blue("from githubconfig"));
-        console.log(chalk.blue(newUser));
-        console.log(chalk.red("access token"));
-        console.log(chalk.red(accessToken));
+        console.log(chalk.hex("#FF75A0").bold("from githubconfig"));
+        console.log(chalk.hex("#FF75A0").bold(newUser));
+        console.log(chalk.hex("#FF75A0").bold("access token"));
+        console.log(chalk.hex("#FF75A0").bold(accessToken));
         const currUser = await User.findOne({ githubId: profile.id });
         if (currUser) {
           // const savedUser = await newUser.update();
@@ -58,7 +61,7 @@ passport.use(
         }
       }
       catch (err) {
-        console.log(chalk.red(err));
+        console.log(chalk.hex("#FF75A0").bold(err));
       }
     }
   )

@@ -21,7 +21,7 @@ mongoose.connect(
   process.env.MONGODB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
   (err) => {
-    if (!err) console.log(chalk.yellow("database is connected"));
+    if (!err) console.log(chalk.hex("#BF68F6").bold("database is connected"));
     else console.log(chalk.red("Error:", err));
   }
 );
@@ -52,5 +52,5 @@ app.use("/userinfo", userinfo);
 //! app.use(express.static)
 
 app.listen(PORT, () => {
-  console.log(chalk.blue("Server is running boiss"));
+  console.log(chalk.hex("#448EF6").bold("Server is running boiss"));
 });

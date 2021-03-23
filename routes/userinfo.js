@@ -1,3 +1,6 @@
+//?--------------------------
+//?COMMENT COLOR: #61F2F5
+//?--------------------------
 const express = require("express");
 const router = express.Router();
 const chalk = require("chalk");
@@ -8,22 +11,22 @@ const User = require("../models/User");
 router.get("/",(req,res)=>{
     userData.find({})
     .then((data)=>{
-        console.log("sending data from /: ",data);
+        console.log(chalk.hex("#61F2F5").bold("sending data from /: ",data));
         res.json(data);
     })
     .catch((err)=>{
-        console.log("error while fetching all users data",err);
+        console.log(chalk.hex("#61F2F5").bold("error while fetching all users data",err));
     })
 })
 //return current-user
 router.get("/current_user",(req,res)=>{
-    console.log(chalk.cyan("current_user called"));
+    console.log(chalk.hex("#61F2F5").bold("current_user called"));
     res.json(req.user);
 })
 router.get("/:userid/update", (req, res) => {
     const data = req.body.values;
-    console.log(chalk.magenta("recieved data to update", req.params.userid));
-    console.log(data);
+    console.log(chalk.hex("#61F2F5").bold("recieved data to update", req.params.userid));
+    console.log(chalk.hex("#61F2F5").bold(data));
     userData.findOneAndUpdate({ githubId: req.params.userid }, { new: true }, (err, user) => {
         if (user) {
             user.bio = data.bio;
@@ -37,30 +40,20 @@ router.get("/:userid/update", (req, res) => {
             }
             user.gist = data.gist;
             user.save();
-            console.log(chalk.magenta("data updated successfully on server"));
+            console.log(chalk.hex("#61F2F5").bold("data updated successfully on server"));
             res.json({ message: "Data updated" });
         }
         else {
-            console.log(chalk.red("error", err));
+            console.log(chalk.hex("#61F2F5").bold("error", err));
         }
     });
 })
 router.post("/addfriend",(req,res)=>{
     const friendId= req.body;
     const userId=req.user.id;
-    console.log("friendId: ",friendId);
-    console.log("userId: ",userId);
-
-    // User.findById(userId,(err,user)=>{
-    //     if(user && userId!==friendId){
-    //         user.friends.addToSet(friendId);
-    //         user.save();
-    //         console.log(chalk.magenta("user",user));
-    //     }
-    //     else{
-    //         console.log(chalk.magenta("err while adding friend: ",err));
-    //     }
-    // })
+    console.log(chalk.hex("#61F2F5").bold("friendId: "));
+    console.log(chalk.hex("#61F2F5").bold(friendId));
+    console.log(chalk.hex("#61F2F5").bold("userId: ",userId));
 })
 
 module.exports = router;
