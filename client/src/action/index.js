@@ -39,9 +39,10 @@ export const fetchFriendsAction = ()=>{
             method:"GET"
         })
         .then((response)=>{
+            console.log("from action for friends: ",response);
             dispatch({
                 type:GET_FRIENDS,
-                payload:response.data
+                payload:response.data.friendsList
             })
         })
     }

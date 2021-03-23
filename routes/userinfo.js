@@ -50,12 +50,14 @@ router.get("/:userid/update", (req, res) => {
     });
 })
 router.post("/addfriend", (req, res) => {
-    const friendId = req.body.friend;
+    const friend = req.body.friend;
     const userId = req.user.id;
-    console.log(chalk.hex("#61F2F5").bold(`friendId: ${friend}`));
+    
     console.log(chalk.hex("#61F2F5").bold(`userId: ${userId}`));
+    console.log(chalk.hex("#61F2F5").bold(`friendId: ${friend._id}`));
+    console.log();
     userData.findById(userId,(err,user)=>{
-        if(user && userId !== friend.id){
+        if(user && userId !== friend._id){
             //? addToSet- to maintain uniqueness
             user.friends.addToSet(friend);
             user.save();
@@ -67,6 +69,7 @@ router.post("/addfriend", (req, res) => {
     })
 })
 router.get("/friends",(req,res)=>{
+    console.log(chalk.hex("#61F2F5").bold("/friends"));
     const userId=req.user.id;
     let friendsList=null;
     userData.findById(userId,(err,user)=>{
@@ -77,7 +80,7 @@ router.get("/friends",(req,res)=>{
         else{
             console.log(chalk.hex("#61F2F5").bold("error while fetching friends: ",err));
         }
-        return friendsList;
+        return res.json({friendsList});
     })
 })
 

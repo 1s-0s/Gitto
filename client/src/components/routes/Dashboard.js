@@ -7,7 +7,7 @@ import {
   Loading,
 } from "../styles/DashboardStyle";
 // Action Creator
-import { saveUserData } from "../../action/index";
+import { saveUserData} from "../../action/index";
 //REACT-REDUX AND REDUX-FORM
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
     });
     const localTheme=window.localStorage.getItem("theme");
     localTheme ? this.setState({theme:localTheme}) : this.setMode("light");
-
+    
   }
   componentDidUpdate(nextProp) {
     if (this.state.isLoading != nextProp.isValidUser.loading) {
@@ -116,7 +116,7 @@ class Dashboard extends React.Component {
   }
 }
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ saveUserData}, dispatch);
+  return bindActionCreators({ saveUserData }, dispatch);
 };
 const mapStateToProps = (state) => {
   return {
