@@ -68,13 +68,13 @@ router.post("/addfriend", (req, res) => {
         }
     })
 })
-router.get("/friends",(req,res)=>{
+router.get("/friends", (req, res) => {
     console.log(chalk.hex("#61F2F5").bold("/friends"));
-    const userId=req.user.id;
-    let friendsList=null;
-    userData.findById(userId,(err,user)=>{
-        if(user){
-            friendsList=user.friends;
+    const userId = req.user.id;
+    let friendsList = null;
+    userData.findById(userId, (err, user) => {
+        if (user) {
+            friendsList = user.friends;
             console.log(chalk.hex("#61F2F5").bold(`friendsList : ${friendsList}`));
         }
         else {
