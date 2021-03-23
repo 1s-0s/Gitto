@@ -68,14 +68,6 @@ router.post("/addfriend", (req, res) => {
         }
     })
 })
-<<<<<<< HEAD
-router.get("/friends", (req, res) => {
-    const userId = req.user.id;
-    let friendsList = null;
-    userData.findById(userId, (err, user) => {
-        if (user) {
-            friendsList = user.friends;
-=======
 router.get("/friends",(req,res)=>{
     console.log(chalk.hex("#61F2F5").bold("/friends"));
     const userId=req.user.id;
@@ -83,7 +75,6 @@ router.get("/friends",(req,res)=>{
     userData.findById(userId,(err,user)=>{
         if(user){
             friendsList=user.friends;
->>>>>>> eb92e0edfc87ea8f6192d82039040fbda36aa721
             console.log(chalk.hex("#61F2F5").bold(`friendsList : ${friendsList}`));
         }
         else {
