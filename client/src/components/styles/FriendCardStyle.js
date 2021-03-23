@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Segment,Image} from "semantic-ui-react";
+import { Segment, Image } from "semantic-ui-react";
 import ModalCardBg from "../images/friendCard/friendCardBg2.svg";
 
 export const Card = styled(Segment)`
@@ -33,9 +33,16 @@ export const InfoIcon = styled.span`
     color: #87B588;
   }
 `;
+export const DelIcon = styled.span`
+  cursor: pointer;
+  float:right;
+  &:hover{
+    color: #87B588;
+  }
+`;
 export const IconGroup = styled.div`
   text-align:center;
-`; 
+`;
 export const CancelButton = styled.p`
   font-size:2em;
   color: #AAB8C2;

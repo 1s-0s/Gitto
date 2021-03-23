@@ -12,6 +12,7 @@ import {
   ModalHeading,
   ModalSubHeading,
   InfoIcon,
+  DelIcon,
   Icon,
   IconGroup,
   CancelButton,
@@ -25,10 +26,11 @@ import avatar from "../images/logopen3.svg";
 import ProfileImg from "../images/profile.jpg";
 //Icon
 import { BsThreeDotsVertical as Dot } from "react-icons/bs";
+import {RiDeleteBin6Line  as Delete } from "react-icons/ri";
 import { VscGlobe, VscGithub } from "react-icons/vsc";
 import { FiTwitter } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
-
+//IoMdRemoveCircle
 //github contribution chart
 // import { drawContributions } from "github-contributions-canvas";
 
@@ -84,9 +86,13 @@ class FriendCard extends React.Component {
               <CardHeader>
                 <Item.Header>
                   Kavya Kulkarni
+                 
                   <InfoIcon onClick={this.openModal}>
                     <Dot />
                   </InfoIcon>
+                  <DelIcon>
+                    <Delete />
+                  </DelIcon>
                 </Item.Header>
               </CardHeader>
               <Item.Meta></Item.Meta>
