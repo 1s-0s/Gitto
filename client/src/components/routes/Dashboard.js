@@ -5,7 +5,12 @@ import {
   MiddleDiv,
   RightDiv,
   Loading,
+  LoaderDiv,
 } from "../styles/DashboardStyle";
+//Loading Image
+import loader from "../images/loading/loader.gif";
+//Semantic UI
+import {Image} from "semantic-ui-react";
 // Action Creator
 import { saveUserData} from "../../action/index";
 //REACT-REDUX AND REDUX-FORM
@@ -79,11 +84,12 @@ class Dashboard extends React.Component {
     //!Warning: Each child in a list should have a unique "key" prop.
     if (this.state.isLoading) {
       return (
-        <div>
-          <Loading active size="large">
+        <LoaderDiv>
+          <Image centered src={loader} size="medium"/>
+          {/* <Loading active size="large">
             <strong>Loading</strong>
-          </Loading>
-        </div>
+          </Loading> */}
+        </LoaderDiv>
       );
     } 
     else {
