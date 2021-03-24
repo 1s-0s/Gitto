@@ -30,6 +30,7 @@ import { RiDeleteBin6Line as Delete } from "react-icons/ri";
 import { VscGlobe, VscGithub } from "react-icons/vsc";
 import { FiTwitter } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
+import axios from "axios";
 //IoMdRemoveCircle
 //github contribution chart
 // import { drawContributions } from "github-contributions-canvas";
@@ -47,6 +48,19 @@ class FriendCard extends React.Component {
         "Captcha-IMHUMAN"
       ]
     };
+  }
+
+  deleteFriend = () => {
+    console.log("delte calls");
+    axios({
+      url: "/userinfo/delete",
+      method: "POST",
+      data: { fid: this.props.fid }
+    }).then(() => {
+      console.log("sending friend to server to delete:");
+    }).catch((err) => {
+      console.log("error while deleting friend", err);
+    })
   }
 
   openModal = () => {
@@ -81,7 +95,6 @@ class FriendCard extends React.Component {
       <Card raised>
         <Item.Group divided >
           <Item>
-            {console.log("avatar", this.props.avatar)}
             <Image alt={this.props.avatar} size="tiny" circular src={this.props.avatar} />
             <Item.Content>
               <CardHeader>
@@ -90,7 +103,7 @@ class FriendCard extends React.Component {
                   <InfoIcon onClick={this.openModal}>
                     <Dot />
                   </InfoIcon>
-                  <DelIcon>
+                  <DelIcon onClick={this.deleteFriend}>
                     <Delete />
                   </DelIcon>
                 </Item.Header>

@@ -4,7 +4,8 @@
 const express = require("express");
 const router = express.Router();
 const chalk = require("chalk");
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const userData = require("../models/User");
 
 
@@ -82,6 +83,25 @@ router.get("/friends", (req, res) => {
         }
         return res.json({ friendsList });
     })
+})
+
+router.post("/delete", (req, res) => {
+    console.log(chalk.hex("#61F2F5").bold("/delete"));
+    const userId = req.user.id;
+    // console.log(chalk.hex("#61F2F5").bold(`fid: ${req.body.fid}`));
+    //? Casting to objectId type 
+    const fid = mongoose.Schema.Types.ObjectId(req.body.fid);
+    //? Delete object(friends) from array(friendList) of user schema using pull
+    userData.findByIdAndUpdate(userId, { $pull: { friends: { fid: fid } } },
+        (error, obj) => {
+            if (error) {
+                console.log(chalk.hex("#61F2F5").bold("error while deleting frnd", error));
+            } else {
+                // console.log(chalk.hex("#61F2F5").bold(obj));
+                console.log(obj);
+            }
+            return res.json(obj);
+        })
 })
 
 module.exports = router;

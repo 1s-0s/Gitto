@@ -17,15 +17,15 @@ class FriendList extends React.Component {
       method: "GET",
     }).then((response) => {
       this.setState({ isFriends: response.data.friendsList })
-      console.log("Insidie axios: ", this.state.isFriends);
+      //console.log("Insidie axios: ", this.state.isFriends);
     });
   }
 
   renderFriendCard = () => {
-    console.log("inside renderFriends!");
+    // console.log("inside renderFriends!");
     const isFriends = this.state.isFriends.map((friendList, i) => {
-      console.log("Friendcard :", friendList);
-      return <FriendCard name={friendList.name} avatar={friendList.avatar} key={i} />
+      // console.log("Friendcard :", friendList);
+      return <FriendCard fid={friendList._id} name={friendList.name} avatar={friendList.avatar} bio={friendList.bio} key={i} />
     });
     return isFriends;
   }
