@@ -75,3 +75,9 @@ export const Loading = styled(Loader)`
   /* margin-left: -20vw !important; */
   /* color: #EEE3E3 !important; */
 `;
+export const LoaderDiv = styled.div`
+  display: flex ;
+  justify-content: center ;
+  align-items: center ;
+  height:800px ;  
+`;
