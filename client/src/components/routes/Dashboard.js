@@ -7,7 +7,7 @@ import {
   Loading,
 } from "../styles/DashboardStyle";
 // Action Creator
-import { saveUserData} from "../../action/index";
+import { saveUserData } from "../../action/index";
 //REACT-REDUX AND REDUX-FORM
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -19,17 +19,17 @@ import FriendList from "./FriendList";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 //Router
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import PrivateRoute from "./privateRoute/PrivateRoute";
 //axios call
 import axios from "axios";
 //for darkmode
 import { ThemeProvider } from "styled-components";
-import {LightTheme,DarkTheme} from "../dark-mode/Themes";
+import { LightTheme, DarkTheme } from "../dark-mode/Themes";
 
-const themes={
-  light:LightTheme,
-  dark:DarkTheme
+const themes = {
+  light: LightTheme,
+  dark: DarkTheme
 }
 class Dashboard extends React.Component {
   constructor() {
@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
     this.state = {
       users: [],
       isLoading: true,
-      theme:"light"
+      theme: "light"
     };
   }
   componentDidMount() {
@@ -49,29 +49,29 @@ class Dashboard extends React.Component {
       //console.log("response to get all the users", res.data);
       this.setState({ users: res.data });
     });
-    const localTheme=window.localStorage.getItem("theme");
-    localTheme ? this.setState({theme:localTheme}) : this.setMode("light");
-    
+    const localTheme = window.localStorage.getItem("theme");
+    localTheme ? this.setState({ theme: localTheme }) : this.setMode("light");
+
   }
   componentDidUpdate(nextProp) {
-    if (this.state.isLoading != nextProp.isValidUser.loading) {
+    if (this.state.isLoading !== nextProp.isValidUser.loading) {
       this.setState({ isLoading: nextProp.isValidUser.loading });
     }
   }
   //? RENDERING FRIENDS CARDS
-  renderCards(currTheme){
+  renderCards(currTheme) {
     const users = this.state.users.map((currUser, i) => {
-      console.log("currUser: ", currUser._id);
-      return <Card name={currUser.name} friend={currUser} key={i} theme={currTheme}/>;
+      //console.log("currUser: ", currUser._id);
+      return <Card name={currUser.name} friend={currUser} key={i} theme={currTheme} />;
     });
     return users;
   }
   //? DARK THEME IMPLEMENTATION
-  setMode = (localTheme)=>{
-    window.localStorage.setItem("theme",localTheme);
-    this.setState({theme:localTheme})
+  setMode = (localTheme) => {
+    window.localStorage.setItem("theme", localTheme);
+    this.setState({ theme: localTheme })
   }
-  handleChange=(newTheme)=>{
+  handleChange = (newTheme) => {
     this.setMode(newTheme);
   }
   render() {
@@ -85,14 +85,14 @@ class Dashboard extends React.Component {
           </Loading>
         </div>
       );
-    } 
+    }
     else {
       return (
         <ThemeProvider theme={themes[this.state.theme]}>
           <Div>
             {/* //? LEFT SECTION */}
             <LeftDiv>
-              <Sidebar handleChange={this.handleChange} theme={themes[this.state.theme]}/>
+              <Sidebar handleChange={this.handleChange} theme={themes[this.state.theme]} />
             </LeftDiv>
             {/* //? MIDDLE SECTION */}
 

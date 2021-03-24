@@ -26,7 +26,7 @@ import avatar from "../images/logopen3.svg";
 import ProfileImg from "../images/profile.jpg";
 //Icon
 import { BsThreeDotsVertical as Dot } from "react-icons/bs";
-import {RiDeleteBin6Line  as Delete } from "react-icons/ri";
+import { RiDeleteBin6Line as Delete } from "react-icons/ri";
 import { VscGlobe, VscGithub } from "react-icons/vsc";
 import { FiTwitter } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
@@ -81,12 +81,12 @@ class FriendCard extends React.Component {
       <Card raised>
         <Item.Group divided >
           <Item>
-            <Image alt={avatar} size="mini" src={avatar} />
+            {console.log("avatar", this.props.avatar)}
+            <Image alt={this.props.avatar} size="mini" src={this.props.avatar} />
             <Item.Content>
               <CardHeader>
                 <Item.Header>
-                  Kavya Kulkarni
-                 
+                  {this.props.name}
                   <InfoIcon onClick={this.openModal}>
                     <Dot />
                   </InfoIcon>
@@ -111,9 +111,9 @@ class FriendCard extends React.Component {
             {/*//? LEFT SECTION */}
             <ModalProfileLeft>
               <ModalProfileContent>
-                <Image src={ProfileImg} centered circular size="small" />
+                <Image src={this.props.avatar} centered circular size="small" />
                 <ModalHeading>
-                  Kavya Kulkarni
+                  {this.props.name}
                 </ModalHeading>
                 <ModalSubHeading>A Happy Soul</ModalSubHeading>
                 <IconGroup>

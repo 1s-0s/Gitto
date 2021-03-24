@@ -23,21 +23,21 @@ export const Icon = styled.a`
   font-size:2em;
   color: #EEE3E3;
   &:hover{
-    color: #87B588;
+    color: #AAB8C2;
   }
 `;
 export const InfoIcon = styled.span`
   cursor: pointer;
   float:right;
   &:hover{
-    color: #87B588;
+    color: #AAB8C2;
   }
 `;
 export const DelIcon = styled.span`
   cursor: pointer;
   float:right;
   &:hover{
-    color: #87B588;
+    color: #AAB8C2;
   }
 `;
 export const IconGroup = styled.div`

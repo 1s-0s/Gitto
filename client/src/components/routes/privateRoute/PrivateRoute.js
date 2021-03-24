@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchFriendsAction, fetchUserAction } from "../../../action";
+import { fetchUserAction } from "../../../action";
 
 class PrivateRoute extends Route {
     constructor(props) {
@@ -9,7 +9,7 @@ class PrivateRoute extends Route {
         this.props.fetch_user();
     }
     render() {
-        console.log(this.props.isValidUser);
+        //console.log(this.props.isValidUser);
         if (this.props.isValidUser.user) {
             return <Route {...this.props} />
         }

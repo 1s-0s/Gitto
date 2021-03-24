@@ -17,32 +17,37 @@ class FriendList extends React.Component {
       url: "/userinfo/friends",
       method: "GET",
     }).then((response) => {
-      this.setState({isFriends:response.data.friendsList})
+      this.setState({ isFriends: response.data.friendsList })
+      console.log("Insidie axios: ", this.state.isFriends);
     });
   }
-  // componentDidUpdate(nextProp) {
-  //   console.log("from nextprop: ", nextProp.friends);
-  //   if (this.state.isFriends != nextProp.friends) {
-  //     this.setState({ isFriends: nextProp.friends }, () => {
-  //       console.log("freinds are: ", this.state.isFriends);
-  //     });
-  //   }
+
+  // renderFriendCard = () => {
+  //   console.log("inside renderFriends!");
+  //   const isFriends = this.state.isFriends.map((friendList, i) => {
+  //     console.log("Friendcard :", friendList);
+  //     return <FriendCard name={friendList.name} avatar={friendList.avatar} key={i} />
+  //   });
+  //   return isFriends;
   // }
+
   render() {
-    console.log("freinds are from render: ", this.state.isFriends);
+    const friendCard = this.state.isFriends.map((friendList, i) => {
+      console.log("Friendcard :", friendList);
+      return <FriendCard name={friendList.name} avatar={friendList.avatar} key={i} />
+    });
+    //console.log("friends are from render: ", this.state.isFriends);
     return (
       <Container>
-        <FriendCard />
-        <FriendCard />
-        <FriendCard />
-        <FriendCard />
+        {friendCard}
+        {/* {this.renderFriendCard} */}
       </Container>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("mapState: ", state.friendsReducer);
+  //console.log("mapState: ", state.friendsReducer);
   return {
     friends: state.friendsReducer,
   };
