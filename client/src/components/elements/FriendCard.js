@@ -22,8 +22,8 @@ import {
 //React-Modal
 import Modal from "react-modal";
 import { style as ModalStyle } from "../styles/ModalStyle";
-import avatar from "../images/logopen3.svg";
-import ProfileImg from "../images/profile.jpg";
+// import avatar from "../images/logopen3.svg";
+// import ProfileImg from "../images/profile.jpg";
 //Icon
 import { BsThreeDotsVertical as Dot } from "react-icons/bs";
 import { RiDeleteBin6Line as Delete } from "react-icons/ri";
@@ -82,7 +82,7 @@ class FriendCard extends React.Component {
         <Item.Group divided >
           <Item>
             {console.log("avatar", this.props.avatar)}
-            <Image alt={this.props.avatar} size="mini" src={this.props.avatar} />
+            <Image alt={this.props.avatar} size="tiny" circular src={this.props.avatar} />
             <Item.Content>
               <CardHeader>
                 <Item.Header>

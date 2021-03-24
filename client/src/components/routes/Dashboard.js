@@ -4,13 +4,13 @@ import {
   LeftDiv,
   MiddleDiv,
   RightDiv,
-  Loading,
+  // Loading,
   LoaderDiv,
 } from "../styles/DashboardStyle";
 //Loading Image
 import loader from "../images/loading/loader.gif";
 //Semantic UI
-import {Image} from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 // Action Creator
 import { saveUserData } from "../../action/index";
 //REACT-REDUX AND REDUX-FORM
@@ -64,10 +64,10 @@ class Dashboard extends React.Component {
     }
   }
   //? RENDERING FRIENDS CARDS
-  renderCards(currTheme) {
+  renderCards() {
     const users = this.state.users.map((currUser, i) => {
       //console.log("currUser: ", currUser._id);
-      return <Card name={currUser.name} friend={currUser} key={i} theme={currTheme} />;
+      return <Card name={currUser.name} friend={currUser} key={i} />;
     });
     return users;
   }
@@ -85,7 +85,7 @@ class Dashboard extends React.Component {
     if (this.state.isLoading) {
       return (
         <LoaderDiv>
-          <Image centered src={loader} size="medium"/>
+          <Image centered src={loader} size="medium" />
           {/* <Loading active size="large">
             <strong>Loading</strong>
           </Loading> */}
@@ -101,7 +101,6 @@ class Dashboard extends React.Component {
               <Sidebar handleChange={this.handleChange} theme={themes[this.state.theme]} />
             </LeftDiv>
             {/* //? MIDDLE SECTION */}
-
             <MiddleDiv>
               <Switch>
                 <PrivateRoute exact path="/profile" component={Profile} />
@@ -114,7 +113,7 @@ class Dashboard extends React.Component {
               </Switch>
             </MiddleDiv>
             {/* //? RIGHT SECTION */}
-            <RightDiv>{this.renderCards(themes[this.state.theme])}</RightDiv>
+            <RightDiv>{this.renderCards()}</RightDiv>
           </Div>
         </ThemeProvider>
       );

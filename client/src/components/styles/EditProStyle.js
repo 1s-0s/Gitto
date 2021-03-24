@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const FormContainer = styled(Segment)`
-  background-color:rgba(0,77,64,0.4)  !important;
+  background-color:${(props) => props.theme.midcard} !important;
   -webkit-box-shadow:0 0 20px rgba(0,77,64,0.4);
   -moz-box-shadow:0 0 20px rgba(0,77,64,0.4);
   box-shadow:0 0 20px rgba(0,77,64,0.4);  

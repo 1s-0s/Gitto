@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Image,Loader } from "semantic-ui-react";
+import { Image, Loader } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 export const Div = styled.div`
   width: 100vw !important;
@@ -16,11 +16,11 @@ export const LeftDiv = styled.div`
   height: 100% !important;
   float: left !important;
   border-collapse: collapse !important;
-  background-color:rgba(0,77,64,0.4)  !important;
+  /* background-color:rgba(0,77,64,0.4)  !important; */
   -webkit-box-shadow:0 0 20px rgba(0,77,64,0.4);
   -moz-box-shadow:0 0 20px rgba(0,77,64,0.4);
   box-shadow:0 0 20px rgba(0,77,64,0.4);
-  /* overflow-y: scroll !important; */
+  background-color:${(props) => props.theme.sidebar}
 `;
 export const MiddleDiv = styled.div`
   @media (max-width: 991px) {
@@ -30,8 +30,8 @@ export const MiddleDiv = styled.div`
   height: 100% !important;
   float: left !important;
   border-collapse: collapse !important;
-  background-color: rgba(0,77,64,0.5) ; // #02231C
-  /* background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)) !important; */
+  /* background-color: rgba(0,77,64,0.5) ; // #02231C */
+  background-color: ${(props) => props.theme.midbg};
   overflow-y: scroll !important;
 `;
 export const RightDiv = styled.div`
@@ -42,7 +42,7 @@ export const RightDiv = styled.div`
   height: 100% !important;
   float: right !important;
   border-collapse: collapse !important;
-  background-color: ${(props)=>props.theme.body}  !important;
+  background-color: ${(props) => props.theme.body}  !important;
   overflow-y: scroll !important;
 `;
 // sidebar
@@ -64,7 +64,7 @@ export const Icon = styled(Link)`
   color:#EEE3E3;
   text-decoration: none;
   &:hover{
-    color:#87B588;
+    color:#AAB8C2;
   }
 `;
 

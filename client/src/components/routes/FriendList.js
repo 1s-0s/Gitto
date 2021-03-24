@@ -7,7 +7,6 @@ import axios from "axios";
 class FriendList extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isFriends: [],
     };
@@ -22,25 +21,25 @@ class FriendList extends React.Component {
     });
   }
 
-  // renderFriendCard = () => {
-  //   console.log("inside renderFriends!");
-  //   const isFriends = this.state.isFriends.map((friendList, i) => {
-  //     console.log("Friendcard :", friendList);
-  //     return <FriendCard name={friendList.name} avatar={friendList.avatar} key={i} />
-  //   });
-  //   return isFriends;
-  // }
-
-  render() {
-    const friendCard = this.state.isFriends.map((friendList, i) => {
+  renderFriendCard = () => {
+    console.log("inside renderFriends!");
+    const isFriends = this.state.isFriends.map((friendList, i) => {
       console.log("Friendcard :", friendList);
       return <FriendCard name={friendList.name} avatar={friendList.avatar} key={i} />
     });
+    return isFriends;
+  }
+
+  render() {
+    // const friendCard = this.state.isFriends.map((friendList, i) => {
+    //   console.log("Friendcard :", friendList);
+    //   return <FriendCard name={friendList.name} avatar={friendList.avatar} key={i} />
+    // });
     //console.log("friends are from render: ", this.state.isFriends);
     return (
       <Container>
-        {friendCard}
-        {/* {this.renderFriendCard} */}
+        {/* {friendCard} */}
+        {this.renderFriendCard()}
       </Container>
     );
   }
