@@ -34,18 +34,21 @@ import { LightTheme, DarkTheme } from "../dark-mode/Themes";
 
 const themes = {
   light: LightTheme,
-  dark: DarkTheme
-}
+  dark: DarkTheme,
+};
 class Dashboard extends React.Component {
+  //? reload-to reload the page when user delete a friend
   constructor() {
     super();
     this.state = {
       users: [],
       isLoading: true,
-      theme: "light"
+      theme: "light",
+      reload: false,
     };
   }
   componentDidMount() {
+    
     //? for fetch all users
     axios({
       url: "/userinfo/",
@@ -56,8 +59,8 @@ class Dashboard extends React.Component {
     });
     const localTheme = window.localStorage.getItem("theme");
     localTheme ? this.setState({ theme: localTheme }) : this.setMode("light");
-
   }
+  
   componentDidUpdate(nextProp) {
     if (this.state.isLoading !== nextProp.isValidUser.loading) {
       this.setState({ isLoading: nextProp.isValidUser.loading });
@@ -71,14 +74,19 @@ class Dashboard extends React.Component {
     });
     return users;
   }
+  //? called when wanted to reload the component
+  reloadComponent = () => {
+    console.log("reload called");
+    this.setState({ reload: true });
+  };
   //? DARK THEME IMPLEMENTATION
   setMode = (localTheme) => {
     window.localStorage.setItem("theme", localTheme);
-    this.setState({ theme: localTheme })
-  }
+    this.setState({ theme: localTheme });
+  };
   handleChange = (newTheme) => {
     this.setMode(newTheme);
-  }
+  };
   render() {
     //? Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
     //!Warning: Each child in a list should have a unique "key" prop.
@@ -91,14 +99,16 @@ class Dashboard extends React.Component {
           </Loading> */}
         </LoaderDiv>
       );
-    }
-    else {
+    } else {
       return (
         <ThemeProvider theme={themes[this.state.theme]}>
           <Div>
             {/* //? LEFT SECTION */}
             <LeftDiv>
-              <Sidebar handleChange={this.handleChange} theme={themes[this.state.theme]} />
+              <Sidebar
+                handleChange={this.handleChange}
+                theme={themes[this.state.theme]}
+              />
             </LeftDiv>
             {/* //? MIDDLE SECTION */}
             <MiddleDiv>
@@ -109,7 +119,9 @@ class Dashboard extends React.Component {
                   path="/editprofile"
                   component={EditProfile}
                 />
-                <PrivateRoute exact path="/" component={FriendList} />
+                <PrivateRoute exact path="/" component={()=>(
+                  <FriendList reloadComponent={this.reloadComponent}/>
+                )} />
               </Switch>
             </MiddleDiv>
             {/* //? RIGHT SECTION */}

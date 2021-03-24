@@ -82,7 +82,7 @@ class EditProfile extends React.Component {
     }
 
 
-    showData(e, data) {
+    validateLanguage(e, data) {
         if (languages === undefined || languages.length < 5) {
             languages = data.value;
             //console.log("from show data: ", languages.length);
@@ -91,7 +91,7 @@ class EditProfile extends React.Component {
         }
     }
     onSubmit(values) {
-        this.props.userDescription({ values })
+        this.props.saveUserData( values )
         //console.log("onSubmit", values);
         this.props.history.push("/");
     }
@@ -108,7 +108,7 @@ class EditProfile extends React.Component {
                         <FormHeader>Bio*</FormHeader>
                         <Field required name="bio" component={this.renderBioField} />
                         <FormHeader>Top Languages* <em>(only 5)</em></FormHeader>
-                        <Form.Dropdown required fluid multiple selection options={this.state.options} onChange={this.showData} />
+                        <Form.Dropdown required fluid multiple selection options={this.state.options} onChange={this.validateLanguage} />
                         <FormHeader>Repositry 1*</FormHeader>
                         <Field required name="repositries1" component={this.renderProject1Field} />
                         <FormHeader>Repositry 2</FormHeader>

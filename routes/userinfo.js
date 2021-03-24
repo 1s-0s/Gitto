@@ -50,6 +50,15 @@ router.get("/:userid/update", (req, res) => {
         }
     });
 })
+//fetch user
+router.get("/fetchuser/:userid",(req,res)=>{
+    userData.findById(req.params.userid,(err,user)=>{
+        if(user){
+            console.log(chalk.hex("#61F2F5").bold(`sending requested user data`));
+            res.json(user);
+        }
+    })
+})
 router.post("/addfriend", (req, res) => {
     const friend = req.body.friend;
     const userId = req.user.id;
@@ -103,6 +112,8 @@ router.post("/delete", (req, res) => {
             return res.json(obj);
         })
 })
+
+
 
 module.exports = router;
 

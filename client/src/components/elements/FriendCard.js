@@ -16,7 +16,7 @@ import {
   Icon,
   IconGroup,
   CancelButton,
-  RepoCard
+  RepoCard,
 } from "../styles/FriendCardStyle";
 
 //React-Modal
@@ -26,7 +26,7 @@ import { style as ModalStyle } from "../styles/ModalStyle";
 // import ProfileImg from "../images/profile.jpg";
 //Icon
 import { BsThreeDotsVertical as Dot } from "react-icons/bs";
-import { RiDeleteBin6Line as Delete } from "react-icons/ri";
+import { RiContactsBookLine, RiDeleteBin6Line as Delete } from "react-icons/ri";
 import { VscGlobe, VscGithub } from "react-icons/vsc";
 import { FiTwitter } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
@@ -42,11 +42,8 @@ class FriendCard extends React.Component {
     super();
     this.state = {
       modalIsOpen: false,
-      githubReps: [
-        "OnlyMeal",
-        "Rapid-NPM-Package",
-        "Captcha-IMHUMAN"
-      ]
+
+      user: {},
     };
   }
 
@@ -55,47 +52,75 @@ class FriendCard extends React.Component {
     axios({
       url: "/userinfo/delete",
       method: "POST",
-      data: { fid: this.props.fid }
-    }).then(() => {
-      console.log("sending friend to server to delete:");
-    }).catch((err) => {
-      console.log("error while deleting friend", err);
+      data: { fid: this.props.fid },
     })
-  }
-
+      .then(() => {
+        console.log("successfullt deleted friend");
+        this.props.reloadComponent();
+      })
+      .catch((err) => {
+        console.log("error while deleting friend", err);
+      });
+  };
+  //? Fetch designated user's repo
+  fetchRepos = () => {
+    const currUser = this.state.user;
+    if (currUser.pinnedrepos) {
+      console.log("repos are: ", currUser);
+      const repos = currUser.pinnedrepos.map((repo) => {
+        const currRepo = `https://github-readme-stats.vercel.app/api/pin/?username=${currUser.username}&repo=${repo.type}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
+        return <RepoCard key={currRepo} centered size="large" src={currRepo} />;
+      });
+      return repos;
+    }
+  };
   openModal = () => {
-    this
-      .setState({
-        modalIsOpen: true
-      }, function () {
-        console.log("openModal: ", this.state.modalIsOpen);
+    this.setState(
+      {
+        modalIsOpen: true,
+      },
+      function () {
+        // console.log("openModal: ", this.state.modalIsOpen);
+      }
+    );
+    //fetching card user
+    axios({
+      url: "/userinfo/fetchuser/" + this.props.fid,
+      method: "GET",
+    })
+      .then((response) => {
+        this.setState({ user: response.data }, () => {
+          // console.log("fecthed user data from modal is: ",this.state.user);
+        });
+      })
+      .catch((err) => {
+        console.log("user calling failed");
       });
   };
-  afterOpenModal = () => {
-    console.log("after model is opened");
-  };
+  // afterOpenModal = () => {
+  //   console.log("after model is opened");
+  // };
   closeModal = () => {
-    this
-      .setState({
-        modalIsOpen: false
-      }, function () {
+    this.setState(
+      {
+        modalIsOpen: false,
+      },
+      function () {
         console.log("closeModal: ", this.state.modalIsOpen);
-      });
+      }
+    );
   };
   render() {
-    // fetching repos
-    const username = "1s-0s"
-    const repos = this.state.githubReps.map((reponame) => {
-      const currrepo = `https://github-readme-stats.vercel.app/api/pin/?username=${username}&repo=${reponame}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`
-      return (
-        <RepoCard key={reponame} centered size="large" src={currrepo} />
-      )
-    })
     return (
       <Card raised>
-        <Item.Group divided >
+        <Item.Group divided>
           <Item>
-            <Image alt={this.props.avatar} size="tiny" circular src={this.props.avatar} />
+            <Image
+              alt={this.props.avatar}
+              size="tiny"
+              circular
+              src={this.props.avatar}
+            />
             <Item.Content>
               <CardHeader>
                 <Item.Header>
@@ -119,39 +144,42 @@ class FriendCard extends React.Component {
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           style={ModalStyle}
-          contentLabel="Example Modal">
+          contentLabel="Example Modal"
+        >
           <ModalContent>
             {/*//? LEFT SECTION */}
             <ModalProfileLeft>
               <ModalProfileContent>
-                <Image src={this.props.avatar} centered circular size="small" />
-                <ModalHeading>
-                  {this.props.name}
-                </ModalHeading>
+                <Image
+                  src={this.state.user.avatar}
+                  centered
+                  circular
+                  size="small"
+                />
+                <ModalHeading>{this.state.user.name}</ModalHeading>
                 <ModalSubHeading>A Happy Soul</ModalSubHeading>
+                {console.log(this.state.user.blog)}
                 <IconGroup>
-                  <Icon>
+                  <Icon href={this.state.user.blog}>
                     <VscGlobe />
                   </Icon>
                   <Icon>
-                    <VscGithub />
+                    <VscGithub
+                      href={"https://github.com/" + this.state.user.username}
+                    />
                   </Icon>
                   <Icon>
-                    <FiTwitter />
+                    <FiTwitter href={this.state.user.twitter_acc} />
                   </Icon>
                 </IconGroup>
 
                 <CancelButton>
                   <ImCancelCircle onClick={this.closeModal} />
                 </CancelButton>
-
               </ModalProfileContent>
-
             </ModalProfileLeft>
             {/*//? RIGHT SECTION */}
-            <ModalProfileRight>
-              {repos}
-            </ModalProfileRight>
+            <ModalProfileRight>{this.fetchRepos()}</ModalProfileRight>
           </ModalContent>
         </Modal>
       </Card>

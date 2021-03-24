@@ -5,7 +5,7 @@ export const GET_USER="GET_USER";
 export const GET_FRIENDS="GET_FRIENDS";
 //? CORRECT
 export const saveUserData = values => {
-    //console.log("action for save user data",values);
+    console.log("action for save user data",values);
     return ({
         type: SAVE_USER_DATA,
         payload: {
