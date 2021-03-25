@@ -115,7 +115,7 @@ class EditProfile extends React.Component {
                         <Field required name="repositries2" component={this.renderProject2Field} />
                         <FormHeader>Repositry 3</FormHeader>
                         <Field required name="repositries3" component={this.renderProject3Field} />
-                        <FormHeader>Gist Reference*</FormHeader>
+                        <FormHeader>Sample Code*</FormHeader>
                         <Field required name="gist" component={this.renderGistField} />
                         <Form.Button color="black">Submit</Form.Button>
                     </Form>
