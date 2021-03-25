@@ -1,14 +1,19 @@
 import styled from "styled-components";
-import { Segment, Button } from "semantic-ui-react";
+import { Segment, Button, Label } from "semantic-ui-react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 export const CardSegment = styled(Segment)`
+  @media (max-width: 991px) {
+    margin-top: 5vh !important;
+    margin-left: 5vw !important;
+    margin-right: 5vw !important; 
+  }
   @media (min-width: 991px) {
-    margin-top: 10vh !important;
+    margin-top: 5vh !important;
     margin-left: 4vw !important;
     margin-right: 4vw !important;
-    background-color:${(props)=>props.theme.cardbg} !important;
   }
+  background-color:${(props)=>props.theme.cardbg} !important;
   /* background-color: #0D1117 ; */
 `;
 export const CardDetails = styled.div`
@@ -21,7 +26,16 @@ export const CardHeader = styled.h3`
   color:${(props)=>props.theme.text};
 `;
 export const SubHeader = styled.p`
-  margin-top: 5vh !important;
+  margin-top: 2vh !important;
+ 
+`;
+export const LangLabel = styled.span`
+  border:1px solid;
+  border-radius: 5px;
+  margin-right:1vh;
+  padding:0.5vh 1vh;
+  background-color:${(props)=>props.theme.cardbg} !important;
+  
 `;
 export const GistSegment = styled.div`
   height: 50vh ;
@@ -52,7 +66,7 @@ export const ButtonGroup = styled.div`
 // export const ReactIcon = styled(Grid)`
 //   margin: auto auto;
 // `;
-// export const Gist  = styled(SyntaxHighlighter)`
-//   language:"javascript";
-//   gistbg:${(props)=>props.theme.text};
-// `;
+
+export const Gist  = styled(SyntaxHighlighter)`
+  height:30vh;
+`;

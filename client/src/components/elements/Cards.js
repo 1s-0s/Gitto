@@ -4,8 +4,10 @@ import {
   CardSegment,
   CardDetails,
   CardHeader,
-  GistSegment,
+  Gist,
   CardButton,
+  SubHeader,
+  LangLabel
   // ReactIcon
 } from "../styles/CardStyle";
 // Action Creator
@@ -18,6 +20,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { qtcreatorDark, atelierSavannaLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 //import Gist from "react-gist";
 import axios from "axios";
+import { Label } from "semantic-ui-react";
 
 class Card extends React.Component {
   constructor(props) {
@@ -72,9 +75,9 @@ class Card extends React.Component {
     return (
       <CardSegment>
         
-        <SyntaxHighlighter language="javascript" showLineNumbers  style={currTheme==='light' ? atelierSavannaLight : qtcreatorDark}>
-          {this.code}
-        </SyntaxHighlighter>
+        <Gist showLineNumbers  style={currTheme==='light' ? atelierSavannaLight : qtcreatorDark}>
+          {this.props.gist}
+        </Gist>
           {/* <Gist id={this.props.gistid} /> */}
         
         <CardDetails>
@@ -84,6 +87,11 @@ class Card extends React.Component {
             <CardButton circular color="teal" size="mini" floated="right" icon="arrow up" onClick={this.toggleLike}></CardButton>
             <CardButton circular color="teal" size="mini" floated="right" icon="plus" onClick={() => this.addToFriends(this.props.friend)}></CardButton>
           </CardHeader>
+          <SubHeader>
+            <LangLabel style={{color:"green"}}>MongoDB</LangLabel>
+            <LangLabel style={{color:"red"}}>MongoDB</LangLabel>
+            <LangLabel style={{color:"blue"}}>MongoDB</LangLabel>
+          </SubHeader>
         </CardDetails>
       </CardSegment>
     );
@@ -93,6 +101,7 @@ const mapDispatchToProps = (dispatch)=>{
   return bindActionCreators({ reloadComponentAction }, dispatch);
 }
 const mapStateToProps = (state) => {
+  console.log("user card: ",state.auth.user);
   return {
     user: state.auth.user
   }

@@ -17,14 +17,14 @@ export const LeftDiv = styled.div`
   float: left !important;
   border-collapse: collapse !important;
   /* background-color:rgba(0,77,64,0.4)  !important; */
-  -webkit-box-shadow:0 0 20px rgba(0,77,64,0.4);
-  -moz-box-shadow:0 0 20px rgba(0,77,64,0.4);
-  box-shadow:0 0 20px rgba(0,77,64,0.4);
-  background-color:${(props) => props.theme.sidebar}
+  -webkit-box-shadow: 0 0 20px rgba(0, 77, 64, 0.4);
+  -moz-box-shadow: 0 0 20px rgba(0, 77, 64, 0.4);
+  box-shadow: 0 0 20px rgba(0, 77, 64, 0.4);
+  background-color: ${(props) => props.theme.sidebar};
 `;
 export const MiddleDiv = styled.div`
   @media (max-width: 991px) {
-    width: 100% !important;
+    display: none !important;
   }
   width: 50% !important;
   height: 100% !important;
@@ -36,23 +36,25 @@ export const MiddleDiv = styled.div`
 `;
 export const RightDiv = styled.div`
   @media (max-width: 991px) {
-    display: none !important;
+    width: 100% !important;
+    
   }
   width: 45% !important;
   height: 100% !important;
   float: right !important;
   border-collapse: collapse !important;
-  background-color: ${(props) => props.theme.body}  !important;
+  background-color: ${(props) => props.theme.body} !important;
   overflow-y: scroll !important;
 `;
 // sidebar
 export const Logo = styled(Image)`
+  filter: drop-shadow(0 0 0.75rem #ecf4ee);
   margin-top: 2vh;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 `;
 export const IconGroup = styled.div`
-  text-align:center;
+  text-align: center;
   margin-top: 5vh;
   margin-bottom: 2vh;
 `;
@@ -61,10 +63,10 @@ export const Icon = styled(Link)`
   margin-top: 2vh;
   margin-bottom: 4vh;
   font-size: 2.5em;
-  color:#EEE3E3;
+  color: #eee3e3;
   text-decoration: none;
-  &:hover{
-    color:#AAB8C2;
+  &:hover {
+    color: #aab8c2;
   }
 `;
 
@@ -76,8 +78,8 @@ export const Loading = styled(Loader)`
   /* color: #EEE3E3 !important; */
 `;
 export const LoaderDiv = styled.div`
-  display: flex ;
-  justify-content: center ;
-  align-items: center ;
-  height:800px ;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
 `;

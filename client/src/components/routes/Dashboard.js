@@ -54,7 +54,7 @@ class Dashboard extends React.Component {
       url: "/userinfo/",
       method: "GET",
     }).then((res) => {
-      //console.log("response to get all the users", res.data);
+      console.log("response to get all the users", res.data);
       this.setState({ users: res.data });
     });
     const localTheme = window.localStorage.getItem("theme");
@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
   renderCards(currTheme) {
     const users = this.state.users.map((currUser, i) => {
       //console.log("currUser: ", currUser._id);
-      return <Card name={currUser.name} friend={currUser} key={i} theme={currTheme}/>;
+      return <Card name={currUser.name} friend={currUser} key={i} gist={currUser.gist} theme={currTheme} />;
     });
     return users;
   }
