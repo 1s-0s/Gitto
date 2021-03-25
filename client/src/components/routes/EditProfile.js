@@ -19,7 +19,7 @@ import { Container, FormContainer, ImageContent, FormHeader, Header } from "../s
 
 let languages;
 class EditProfile extends React.Component {
-    
+
     handleChange = (e, { value }) => this.setState({ value })
     componentWillMount() {
         this.setState({
@@ -77,7 +77,7 @@ class EditProfile extends React.Component {
     }
     renderGistField = (field) => {
         return (
-            <Form.Input fluid type="text"  {...field.input} error={field.meta.touched ? field.meta.error : null} />
+            <Form.TextArea fluid type="text" placeholder="Enter your sample code"  {...field.input} error={field.meta.touched ? field.meta.error : null} />
         );
     }
 
@@ -91,7 +91,7 @@ class EditProfile extends React.Component {
         }
     }
     onSubmit(values) {
-        this.props.saveUserData( values )
+        this.props.saveUserData(values)
         //console.log("onSubmit", values);
         this.props.history.push("/");
     }
@@ -143,7 +143,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ saveUserData }, dispatch);
 }
 const mapStateToProps = (state) => {
-    console.log("edit profile- ",state.auth);
+    console.log("edit profile- ", state.auth);
     return {
         userData: state.auth.user
     }
