@@ -122,10 +122,7 @@ class Dashboard extends React.Component {
                   path="/editprofile"
                   component={EditProfile}
                 />
-                <PrivateRoute exact path="/" component={()=>(
-                  // <FriendList reloadComponent={this.reloadComponent}/>
-                  <FriendList />
-                )} />
+                <PrivateRoute exact path="/" component={FriendList} />
               </Switch>
             </MiddleDiv>
             {/* //? RIGHT SECTION */}

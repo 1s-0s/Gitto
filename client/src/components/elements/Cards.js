@@ -13,7 +13,9 @@ import {reloadComponentAction } from "../../action/index";
 //React-Redux
 import { bindActionCreators } from "redux";
 import {connect} from "react-redux";
-
+//React Syntax Highlighter
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { qtcreatorDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 //import Gist from "react-gist";
 import axios from "axios";
 
@@ -22,9 +24,22 @@ class Card extends React.Component {
     super(props);
     this.state = {
       like: false,
+     
     }
+    
   }
+  code=`
+        function createStyleObject(classNames, style) {
+      return classNames.reduce((styleObject, className) => {
+        return {...styleObject, ...style[className]};
+      }, {});
+    }
 
+    function createClassNameString(classNames) {
+      return classNames.join(' ');
+  }`
+  
+  
   toggleLike = async () => {
     await this.setState({ like: this.state.like === true ? false : true });
     console.log("like: ", this.state.like);
@@ -56,6 +71,9 @@ class Card extends React.Component {
     return (
       <CardSegment>
         <GistSegment>
+        <SyntaxHighlighter language="javascript" showLineNumbers style={qtcreatorDark}>
+          {this.code}
+        </SyntaxHighlighter>
           {/* <Gist id={this.props.gistid} /> */}
         </GistSegment>
         <CardDetails>
