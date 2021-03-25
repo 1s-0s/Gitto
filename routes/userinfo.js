@@ -5,7 +5,6 @@ const express = require("express");
 const router = express.Router();
 const chalk = require("chalk");
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const userData = require("../models/User");
 
 
@@ -25,11 +24,13 @@ router.get("/current_user", (req, res) => {
     console.log(chalk.hex("#61F2F5").bold("current_user called"));
     res.json(req.user);
 })
-router.get("/:userid/update", (req, res) => {
-    const data = req.body.values;
-    console.log(chalk.hex("#61F2F5").bold("recieved data to update", req.params.userid));
-    console.log(chalk.hex("#61F2F5").bold(data));
-    userData.findOneAndUpdate({ githubId: req.params.userid }, { new: true }, (err, user) => {
+router.post("/update", (req, res) => {
+    const data = req.body.userDesc;
+    const userID = req.user.githubId;
+    console.log(chalk.hex("#61F2F5").bold("recieved data to update", userID));
+    // console.log(chalk.hex("#61F2F5").bold(data));
+    console.log(data);
+    userData.findOneAndUpdate({ githubId: userID }, { new: true }, (err, user) => {
         if (user) {
             user.bio = data.bio;
             user.technology = data.languages;
@@ -51,11 +52,13 @@ router.get("/:userid/update", (req, res) => {
     });
 })
 //fetch user
-router.get("/fetchuser/:userid",(req,res)=>{
-    userData.findById(req.params.userid,(err,user)=>{
-        if(user){
+router.get("/fetchuser/:userid", (req, res) => {
+    userData.findById(req.params.userid, (err, user) => {
+        if (user) {
             console.log(chalk.hex("#61F2F5").bold(`sending requested user data`));
             res.json(user);
+        } else {
+            console.log(chalk.hex("#61F2F5").bold(`error while fetching user data,${err}`));
         }
     })
 })

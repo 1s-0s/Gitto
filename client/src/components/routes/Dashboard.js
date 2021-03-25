@@ -44,11 +44,11 @@ class Dashboard extends React.Component {
       users: [],
       isLoading: true,
       theme: "light",
-      reload: false,
+      // reload: false,
     };
   }
   componentDidMount() {
-    
+
     //? for fetch all users
     axios({
       url: "/userinfo/",
@@ -60,7 +60,7 @@ class Dashboard extends React.Component {
     const localTheme = window.localStorage.getItem("theme");
     localTheme ? this.setState({ theme: localTheme }) : this.setMode("light");
   }
-  
+
   componentDidUpdate(nextProp) {
     if (this.state.isLoading !== nextProp.isValidUser.loading) {
       this.setState({ isLoading: nextProp.isValidUser.loading });
@@ -75,10 +75,10 @@ class Dashboard extends React.Component {
     return users;
   }
   //? called when wanted to reload the component
-  reloadComponent = () => {
-    console.log("reload called");
-    this.setState({ reload: true });
-  };
+  // reloadComponent = () => {
+  //   console.log("reload called");
+  //   this.setState({ reload: true });
+  // };
   //? DARK THEME IMPLEMENTATION
   setMode = (localTheme) => {
     window.localStorage.setItem("theme", localTheme);
@@ -119,9 +119,7 @@ class Dashboard extends React.Component {
                   path="/editprofile"
                   component={EditProfile}
                 />
-                <PrivateRoute exact path="/" component={()=>(
-                  <FriendList reloadComponent={this.reloadComponent}/>
-                )} />
+                <PrivateRoute exact path="/" component={FriendList} />
               </Switch>
             </MiddleDiv>
             {/* //? RIGHT SECTION */}

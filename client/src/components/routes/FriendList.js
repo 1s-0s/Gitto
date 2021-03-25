@@ -20,8 +20,8 @@ class FriendList extends React.Component {
       //console.log("Insidie axios: ", this.state.isFriends);
     });
   }
-  componentWillUnmount(){
-    this.setState = (state,callback)=>{
+  componentWillUnmount() {
+    this.setState = (state, callback) => {
       return;
     };
   }
@@ -29,7 +29,7 @@ class FriendList extends React.Component {
     // console.log("inside renderFriends!");
     const isFriends = this.state.isFriends.map((friendList, i) => {
       // console.log("Friendcard :", friendList);
-      return <FriendCard fid={friendList._id} name={friendList.name} avatar={friendList.avatar} bio={friendList.bio} key={i} reloadComponent={this.props.reloadComponent}/>
+      return <FriendCard fid={friendList._id} name={friendList.name} avatar={friendList.avatar} bio={friendList.bio} key={i} />
     });
     return isFriends;
   }

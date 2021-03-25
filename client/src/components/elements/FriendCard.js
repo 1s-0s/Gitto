@@ -26,7 +26,7 @@ import { style as ModalStyle } from "../styles/ModalStyle";
 // import ProfileImg from "../images/profile.jpg";
 //Icon
 import { BsThreeDotsVertical as Dot } from "react-icons/bs";
-import { RiContactsBookLine, RiDeleteBin6Line as Delete } from "react-icons/ri";
+import { RiDeleteBin6Line as Delete } from "react-icons/ri";
 import { VscGlobe, VscGithub } from "react-icons/vsc";
 import { FiTwitter } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
@@ -42,7 +42,6 @@ class FriendCard extends React.Component {
     super();
     this.state = {
       modalIsOpen: false,
-
       user: {},
     };
   }
@@ -94,7 +93,7 @@ class FriendCard extends React.Component {
         });
       })
       .catch((err) => {
-        console.log("user calling failed");
+        console.log("user calling failed", err);
       });
   };
   // afterOpenModal = () => {
@@ -158,7 +157,7 @@ class FriendCard extends React.Component {
                 />
                 <ModalHeading>{this.state.user.name}</ModalHeading>
                 <ModalSubHeading>A Happy Soul</ModalSubHeading>
-                {console.log(this.state.user.blog)}
+                {console.log("user blog link from friendscard: ", this.state.user.blog)}
                 <IconGroup>
                   <Icon href={this.state.user.blog}>
                     <VscGlobe />
