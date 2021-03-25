@@ -12,7 +12,7 @@ import loader from "../images/loading/loader.gif";
 //Semantic UI
 import { Image } from "semantic-ui-react";
 // Action Creator
-import { saveUserData} from "../../action/index";
+import { saveUserData } from "../../action/index";
 //REACT-REDUX AND REDUX-FORM
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -44,11 +44,11 @@ class Dashboard extends React.Component {
       users: [],
       isLoading: true,
       theme: "light",
-      reload: false,
+      // reload: false,
     };
   }
   componentDidMount() {
-    
+
     //? for fetch all users
     axios({
       url: "/userinfo/",
@@ -60,7 +60,7 @@ class Dashboard extends React.Component {
     const localTheme = window.localStorage.getItem("theme");
     localTheme ? this.setState({ theme: localTheme }) : this.setMode("light");
   }
-  
+
   componentDidUpdate(nextProp) {
     //console.log("reload component when data changed: ",nextProp);
     if (this.state.isLoading !== nextProp.isValidUser.loading) {
@@ -81,7 +81,6 @@ class Dashboard extends React.Component {
   //   console.log("reload called");
   //   this.setState({ reload: true });
   // };
-
   //? DARK THEME IMPLEMENTATION
   setMode = (localTheme) => {
     window.localStorage.setItem("theme", localTheme);
@@ -134,12 +133,12 @@ class Dashboard extends React.Component {
   }
 }
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ saveUserData}, dispatch);
+  return bindActionCreators({ saveUserData }, dispatch);
 };
 const mapStateToProps = (state) => {
   return {
     isValidUser: state.auth,
-    reloadComponent:state.reloadComponent
+    reloadComponent: state.reloadComponent
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

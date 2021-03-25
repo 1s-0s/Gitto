@@ -14,60 +14,60 @@ import logo from "../images/logopen3.svg";
 import axios from "axios";
 
 class Sidebar extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       loggedIn: props.isLoggedIn,
-      user:props.user
+      user: props.user
     }
   }
   onLogOutUser = (event) => {
-    
+
     axios({
-      url:"/auth/logout",
-      method:"GET"
+      url: "/auth/logout",
+      method: "GET"
     })
-    .then((response)=>{
-      console.log("logged out success");
-    })
+      .then((response) => {
+        console.log("logged out success");
+      })
   }
   //? THEME TOGGLER
-  themeToggler=()=>{
-    console.log("before: ",this.props.theme.name);
-    (this.props.theme.name==="light") ? this.props.handleChange("dark") : this.props.handleChange("light");
-    console.log("after: ",this.props.theme.name);
+  themeToggler = () => {
+    console.log("before: ", this.props.theme.name);
+    (this.props.theme.name === "light") ? this.props.handleChange("dark") : this.props.handleChange("light");
+    console.log("after: ", this.props.theme.name);
   }
   render() {
-    
-      return (
-        <div>
-          <Logo src={logo} color="white" size="mini" />
-          <IconGroup>
-            <Icon to="/profile">
-              <Chat />
-              <IconContent>Chat</IconContent>
-            </Icon>
-            <Icon to="/">
-              <Friends />
-              <IconContent>Friends</IconContent>
-            </Icon>
-            <Icon to="/profile">
-              <ProfilePic />
-              <IconContent>Profile</IconContent>
-            </Icon>
-            <Icon onClick={this.onLogOutUser} to="/login">
-              <Logout />
-              <IconContent>Logout</IconContent>
-            </Icon>
-            <Icon to="#" onClick={this.themeToggler}>
-              <Darkmode />
-              <IconContent>Mode</IconContent>
-            </Icon>
-          </IconGroup>
-        </div>
-      );
-    
-    
+
+    return (
+      <div>
+        <Logo src={logo} color="white" size="mini" />
+        <IconGroup>
+          <Icon replace to="/profile">
+            <Chat />
+            <IconContent>Chat</IconContent>
+          </Icon>
+          <Icon replace to="/">
+            <Friends />
+            <IconContent>Friends</IconContent>
+          </Icon>
+          <Icon replace to="/profile">
+            <ProfilePic />
+            <IconContent>Profile</IconContent>
+          </Icon>
+          <Icon onClick={this.onLogOutUser} to="/login">
+            <Logout />
+            <IconContent>Logout</IconContent>
+          </Icon>
+          <Icon to="#" onClick={this.themeToggler}>
+            <Darkmode />
+            <IconContent>Mode</IconContent>
+          </Icon>
+        </IconGroup>
+      </div>
+    );
+
+
   }
 }
 export default Sidebar;
