@@ -15,7 +15,7 @@ import { bindActionCreators } from "redux";
 import {connect} from "react-redux";
 //React Syntax Highlighter
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { qtcreatorDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { qtcreatorDark, atelierSavannaLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 //import Gist from "react-gist";
 import axios from "axios";
 
@@ -29,13 +29,13 @@ class Card extends React.Component {
     
   }
   code=`
-        function createStyleObject(classNames, style) {
-      return classNames.reduce((styleObject, className) => {
-        return {...styleObject, ...style[className]};
-      }, {});
-    }
+  function createStyleObject(classNames, style) {
+    return classNames.reduce((styleObject, className) => {
+      return {...styleObject, ...style[className]};
+    }, {});
+  }
 
-    function createClassNameString(classNames) {
+  function createClassNameString(classNames) {
       return classNames.join(' ');
   }`
   
@@ -67,15 +67,16 @@ class Card extends React.Component {
   }
   render() {
     // console.log(this.props.key);
-
+    const currTheme= this.props.theme.name;
+    console.log("currTheme is : ",currTheme)
     return (
       <CardSegment>
-        <GistSegment>
-        <SyntaxHighlighter language="javascript" showLineNumbers style={qtcreatorDark}>
+        
+        <SyntaxHighlighter language="javascript" showLineNumbers  style={currTheme==='light' ? atelierSavannaLight : qtcreatorDark}>
           {this.code}
         </SyntaxHighlighter>
           {/* <Gist id={this.props.gistid} /> */}
-        </GistSegment>
+        
         <CardDetails>
           <CardHeader>
             {this.props.name}

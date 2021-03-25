@@ -68,10 +68,10 @@ class Dashboard extends React.Component {
     }
   }
   //? RENDERING FRIENDS CARDS
-  renderCards() {
+  renderCards(currTheme) {
     const users = this.state.users.map((currUser, i) => {
       //console.log("currUser: ", currUser._id);
-      return <Card name={currUser.name} friend={currUser} key={i} />;
+      return <Card name={currUser.name} friend={currUser} key={i} theme={currTheme}/>;
     });
     return users;
   }
@@ -121,11 +121,11 @@ class Dashboard extends React.Component {
                   path="/editprofile"
                   component={EditProfile}
                 />
-                <PrivateRoute exact path="/" component={FriendList} />
+                <PrivateRoute exact path="/" component={()=><FriendList/>} />
               </Switch>
             </MiddleDiv>
             {/* //? RIGHT SECTION */}
-            <RightDiv>{this.renderCards()}</RightDiv>
+            <RightDiv>{this.renderCards(themes[this.state.theme])}</RightDiv>
           </Div>
         </ThemeProvider>
       );

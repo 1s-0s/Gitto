@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Segment, Button } from "semantic-ui-react";
-
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 export const CardSegment = styled(Segment)`
   @media (min-width: 991px) {
@@ -51,4 +51,8 @@ export const ButtonGroup = styled.div`
 `;
 // export const ReactIcon = styled(Grid)`
 //   margin: auto auto;
+// `;
+// export const Gist  = styled(SyntaxHighlighter)`
+//   language:"javascript";
+//   gistbg:${(props)=>props.theme.text};
 // `;
