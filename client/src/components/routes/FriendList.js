@@ -29,7 +29,8 @@ class FriendList extends React.Component {
     // console.log("inside renderFriends!");
     const isFriends = this.state.isFriends.map((friendList, i) => {
       // console.log("Friendcard :", friendList);
-      return <FriendCard fid={friendList._id} name={friendList.name} avatar={friendList.avatar} bio={friendList.bio} key={i} reloadComponent={this.props.reloadComponent}/>
+      // return <FriendCard fid={friendList._id} name={friendList.name} avatar={friendList.avatar} bio={friendList.bio} key={i} reloadComponent={this.props.reloadComponent}/>
+      return <FriendCard fid={friendList._id} name={friendList.name} avatar={friendList.avatar} bio={friendList.bio} key={i} />
     });
     return isFriends;
   }

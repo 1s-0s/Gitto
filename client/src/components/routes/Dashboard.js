@@ -12,7 +12,7 @@ import loader from "../images/loading/loader.gif";
 //Semantic UI
 import { Image } from "semantic-ui-react";
 // Action Creator
-import { saveUserData } from "../../action/index";
+import { saveUserData} from "../../action/index";
 //REACT-REDUX AND REDUX-FORM
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -62,6 +62,7 @@ class Dashboard extends React.Component {
   }
   
   componentDidUpdate(nextProp) {
+    //console.log("reload component when data changed: ",nextProp);
     if (this.state.isLoading !== nextProp.isValidUser.loading) {
       this.setState({ isLoading: nextProp.isValidUser.loading });
     }
@@ -74,11 +75,13 @@ class Dashboard extends React.Component {
     });
     return users;
   }
+
   //? called when wanted to reload the component
-  reloadComponent = () => {
-    console.log("reload called");
-    this.setState({ reload: true });
-  };
+  // reloadComponent = () => {
+  //   console.log("reload called");
+  //   this.setState({ reload: true });
+  // };
+
   //? DARK THEME IMPLEMENTATION
   setMode = (localTheme) => {
     window.localStorage.setItem("theme", localTheme);
@@ -120,7 +123,8 @@ class Dashboard extends React.Component {
                   component={EditProfile}
                 />
                 <PrivateRoute exact path="/" component={()=>(
-                  <FriendList reloadComponent={this.reloadComponent}/>
+                  // <FriendList reloadComponent={this.reloadComponent}/>
+                  <FriendList />
                 )} />
               </Switch>
             </MiddleDiv>
@@ -133,11 +137,12 @@ class Dashboard extends React.Component {
   }
 }
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ saveUserData }, dispatch);
+  return bindActionCreators({ saveUserData}, dispatch);
 };
 const mapStateToProps = (state) => {
   return {
     isValidUser: state.auth,
+    reloadComponent:state.reloadComponent
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
