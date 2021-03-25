@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import updateUserData from "./updateUserData";
 import authReducer from "./authReducer";
 import friendsReducer from "./userFriendsReducer";
+import reloadComponentReducer from "./reloadComponentReducer"
 import { reducer as formReducer } from "redux-form";
 
 
@@ -11,5 +12,6 @@ export default combineReducers({
     form: formReducer,
     updateUserData: updateUserData,
     auth: authReducer,
-    friendsReducer: friendsReducer
+    friendsReducer: friendsReducer,
+    reloadComponent:reloadComponentReducer
 });

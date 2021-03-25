@@ -8,8 +8,11 @@ import {
   CardButton,
   // ReactIcon
 } from "../styles/CardStyle";
+// Action Creator
+import {reloadComponentAction } from "../../action/index";
 //React-Redux
-import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {connect} from "react-redux";
 
 //import Gist from "react-gist";
 import axios from "axios";
@@ -41,6 +44,7 @@ class Card extends React.Component {
     })
       .then((response) => {
         console.log("friend added successfully", response);
+        this.props.reloadComponentAction();
       })
       .catch((err) => {
         console.log("error while saving friend: ", err);
@@ -66,11 +70,12 @@ class Card extends React.Component {
     );
   }
 }
-
+const mapDispatchToProps = (dispatch)=>{
+  return bindActionCreators({ reloadComponentAction }, dispatch);
+}
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user
   }
 }
-
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps,mapDispatchToProps)(Card);

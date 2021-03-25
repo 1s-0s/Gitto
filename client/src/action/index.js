@@ -3,6 +3,7 @@ import axios from "axios";
 export const SAVE_USER_DATA = "SAVE_USER_DATA";
 export const GET_USER="GET_USER";
 export const GET_FRIENDS="GET_FRIENDS";
+export const RELOAD_COMPONENT="RELOAD_COMPONENT";
 //? CORRECT
 export const saveUserData = values => {
     console.log("action for save user data",values);
@@ -46,4 +47,14 @@ export const fetchFriendsAction = ()=>{
             })
         })
     }
+}
+//?
+export const reloadComponentAction = ()=>{
+    return ({
+        type:RELOAD_COMPONENT,
+        payload:{}
+    })
+            
+        
+    
 }

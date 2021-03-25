@@ -22,24 +22,26 @@ import {
 //React-Modal
 import Modal from "react-modal";
 import { style as ModalStyle } from "../styles/ModalStyle";
-// import avatar from "../images/logopen3.svg";
-// import ProfileImg from "../images/profile.jpg";
+// Action Creator
+import { reloadComponentAction } from "../../action/index";
 //Icon
 import { BsThreeDotsVertical as Dot } from "react-icons/bs";
 import { RiDeleteBin6Line as Delete } from "react-icons/ri";
 import { VscGlobe, VscGithub } from "react-icons/vsc";
 import { FiTwitter } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
+//Axios
 import axios from "axios";
-//IoMdRemoveCircle
-//github contribution chart
-// import { drawContributions } from "github-contributions-canvas";
+//react redux
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
 
 Modal.setAppElement("#root");
 
 class FriendCard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modalIsOpen: false,
       user: {},
@@ -47,7 +49,7 @@ class FriendCard extends React.Component {
   }
 
   deleteFriend = () => {
-    console.log("delte calls");
+    console.log("delete calls");
     axios({
       url: "/userinfo/delete",
       method: "POST",
@@ -55,7 +57,8 @@ class FriendCard extends React.Component {
     })
       .then(() => {
         console.log("successfullt deleted friend");
-        this.props.reloadComponent();
+        // this.props.reloadComponent();
+        this.props.reloadComponentAction();
       })
       .catch((err) => {
         console.log("error while deleting friend", err);
@@ -185,4 +188,7 @@ class FriendCard extends React.Component {
     );
   }
 }
-export default FriendCard;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ reloadComponentAction }, dispatch);
+}
+export default connect(null, mapDispatchToProps)(FriendCard);

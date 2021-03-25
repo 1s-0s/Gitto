@@ -75,10 +75,13 @@ router.post("/addfriend", (req, res) => {
             user.friends.addToSet(friend);
             user.save();
             console.log(chalk.hex("#61F2F5").bold("friend added to DB sucessfully"));
+            return res.json({message:"friend added successfully"});
         }
         else {
             console.log(chalk.hex("#61F2F5").bold(`error while adding friend to DB ${err}`));
+            return res.json({message:"error while adding friend"});
         }
+        
     })
 })
 router.get("/friends", (req, res) => {

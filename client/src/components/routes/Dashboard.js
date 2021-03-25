@@ -62,6 +62,7 @@ class Dashboard extends React.Component {
   }
 
   componentDidUpdate(nextProp) {
+    //console.log("reload component when data changed: ",nextProp);
     if (this.state.isLoading !== nextProp.isValidUser.loading) {
       this.setState({ isLoading: nextProp.isValidUser.loading });
     }
@@ -74,6 +75,7 @@ class Dashboard extends React.Component {
     });
     return users;
   }
+
   //? called when wanted to reload the component
   // reloadComponent = () => {
   //   console.log("reload called");
@@ -136,6 +138,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     isValidUser: state.auth,
+    reloadComponent: state.reloadComponent
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
