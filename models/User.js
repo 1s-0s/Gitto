@@ -10,8 +10,6 @@ const userSchema = new Schema({
     username: String,
     avatar: String,
     email: String,
-    likes: Number,
-    dislike: Number,
     follower: Number,
     following: Number,
     gist: {type: String,default:defaultGist},
@@ -25,9 +23,9 @@ const userSchema = new Schema({
     location: String,
     friends: [{
         fid: mongoose.Schema.Types.ObjectId,
-        name:String,
-        avatar:String,
-        bio:String
+        name: String,
+        avatar: String,
+        bio: String
     }],
     technology: [{
         type: String
