@@ -2,7 +2,12 @@ import styled from "styled-components";
 import {Image} from "semantic-ui-react";
 // CARD SECTION
 export const Container = styled.div`
-    margin: 6vh 10vh !important;
+  @media (min-width: 991px) {
+    margin: 6vh 10vh ;
+  }
+  @media (max-width: 991px) {
+    margin: 6vh 2vh ;
+  }
 `;
 //Filler Image
 export const FillerImageDiv = styled.div`

@@ -23,28 +23,33 @@ export const LeftDiv = styled.div`
   background-color: ${(props) => props.theme.sidebar};
 `;
 export const MiddleDiv = styled.div`
-  @media (max-width: 991px) {
-    display: none !important;
+  @media (min-width: 991px) {
+    width: 50% ;
+    float: left ;
+    border-collapse: collapse;
   }
-  width: 50% !important;
-  height: 100% !important;
-  float: left !important;
-  border-collapse: collapse !important;
-  /* background-color: rgba(0,77,64,0.5) ; // #02231C */
+  @media (max-width: 991px) {
+    display: ${(props)=>props.status.middleDisplay };
+    width: ${(props)=>props.status.middleWidth };
+  }
+  height: 100% ;
   background-color: ${(props) => props.theme.midbg};
-  overflow-y: scroll !important;
+  overflow-y: scroll;
 `;
+// console.log("---theme props---",this.props);
 export const RightDiv = styled.div`
-  @media (max-width: 991px) {
-    width: 100% !important;
-    
+  @media (min-width: 991px) {
+    width: 45% ;
+    float: right;
+    border-collapse: collapse ;
   }
-  width: 45% !important;
-  height: 100% !important;
-  float: right !important;
-  border-collapse: collapse !important;
-  background-color: ${(props) => props.theme.body} !important;
-  overflow-y: scroll !important;
+  @media (max-width: 991px) {
+    display: ${(props)=>props.status.rightDisplay};
+    width: ${(props)=>props.status.rightWidth}  
+  }
+  height: 100%;
+  background-color: ${(props) => props.theme.body} ;
+  overflow-y: scroll ;
 `;
 // sidebar
 export const Logo = styled(Image)`

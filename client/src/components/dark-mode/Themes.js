@@ -23,3 +23,4 @@ export const DarkTheme = {
 //midBg- #001F19
 //midCard- #002B23
 //sidebar- #001814
+

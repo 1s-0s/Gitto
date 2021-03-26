@@ -26,6 +26,8 @@ import Sidebar from "../elements/Sidebar";
 import FriendList from "./FriendList";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
+//bottom navbar
+import BottomNavbar from "../elements/BottomNavbar";
 //Router
 import { Switch } from "react-router-dom";
 import PrivateRoute from "./privateRoute/PrivateRoute";
@@ -34,11 +36,17 @@ import axios from "axios";
 //for darkmode
 import { ThemeProvider } from "styled-components";
 import { LightTheme, DarkTheme } from "../dark-mode/Themes";
+//Mode
+import {Right,Middle} from "../mode/Mode";
 
 const themes = {
   light: LightTheme,
   dark: DarkTheme,
 };
+const active={
+  right:Right,
+  middle:Middle
+}
 class Dashboard extends React.Component {
   //? reload-to reload the page when user delete a friend
   constructor() {
@@ -47,6 +55,7 @@ class Dashboard extends React.Component {
       users: [],
       isLoading: true,
       theme: "light",
+      isActiveDiv:"right"
       // reload: false,
     };
   }
@@ -90,10 +99,10 @@ class Dashboard extends React.Component {
   }
 
   //? called when wanted to reload the component
-  // reloadComponent = () => {
-  //   console.log("reload called");
-  //   this.setState({ reload: true });
-  // };
+  reloadComponent = (section) => {
+    console.log("reload called");
+    this.setState({ isActiveDiv: section});
+  };
   //? DARK THEME IMPLEMENTATION
   setMode = (localTheme) => {
     window.localStorage.setItem("theme", localTheme);
@@ -102,6 +111,10 @@ class Dashboard extends React.Component {
   handleChange = (newTheme) => {
     this.setMode(newTheme);
   };
+  toggleRightDiv=(status)=>{
+    console.log("toggle right div");
+    this.setState({isActiveDiv:status})
+  }
   render() {
     //? Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
     //!Warning: Each child in a list should have a unique "key" prop.
@@ -113,8 +126,11 @@ class Dashboard extends React.Component {
         </LoaderDiv>
       );
     } else {
+      console.log("--------------",active[this.state.isActiveDiv]);
       return (
-        <ThemeProvider theme={themes[this.state.theme]}>
+        <ThemeProvider theme={themes[this.state.theme]} >
+          
+          <BottomNavbar toggleRightDiv={this.toggleRightDiv}/>
           <Div>
             {/* //? LEFT SECTION */}
             <LeftDiv>
@@ -124,7 +140,7 @@ class Dashboard extends React.Component {
               />
             </LeftDiv>
             {/* //? MIDDLE SECTION */}
-            <MiddleDiv>
+            <MiddleDiv status={active[this.state.isActiveDiv]}>
               <Switch>
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute
@@ -136,7 +152,9 @@ class Dashboard extends React.Component {
               </Switch>
             </MiddleDiv>
             {/* //? RIGHT SECTION */}
-            <RightDiv>{this.renderCards(themes[this.state.theme])}</RightDiv>
+            <RightDiv status={active[this.state.isActiveDiv]}>
+              {this.renderCards(themes[this.state.theme])}
+            </RightDiv>
           </Div>
         </ThemeProvider>
       );

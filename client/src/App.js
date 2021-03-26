@@ -19,6 +19,7 @@ class App extends React.Component {
     render() {
         return (
             <Router>
+                
                 <Switch>
                     <Route exact path="/login" component={login} />
                     <PrivateRoute path="/" component={dashboard} />

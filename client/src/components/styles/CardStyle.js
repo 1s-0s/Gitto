@@ -7,12 +7,15 @@ export const CardSegment = styled(Segment)`
     margin-top: 5vh !important;
     margin-left: 5vw !important;
     margin-right: 5vw !important; 
+    margin-bottom:10vh !important;
   }
   @media (min-width: 991px) {
     margin-top: 5vh !important;
     margin-left: 4vw !important;
     margin-right: 4vw !important;
+    margin-bottom:5vh !important;
   }
+  
   background-color:${(props)=>props.theme.cardbg} !important;
   /* background-color: #0D1117 ; */
 `;
