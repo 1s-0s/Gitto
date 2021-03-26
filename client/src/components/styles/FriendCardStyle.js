@@ -95,3 +95,4 @@ export const ModalProfileRight = styled.div`
   float: right ;
   border-collapse: collapse ;
 `;
+

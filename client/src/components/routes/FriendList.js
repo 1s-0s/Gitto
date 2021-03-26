@@ -1,9 +1,13 @@
 import React from "react";
-
-import { Container } from "../styles/FriendStyle";
+import { Container,FillerImageDiv } from "../styles/FriendStyle";
 import FriendCard from "../elements/FriendCard";
 import { connect } from "react-redux";
 import axios from "axios";
+//Filler images
+import filler from "../images/filler-image/filler1.svg";
+//Semantic UI
+import { Image } from "semantic-ui-react";
+
 class FriendList extends React.Component {
   constructor(props) {
     super(props);
@@ -27,11 +31,21 @@ class FriendList extends React.Component {
   }
   renderFriendCard = () => {
     // console.log("inside renderFriends!");
-    const isFriends = this.state.isFriends.map((friendList, i) => {
-      // console.log("Friendcard :", friendList);
-      return <FriendCard fid={friendList._id} name={friendList.name} avatar={friendList.avatar} bio={friendList.bio} key={i} />
-    });
-    return isFriends;
+    if(this.state.isFriends.length===0){
+      return (
+        <FillerImageDiv>
+          <Image centered src={filler} size="medium"></Image>
+        </FillerImageDiv>
+      )
+    }
+    else{
+      const isFriends = this.state.isFriends.map((friendList, i) => {
+        // console.log("Friendcard :", friendList);
+        return <FriendCard fid={friendList._id} name={friendList.name} avatar={friendList.avatar} bio={friendList.bio} key={i} />
+      });
+      return isFriends;
+    }
+    
   }
 
   render() {
