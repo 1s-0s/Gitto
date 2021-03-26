@@ -49,15 +49,16 @@ class FriendCard extends React.Component {
   }
 
   deleteFriend = () => {
-    console.log("delete calls");
+    // console.log("delete calls");
     axios({
       url: "/userinfo/delete",
       method: "POST",
       data: { fid: this.props.fid },
     })
       .then(() => {
-        console.log("successfullt deleted friend");
+        // console.log("successfullt deleted friend");
         // this.props.reloadComponent();
+        alert(`You have deleted ${this.props.name} from your friendlist.`)
         this.props.reloadComponentAction();
       })
       .catch((err) => {
@@ -70,7 +71,7 @@ class FriendCard extends React.Component {
     if (currUser.pinnedrepos) {
       console.log("repos are: ", currUser);
       const repos = currUser.pinnedrepos.map((repo) => {
-        const currRepo = `https://github-readme-stats.vercel.app/api/pin/?username=${currUser.username}&repo=${repo.type}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
+        const currRepo = `https://github-readme-stats.vercel.app/api/pin/?username=${currUser.username}&repo=${repo}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
         return <RepoCard key={currRepo} centered size="large" src={currRepo} />;
       });
       return repos;
@@ -137,7 +138,7 @@ class FriendCard extends React.Component {
               </CardHeader>
               <Item.Meta></Item.Meta>
               <Item.Description>
-                <CardText>Hello,people I am Kavya Kulkarni.</CardText>
+                <CardText>{this.props.bio ? this.props.bio : "Hello, I am Biryani Monster to cheer you up!"}</CardText>
               </Item.Description>
             </Item.Content>
           </Item>
@@ -159,22 +160,19 @@ class FriendCard extends React.Component {
                   size="small"
                 />
                 <ModalHeading>{this.state.user.name}</ModalHeading>
-                <ModalSubHeading>A Happy Soul</ModalSubHeading>
-                {console.log("user blog link from friendscard: ", this.state.user.blog)}
+                <ModalSubHeading>{this.state.user.bio}</ModalSubHeading>
+                {/* {console.log("user blog link from friendscard: ", this.state.user.blog)} */}
                 <IconGroup>
                   <Icon href={this.state.user.blog}>
                     <VscGlobe />
                   </Icon>
-                  <Icon>
-                    <VscGithub
-                      href={"https://github.com/" + this.state.user.username}
-                    />
+                  <Icon href={"https://github.com/" + this.state.user.username}>
+                    <VscGithub />
                   </Icon>
-                  <Icon>
-                    <FiTwitter href={this.state.user.twitter_acc} />
+                  <Icon href={"https://twitter.com/" + this.state.user.twitter_acc}>
+                    <FiTwitter />
                   </Icon>
                 </IconGroup>
-
                 <CancelButton>
                   <ImCancelCircle onClick={this.closeModal} />
                 </CancelButton>

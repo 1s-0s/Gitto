@@ -16,18 +16,17 @@ import { reloadComponentAction } from "../../action/index";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 //React Syntax Highlighter
-import SyntaxHighlighter from 'react-syntax-highlighter';
+// import SyntaxHighlighter from 'react-syntax-highlighter';
 import { qtcreatorDark, atelierSavannaLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 //import Gist from "react-gist";
 import axios from "axios";
-import { Label } from "semantic-ui-react";
+// import { Label } from "semantic-ui-react";
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       like: null,
-      dislike: null
     }
 
   }
@@ -48,20 +47,14 @@ class Card extends React.Component {
     if (this.state.like === null || this.state.like === false) {
       await this.setState({ like: true });
     }
-    // else if (this.state.like === true) {
-    //   await this.setState({ like: null });
-    // }
-    console.log("like setting to like: ", this.state.like);
+    //console.log("like setting to like: ", this.state.like);
   };
 
   toggleDisLike = async () => {
     if (this.state.like === null || this.state.like === true) {
       await this.setState({ like: false });
     }
-    // else if (this.state.like === false) {
-    //   await this.setState({ like: null });
-    // }
-    console.log("dislike setting to like state: ", this.state.like);
+    // console.log("dislike setting to like state: ", this.state.like);
   };
   //? adding card user to users friendlist
   addToFriends(friend) {
@@ -90,13 +83,11 @@ class Card extends React.Component {
         <Gist showLineNumbers style={currTheme === 'light' ? atelierSavannaLight : qtcreatorDark}>
           {this.props.gist}
         </Gist>
-        {/* <Gist id={this.props.gistid} /> */}
-
         <CardDetails>
           <CardHeader>
             {this.props.name}
-            <CardButton circular color={this.state.like ? "teal" : "red"} size="mini" floated="right" icon="arrow down" onClick={this.toggleDisLike}></CardButton>
-            <CardButton circular color={this.state.like ? "red" : "teal"} size="mini" floated="right" icon="arrow up" onClick={this.toggleLike}></CardButton>
+            <CardButton circular color={(this.state.like === false) ? "red" : "teal"} size="mini" floated="right" icon="arrow down" onClick={this.toggleDisLike}></CardButton>
+            <CardButton circular color={this.state.like === true ? "red" : "teal"} size="mini" floated="right" icon="arrow up" onClick={this.toggleLike}></CardButton>
             <CardButton circular color="teal" size="mini" floated="right" icon="plus" onClick={() => this.addToFriends(this.props.friend)}></CardButton>
           </CardHeader>
           <SubHeader>

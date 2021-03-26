@@ -38,7 +38,7 @@ export const ButtonLink = styled(Link)`
   color:#EEE3E3;
   text-decoration: none;
   &:hover{
-    color:#87B588;
+    color:#aab8c2;
   }
 `;
 
