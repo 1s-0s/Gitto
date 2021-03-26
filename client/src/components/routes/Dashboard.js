@@ -6,11 +6,14 @@ import {
   RightDiv,
   // Loading,
   LoaderDiv,
+  FillerImageDiv
 } from "../styles/DashboardStyle";
 //Loading Image
 import loader from "../images/loading/loader.gif";
 //Semantic UI
 import { Image } from "semantic-ui-react";
+//Filler images
+import filler from "../images/filler-image/filler2.svg";
 // Action Creator
 import { saveUserData } from "../../action/index";
 //REACT-REDUX AND REDUX-FORM
@@ -69,11 +72,21 @@ class Dashboard extends React.Component {
   }
   //? RENDERING FRIENDS CARDS
   renderCards(currTheme) {
-    const users = this.state.users.map((currUser, i) => {
-      //console.log("currUser: ", currUser._id);
-      return <Card name={currUser.name} friend={currUser} key={i} gist={currUser.gist} theme={currTheme} />;
-    });
-    return users;
+    if(this.state.users.length===0){
+      return (
+        <FillerImageDiv>
+          <Image centered src={filler} size="medium"></Image>
+        </FillerImageDiv>
+      )
+    }
+    else{
+      const users = this.state.users.map((currUser, i) => {
+        //console.log("currUser: ", currUser._id);
+        return <Card name={currUser.name} friend={currUser} key={i} gist={currUser.gist} theme={currTheme} />;
+      });
+      return users;
+    }
+    
   }
 
   //? called when wanted to reload the component
@@ -96,9 +109,7 @@ class Dashboard extends React.Component {
       return (
         <LoaderDiv>
           <Image centered src={loader} size="medium" />
-          {/* <Loading active size="large">
-            <strong>Loading</strong>
-          </Loading> */}
+          
         </LoaderDiv>
       );
     } else {

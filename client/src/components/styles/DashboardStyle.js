@@ -83,3 +83,10 @@ export const LoaderDiv = styled.div`
   align-items: center;
   height: 800px;
 `;
+//Filler Image
+export const FillerImageDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+`;
