@@ -1,10 +1,10 @@
 import React from "react";
-import { Container,FillerImageDiv } from "../styles/FriendStyle";
+import { Container,FillerContent,FillerImage,FillerImageDiv } from "../styles/FriendStyle";
 import FriendCard from "../elements/FriendCard";
 import { connect } from "react-redux";
 import axios from "axios";
 //Filler images
-import filler from "../images/filler-image/filler1.svg";
+import filler from "../images/filler-image/filler3.svg";
 //Semantic UI
 import { Image } from "semantic-ui-react";
 
@@ -34,7 +34,8 @@ class FriendList extends React.Component {
     if(this.state.isFriends.length===0){
       return (
         <FillerImageDiv>
-          <Image centered src={filler} size="medium"></Image>
+          <FillerImage centered src={filler} size="medium" rounded/>
+          <FillerContent>Got no friends</FillerContent>
         </FillerImageDiv>
       )
     }

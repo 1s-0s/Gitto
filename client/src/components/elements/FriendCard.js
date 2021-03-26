@@ -17,6 +17,9 @@ import {
   IconGroup,
   CancelButton,
   RepoCard,
+  FillerImageDiv,
+  FillerContent,
+  FillerImage
 } from "../styles/FriendCardStyle";
 
 //React-Modal
@@ -35,6 +38,8 @@ import axios from "axios";
 //react redux
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+//Filler images
+import filler from "../images/filler-image/repofiller.svg";
 
 Modal.setAppElement("#root");
 
@@ -65,7 +70,7 @@ class FriendCard extends React.Component {
         console.log("user calling failed", err);
       });
   };
-  
+
   deleteFriend = () => {
     // console.log("delete calls");
     axios({
@@ -87,7 +92,15 @@ class FriendCard extends React.Component {
   fetchRepos = () => {
     const currUser = this.state.user;
     if (currUser.pinnedrepos) {
-      console.log("repos are: ", currUser);
+      if(currUser.pinnedrepos.length===0){
+        return (
+          <FillerImageDiv>
+            <FillerImage centered src={filler} size="medium" rounded/>
+            <FillerContent>Have nothing to show</FillerContent>
+          </FillerImageDiv>
+        )
+      }
+      console.log("repos are: ", currUser.pinnedrepos.length);
       const repos = currUser.pinnedrepos.map((repo) => {
         const currRepo = `https://github-readme-stats.vercel.app/api/pin/?username=${currUser.username}&repo=${repo}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
         return <RepoCard key={currRepo} centered size="large" src={currRepo} />;

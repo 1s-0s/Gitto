@@ -95,4 +95,13 @@ export const ModalProfileRight = styled.div`
   float: right ;
   border-collapse: collapse ;
 `;
-
+//Filler Image
+export const FillerImageDiv = styled.div`
+  text-align:center;
+`;
+export const FillerImage = styled(Image)`
+  opacity:0.2 !important;
+`;
+export const FillerContent = styled.h1`
+  color:rgba(126,202,156,0.5);
+`;
