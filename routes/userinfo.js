@@ -6,7 +6,36 @@ const router = express.Router();
 const chalk = require("chalk");
 const mongoose = require('mongoose');
 const userData = require("../models/User");
+const nodemailer = require("nodemailer");
 
+let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "gitto3025@gmail.com",
+        pass: "iamurhoneybunny3024"
+    }
+})
+
+sendFriendRequestMail = (senderReq, recieverReq) => {
+    // console.log("Inside mailer");
+    // console.log(senderReq);
+    //? TURN ON LESS SECURE APP IN YOUR GOOGLE ACCOUNT SETTINGS/SECURITY WHILE USING THIS FEATURE.
+    let mailOptions = {
+        from: "gitto3025@gmail.com",
+        to: recieverReq,
+        subject: "Notification regarding friend request from GIT-TO",
+        text: "",
+        html: `<h2></strong> ${senderReq.name}<strong> has been added you as friend.</h2><br>EmailID:</strong> ${senderReq.email}<br><br><strong>Thank you</strong><br>Regards Team <strong>1's&&0's </strong>`
+    }
+    transporter.sendMail(mailOptions, (err, data) => {
+        if (err) {
+            console.log("Error Occures", err);
+        }
+        else {
+            console.log("Email has been sent!!!", data);
+        }
+    })
+}
 
 
 router.get("/", (req, res) => {
@@ -34,12 +63,12 @@ router.post("/update", (req, res) => {
         if (user) {
             user.bio = data.bio;
             user.technology = data.languages;
-            user.pinnedrepos.push(data.repositries1);
+            user.pinnedrepos.addToSet(data.repositries1);
             if (data.repositries2 != null) {
-                user.pinnedrepos.push(data.repositries2);
+                user.pinnedrepos.addToSet(data.repositries2);
             }
             if (data.repositries3) {
-                user.pinnedrepos.push(data.repositries3);
+                user.pinnedrepos.addToSet(data.repositries3);
             }
             user.gist = data.gist;
             user.save();
@@ -68,20 +97,21 @@ router.post("/addfriend", (req, res) => {
 
     console.log(chalk.hex("#61F2F5").bold(`userId: ${userId}`));
     console.log(chalk.hex("#61F2F5").bold(`friendId: ${friend._id}`));
-    console.log();
+    console.log(friend);
     userData.findById(userId, (err, user) => {
         if (user && userId !== friend._id) {
             //? addToSet- to maintain uniqueness
             user.friends.addToSet(friend);
             user.save();
             console.log(chalk.hex("#61F2F5").bold("friend added to DB sucessfully"));
-            return res.json({message:"friend added successfully"});
+            sendFriendRequestMail(user, friend.email);
+            return res.json({ message: "friend added successfully" });
         }
         else {
             console.log(chalk.hex("#61F2F5").bold(`error while adding friend to DB ${err}`));
-            return res.json({message:"error while adding friend"});
+            return res.json({ message: "error while adding friend" });
         }
-        
+
     })
 })
 router.get("/friends", (req, res) => {
