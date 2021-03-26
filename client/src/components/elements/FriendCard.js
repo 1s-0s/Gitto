@@ -36,7 +36,6 @@ import axios from "axios";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-
 Modal.setAppElement("#root");
 
 class FriendCard extends React.Component {
@@ -45,9 +44,28 @@ class FriendCard extends React.Component {
     this.state = {
       modalIsOpen: false,
       user: {},
+      
     };
   }
-
+  componentDidMount = () => {
+    //fetching card user
+    axios({
+      url: "/userinfo/fetchuser/" + this.props.fid,
+      method: "GET",
+    })
+      .then((response) => {
+        this.setState({ user: response.data }, () => {
+          // this.props.avatar=this.state.user.avatar;
+          // this.props.name=this.state.user.name;
+          // this.props.bio=this.state.user.bio;
+          // console.log("fecthed user data from modal is: ",this.state.user);
+        });
+      })
+      .catch((err) => {
+        console.log("user calling failed", err);
+      });
+  };
+  
   deleteFriend = () => {
     // console.log("delete calls");
     axios({
@@ -58,7 +76,7 @@ class FriendCard extends React.Component {
       .then(() => {
         // console.log("successfullt deleted friend");
         // this.props.reloadComponent();
-        alert(`You have deleted ${this.props.name} from your friendlist.`)
+        alert(`You have deleted ${this.props.name} from your friendlist.`);
         this.props.reloadComponentAction();
       })
       .catch((err) => {
@@ -86,23 +104,9 @@ class FriendCard extends React.Component {
         // console.log("openModal: ", this.state.modalIsOpen);
       }
     );
-    //fetching card user
-    axios({
-      url: "/userinfo/fetchuser/" + this.props.fid,
-      method: "GET",
-    })
-      .then((response) => {
-        this.setState({ user: response.data }, () => {
-          // console.log("fecthed user data from modal is: ",this.state.user);
-        });
-      })
-      .catch((err) => {
-        console.log("user calling failed", err);
-      });
+    
   };
-  // afterOpenModal = () => {
-  //   console.log("after model is opened");
-  // };
+  
   closeModal = () => {
     this.setState(
       {
@@ -119,15 +123,15 @@ class FriendCard extends React.Component {
         <Item.Group divided>
           <Item>
             <Image
-              alt={this.props.avatar}
+              alt={this.state.user.avatar}
               size="tiny"
               circular
-              src={this.props.avatar}
+              src={this.state.user.avatar}
             />
             <Item.Content>
               <CardHeader>
                 <Item.Header>
-                  {this.props.name}
+                  {this.state.user.name}
                   <InfoIcon onClick={this.openModal}>
                     <Dot />
                   </InfoIcon>
@@ -138,7 +142,11 @@ class FriendCard extends React.Component {
               </CardHeader>
               <Item.Meta></Item.Meta>
               <Item.Description>
-                <CardText>{this.props.bio ? this.props.bio : "Hello, I am Biryani Monster to cheer you up!"}</CardText>
+                <CardText>
+                  {this.state.user.bio
+                    ? this.state.user.bio
+                    : "Hello, I am Biryani Monster to cheer you up!"}
+                </CardText>
               </Item.Description>
             </Item.Content>
           </Item>
@@ -169,7 +177,9 @@ class FriendCard extends React.Component {
                   <Icon href={"https://github.com/" + this.state.user.username}>
                     <VscGithub />
                   </Icon>
-                  <Icon href={"https://twitter.com/" + this.state.user.twitter_acc}>
+                  <Icon
+                    href={"https://twitter.com/" + this.state.user.twitter_acc}
+                  >
                     <FiTwitter />
                   </Icon>
                 </IconGroup>
@@ -188,5 +198,5 @@ class FriendCard extends React.Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ reloadComponentAction }, dispatch);
-}
+};
 export default connect(null, mapDispatchToProps)(FriendCard);

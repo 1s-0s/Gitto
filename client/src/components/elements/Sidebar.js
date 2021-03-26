@@ -10,7 +10,7 @@ import { AiOutlineMessage as Chat, } from "react-icons/ai";
 import { RiGroup2Line as Friends } from "react-icons/ri";
 import { IoMdLogOut as Logout } from "react-icons/io";
 import { CgProfile as ProfilePic, CgDarkMode as Darkmode } from "react-icons/cg";
-import logo from "../images/logo/cube1.svg";
+import logo from "../images/logo/cube3.svg";
 import axios from "axios";
 
 class Sidebar extends React.Component {
@@ -41,7 +41,7 @@ class Sidebar extends React.Component {
 
     return (
       <div>
-        <Logo src={logo} color="white" size="mini" />
+        <Logo src={logo} color="white" />
         <IconGroup>
           <Icon replace to="#">
             <Chat />
