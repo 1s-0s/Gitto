@@ -88,5 +88,5 @@ export const FillerImageDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 800px;
+  height: 400px;
 `;
