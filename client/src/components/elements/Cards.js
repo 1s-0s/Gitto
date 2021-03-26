@@ -1,5 +1,5 @@
 import React from "react";
-// import { Icon } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 import {
   CardSegment,
   CardDetails,
@@ -7,7 +7,7 @@ import {
   Gist,
   CardButton,
   SubHeader,
-  LangLabel
+  LangLabel,
   // ReactIcon
 } from "../styles/CardStyle";
 // Action Creator
@@ -30,20 +30,8 @@ class Card extends React.Component {
     }
 
   }
-  code = `
-  function createStyleObject(classNames, style) {
-    return classNames.reduce((styleObject, className) => {
-      return {...styleObject, ...style[className]};
-    }, {});
-  }
-
-  function createClassNameString(classNames) {
-      return classNames.join(' ');
-  }`
-
 
   toggleLike = async () => {
-
     if (this.state.like === null || this.state.like === false) {
       await this.setState({ like: true });
     }
@@ -58,11 +46,11 @@ class Card extends React.Component {
   };
   //? adding card user to users friendlist
   addToFriends(friend) {
-    console.log("current user name: ", this.props.name);
+    //console.log("current user name: ", this.props.name);
     axios({
       url: "/userinfo/addfriend",
       method: "POST",
-      data: { "friend": friend }
+      data: { friend: friend },
     })
       .then((response) => {
         // console.log("friend added successfully", response);
@@ -71,16 +59,30 @@ class Card extends React.Component {
       })
       .catch((err) => {
         console.log("error while saving friend: ", err);
-      })
+      });
   }
+  renderLanguages = () => {
+    const languages = this.props.friend.technology.map((lang) => {
+      const langsrc = require(`../images/languages/${lang}.svg`);
+      console.log("langsrc: ", langsrc.default);
+      return (
+        // <Image src={require(`${langsrc}${lang}.svg`)}/>
+        <Image circular src={langsrc.default} key={lang} />
+      );
+    });
+    return languages;
+  };
   render() {
-    // console.log(this.props.key);
+    console.log("friend tech stack : ", this.props.friend.technology);
     const currTheme = this.props.theme.name;
     // console.log("currTheme is : ", currTheme)
     return (
       <CardSegment>
-
-        <Gist showLineNumbers style={currTheme === 'light' ? atelierSavannaLight : qtcreatorDark}>
+        <Gist
+          showLineNumbers
+          language="javascript"
+          style={currTheme === "light" ? atelierSavannaLight : qtcreatorDark}
+        >
           {this.props.gist}
         </Gist>
         <CardDetails>
@@ -90,11 +92,7 @@ class Card extends React.Component {
             <CardButton circular color={this.state.like === true ? "red" : "teal"} size="mini" floated="right" icon="arrow up" onClick={this.toggleLike}></CardButton>
             <CardButton circular color="teal" size="mini" floated="right" icon="plus" onClick={() => this.addToFriends(this.props.friend)}></CardButton>
           </CardHeader>
-          <SubHeader>
-            <LangLabel style={{ color: "green" }}>MongoDB</LangLabel>
-            <LangLabel style={{ color: "red" }}>MongoDB</LangLabel>
-            <LangLabel style={{ color: "blue" }}>MongoDB</LangLabel>
-          </SubHeader>
+          <Image.Group size="mini">{this.renderLanguages()}</Image.Group>
         </CardDetails>
       </CardSegment>
     );
@@ -102,11 +100,11 @@ class Card extends React.Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ reloadComponentAction }, dispatch);
-}
+};
 const mapStateToProps = (state) => {
   // console.log("user card: ", state.auth.user);
   return {
-    user: state.auth.user
-  }
-}
+    user: state.auth.user,
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
