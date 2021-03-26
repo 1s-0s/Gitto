@@ -93,6 +93,7 @@ class EditProfile extends React.Component {
     onSubmit(values) {
         this.props.saveUserData(values)
         //console.log("onSubmit", values);
+        alert("Your record has been updated successfully!");
         this.props.history.push("/");
     }
     render() {
@@ -105,7 +106,7 @@ class EditProfile extends React.Component {
                 </Header>
                 <FormContainer>
                     <Form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                        <FormHeader>Bio*</FormHeader>
+                        <FormHeader>Bio</FormHeader>
                         <Field required name="bio" component={this.renderBioField} />
                         <FormHeader>Top Languages* <em>(only 5)</em></FormHeader>
                         <Form.Dropdown required fluid multiple selection options={this.state.options} onChange={this.validateLanguage} />
@@ -128,9 +129,9 @@ function validate(values) {
     values["languages"] = languages;
     // console.log("values", values);
     const error = {}
-    if (!values.bio) {
-        error.bio = "Please enter a bio ";
-    }
+    // if (!values.bio) {
+    //     error.bio = "Please enter a bio ";
+    // }
     if (!values.repositries1) {
         error.repositries1 = "Enter your top project"
     }

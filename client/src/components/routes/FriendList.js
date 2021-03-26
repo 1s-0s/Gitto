@@ -35,14 +35,8 @@ class FriendList extends React.Component {
   }
 
   render() {
-    // const friendCard = this.state.isFriends.map((friendList, i) => {
-    //   console.log("Friendcard :", friendList);
-    //   return <FriendCard name={friendList.name} avatar={friendList.avatar} key={i} />
-    // });
-    //console.log("friends are from render: ", this.state.isFriends);
     return (
       <Container>
-        {/* {friendCard} */}
         {this.renderFriendCard()}
       </Container>
     );

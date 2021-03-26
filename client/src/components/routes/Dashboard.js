@@ -54,7 +54,7 @@ class Dashboard extends React.Component {
       url: "/userinfo/",
       method: "GET",
     }).then((res) => {
-      console.log("response to get all the users", res.data);
+      // console.log("response to get all the users", res.data);
       this.setState({ users: res.data });
     });
     const localTheme = window.localStorage.getItem("theme");
@@ -121,7 +121,7 @@ class Dashboard extends React.Component {
                   path="/editprofile"
                   component={EditProfile}
                 />
-                <PrivateRoute exact path="/" component={()=><FriendList/>} />
+                <PrivateRoute exact path="/" component={() => <FriendList />} />
               </Switch>
             </MiddleDiv>
             {/* //? RIGHT SECTION */}
