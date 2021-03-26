@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const defaultGist=`if (false === true) {
+    console.log("Earth is flat");
+  }
+  //didnt find this intelligent? right yours`
 const userSchema = new Schema({
     githubId: String,
     name: String,
@@ -9,7 +12,7 @@ const userSchema = new Schema({
     email: String,
     follower: Number,
     following: Number,
-    gist: String,
+    gist: {type: String,default:defaultGist},
     twitter_acc: String,
     bio: String,
     repositry: Number,
