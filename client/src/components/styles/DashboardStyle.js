@@ -45,7 +45,11 @@ export const RightDiv = styled.div`
   }
   @media (max-width: 991px) {
     display: ${(props)=>props.status.rightDisplay};
-    width: ${(props)=>props.status.rightWidth}  
+    width: ${(props)=>props.status.rightWidth};  
+    padding-top:10vh;
+    /* padding-bottom:10vh; */
+    //margin-bottom:10vh;
+    
   }
   height: 100%;
   background-color: ${(props) => props.theme.body} ;
@@ -53,7 +57,7 @@ export const RightDiv = styled.div`
 `;
 // sidebar
 export const Logo = styled(Image)`
-  filter: drop-shadow(0 0 0.75rem #ecf4ee);
+  filter: drop-shadow(0 0 0.75rem ${(props) => props.theme.logoshadow});
   margin-top: 2vh;
   margin-left: auto;
   margin-right: auto;
@@ -94,4 +98,12 @@ export const FillerImageDiv = styled.div`
   justify-content: center;
   align-items: center;
   height: 400px;
+`;
+//to fix overflow padding-bottom issue
+export const PaddingBox=styled.div`
+  @media (min-width: 991px) {
+    display:none;
+  }
+  width:100%;
+  height:10vh;
 `;

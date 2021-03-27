@@ -4,10 +4,10 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 
 export const CardSegment = styled(Segment)`
   @media (max-width: 991px) {
-    margin-top: 15vh !important;
+    /* margin-top: 15vh !important; */
     margin-left: 5vw !important;
     margin-right: 5vw !important; 
-    margin-bottom:10vh !important;
+    /* margin-bottom:5vh !important; */
   }
   @media (min-width: 991px) {
     margin-top: 5vh !important;

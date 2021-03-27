@@ -24,7 +24,7 @@ import {
 
 //React-Modal
 import Modal from "react-modal";
-import { style as ModalStyle } from "../styles/ModalStyle";
+import  ModalStyle from "../styles/ModalStyle";
 // Action Creator
 import { reloadComponentAction } from "../../action/index";
 //Icon
@@ -41,6 +41,7 @@ import { connect } from "react-redux";
 //Filler images
 import filler from "../images/filler-image/repofiller.svg";
 
+
 Modal.setAppElement("#root");
 
 class FriendCard extends React.Component {
@@ -49,7 +50,7 @@ class FriendCard extends React.Component {
     this.state = {
       modalIsOpen: false,
       user: {},
-
+      screen : window.matchMedia("(max-width: 991px)")
     };
   }
   componentDidMount = () => {
@@ -69,6 +70,7 @@ class FriendCard extends React.Component {
       .catch((err) => {
         console.log("user calling failed", err);
       });
+    this.setState({screen:window.matchMedia("(max-width: 991px)")})  
   };
   //? Can't perform a React state update on an unmounted component.
   componentWillUnmount() {
@@ -170,7 +172,7 @@ class FriendCard extends React.Component {
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
-          style={ModalStyle}
+          style={ModalStyle(this.state.screen)}
           contentLabel="Example Modal"
         >
           <ModalContent>
@@ -205,7 +207,9 @@ class FriendCard extends React.Component {
               </ModalProfileContent>
             </ModalProfileLeft>
             {/*//? RIGHT SECTION */}
-            <ModalProfileRight>{this.fetchRepos()}</ModalProfileRight>
+            <ModalProfileRight>
+              {this.fetchRepos()}
+            </ModalProfileRight>
           </ModalContent>
         </Modal>
       </Card>

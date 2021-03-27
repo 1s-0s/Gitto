@@ -6,7 +6,8 @@ import {
   RightDiv,
   // Loading,
   LoaderDiv,
-  FillerImageDiv
+  FillerImageDiv,
+  PaddingBox
 } from "../styles/DashboardStyle";
 //Loading Image
 import loader from "../images/loading/loader.gif";
@@ -151,10 +152,14 @@ class Dashboard extends React.Component {
                 />
                 <PrivateRoute exact path="/" component={() => <FriendList />} />
               </Switch>
+              {/*//? to fix overflow padding-bottom issue */}
+              <PaddingBox></PaddingBox>
             </MiddleDiv>
             {/* //? RIGHT SECTION */}
             <RightDiv status={active[this.state.isActiveDiv]}>
               {this.renderCards(themes[this.state.theme])}
+              {/*//? to fix overflow padding-bottom issue */}
+              <PaddingBox></PaddingBox>
             </RightDiv>
           </Div>
         </ThemeProvider>

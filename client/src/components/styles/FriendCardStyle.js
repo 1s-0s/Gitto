@@ -70,7 +70,12 @@ export const ModalSubHeading = styled.p`
   
 `;
 export const ModalProfileContent = styled.div`
-  margin-top:20vh;
+  @media (min-width: 991px) {
+    margin-top:20vh;
+  }
+  @media (max-width: 991px) {
+    padding-top:10vh;
+  }
   position: relative;
   align-items: center ;
 `;
@@ -79,23 +84,41 @@ export const ModalContent = styled.div`
   height: 100%;
 `;
 export const ModalProfileLeft = styled.div`
+  @media (min-width: 991px) {
+    width: 50% ;
+    height: 100% ;
+    float: left ;
+    border-collapse: collapse ;
+    overflow-y:auto;
+    
+  }
+  @media (max-width: 991px) {
+    width:100%;
+    display:block;
+    /* position:absolute; */
+  }
   background-image:linear-gradient(rgba(0,77,64, 0.7),rgba(0,77,64, 0.7)),url(${ModalCardBg});
   background-size: cover;
   background-position: center;
-  width: 50% ;
-  height: 100% ;
-  float: left ;
-  border-collapse: collapse ;
   background-color: rgba(0,77,64,0.4);
-  overflow-y:auto;
+  
 `;
 export const ModalProfileRight = styled.div`
-  padding:3vh;
-  width: 50% ;
-  height: 100% ;
-  float: right ;
-  border-collapse: collapse ;
-  overflow-y:auto;
+  @media (min-width: 991px) {
+    padding:3vh;
+    width: 50% ;
+    height: 100% ;
+    float: right ;
+    border-collapse: collapse ;
+    overflow-y:auto;
+  }
+  @media (max-width: 991px) {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    width:100%;
+    display:block;
+    /* position:absolute; */
+  }
 `;
 //Filler Image
 export const FillerImageDiv = styled.div`

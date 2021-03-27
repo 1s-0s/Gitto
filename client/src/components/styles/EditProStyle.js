@@ -3,17 +3,26 @@ import { Segment } from "semantic-ui-react";
 import ModalCardBg from "../images/friendCard/friendCardBg2.svg";
 
 export const Container = styled.div`
-  margin: 5vh 2vh !important;
+  
+  @media (min-width: 991px) {
+    margin: 5vh 2vh !important;
+  }
+  @media (max-width: 991px) {
+    //top right bottom left
+    margin: 10vh 2vh !important;
+  }
 `;
 
 export const FormContainer = styled(Segment)`
+
   background-color:${(props) => props.theme.midcard} !important;
   -webkit-box-shadow:0 0 20px rgba(0,77,64,0.4);
   -moz-box-shadow:0 0 20px rgba(0,77,64,0.4);
   box-shadow:0 0 20px rgba(0,77,64,0.4);  
 `;
 export const ImageContent = styled.p`
-  font-size: 1.5em !important;
+  margin-top:2vh;
+  font-size: 1.5em;
   text-align:center;
   color:#EEE3E3;
 `;

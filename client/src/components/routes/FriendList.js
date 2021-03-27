@@ -42,7 +42,9 @@ class FriendList extends React.Component {
     else {
       const isFriends = this.state.isFriends.map((friendList, i) => {
         // console.log("Friendcard :", friendList);
-        return <FriendCard fid={friendList._id} key={i} />
+        return (
+          <FriendCard fid={friendList._id} key={i} />
+        )
       });
       return isFriends;
     }
