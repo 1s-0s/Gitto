@@ -70,7 +70,10 @@ class FriendCard extends React.Component {
         console.log("user calling failed", err);
       });
   };
-
+  //? Can't perform a React state update on an unmounted component.
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
   deleteFriend = () => {
     // console.log("delete calls");
     axios({
@@ -126,7 +129,7 @@ class FriendCard extends React.Component {
         modalIsOpen: false,
       },
       function () {
-        console.log("closeModal: ", this.state.modalIsOpen);
+        //console.log("closeModal: ", this.state.modalIsOpen);
       }
     );
   };

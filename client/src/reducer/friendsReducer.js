@@ -1,6 +1,6 @@
 import {GET_FRIENDS } from "../action/index";
 
-export default (state=[],action)=>{
+const friendsReducer = (state=[],action)=>{
     switch(action.type){
         case GET_FRIENDS:
            state = action.payload
@@ -10,3 +10,4 @@ export default (state=[],action)=>{
             return state;    
     }
 }
+export default friendsReducer;

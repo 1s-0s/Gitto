@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 //Import Reducer
 import updateUserData from "./updateUserData";
 import authReducer from "./authReducer";
-import friendsReducer from "./userFriendsReducer";
+import friendsReducer from "./friendsReducer";
 import reloadComponentReducer from "./reloadComponentReducer"
 import { reducer as formReducer } from "redux-form";
 

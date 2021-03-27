@@ -6,7 +6,7 @@ export const GET_FRIENDS="GET_FRIENDS";
 export const RELOAD_COMPONENT="RELOAD_COMPONENT";
 //? CORRECT
 export const saveUserData = values => {
-    console.log("action for save user data",values);
+    //console.log("action for save user data",values);
     return ({
         type: SAVE_USER_DATA,
         payload: {
@@ -40,7 +40,7 @@ export const fetchFriendsAction = ()=>{
             method:"GET"
         })
         .then((response)=>{
-            console.log("from action for friends: ",response);
+            //console.log("from action for friends: ",response);
             dispatch({
                 type:GET_FRIENDS,
                 payload:response.data.friendsList

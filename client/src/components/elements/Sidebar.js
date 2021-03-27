@@ -29,14 +29,14 @@ class Sidebar extends React.Component {
       method: "GET"
     })
       .then((response) => {
-        console.log("logged out success");
+        //console.log("logged out success");
       })
   }
   //? THEME TOGGLER
   themeToggler = () => {
-    console.log("before: ", this.props.theme.name);
+    //console.log("before: ", this.props.theme.name);
     (this.props.theme.name === "light") ? this.props.handleChange("dark") : this.props.handleChange("light");
-    console.log("after: ", this.props.theme.name);
+    //console.log("after: ", this.props.theme.name);
   }
   render() {
 

@@ -1,6 +1,6 @@
 import { RELOAD_COMPONENT } from "../action/index";
 
-export default (state = 0, action) => {
+const reloadComponentReducer = (state = 0, action) => {
     // console.log("---from reloadcomponent: ",action.payload);
     switch (action.type) {
         case RELOAD_COMPONENT:
@@ -11,3 +11,4 @@ export default (state = 0, action) => {
             return state;
     }
 }
+export default reloadComponentReducer;

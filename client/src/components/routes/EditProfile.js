@@ -144,7 +144,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ saveUserData }, dispatch);
 }
 const mapStateToProps = (state) => {
-    console.log("edit profile- ", state.auth);
+    //console.log("edit profile- ", state.auth);
     return {
         userData: state.auth.user
     }

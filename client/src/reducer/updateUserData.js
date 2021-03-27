@@ -1,7 +1,7 @@
 import { SAVE_USER_DATA } from "../action/index";
 import axios from "axios";
 
-export default (state = {}, action) => {
+const updateUserData= (state = {}, action) => {
     switch (action.type) {
         case SAVE_USER_DATA:
             console.log("update user data from edit reducer:", action.payload.values);
@@ -16,6 +16,7 @@ export default (state = {}, action) => {
                 .catch((err) => {
                     console.log("error occured on the client side", err);
                 });
+                break;
         // state = action.payload.values
         //console.log("saving state with data : ", state);
         // return state;
@@ -24,3 +25,4 @@ export default (state = {}, action) => {
     }
 
 }
+export default updateUserData;

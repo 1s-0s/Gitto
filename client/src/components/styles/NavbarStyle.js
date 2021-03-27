@@ -7,11 +7,14 @@ export const TopNav = styled(Menu)`
     display: none !important;
   }
   background-color: ${(props) => props.theme.navbg} !important;
+  box-shadow: 0px 2px 0.1px  ${(props) => props.theme.sidebar} !important;
 `;
 export const Nav = styled(Menu)`
   @media (min-width: 991px) {
     display: none !important;
+    
   }
+  box-shadow: 0px -2px 0.1px  ${(props) => props.theme.sidebar} !important;
   background-color:${(props) => props.theme.navbg} !important;
   padding:0 !important;
 `;

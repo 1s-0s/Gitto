@@ -6,8 +6,8 @@ const initialState={
     loading: true
 }
 
-export default (state=initialState,action) =>{
-    console.log("---from authreducer: ",action.payload);
+const authReducer = (state=initialState,action) =>{
+    //console.log("---from authreducer: ",action.payload);
     switch(action.type){
         case GET_USER:
             return {
@@ -20,3 +20,4 @@ export default (state=initialState,action) =>{
             return state;    
     }
 }
+export default authReducer;
