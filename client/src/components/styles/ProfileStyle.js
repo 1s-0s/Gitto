@@ -3,8 +3,6 @@ import { Segment, Loader } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ModalCardBg from "../images/friendCard/friendCardBg2.svg";
 
-import { CgProfile as ProfilePic, CgDarkMode as Darkmode } from "react-icons/cg";
-
 export const Container = styled.div`
   margin: 5vh 2vh !important;
 `;
@@ -17,6 +15,7 @@ export const ProfileCard = styled(Segment)`
     margin-right: 10vw !important;
   }
   @media (max-width: 991px) {
+    margin-top: 10vh !important;
     background-position: center !important;
   }
   background-image:linear-gradient(rgba(0,77,64, 0.7),rgba(0,77,64, 0.7)),url(${ModalCardBg}) !important;

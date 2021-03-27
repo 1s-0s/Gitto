@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
-import {Link} from "react-router-dom"
 
+export const TopNav = styled(Menu)`
+    @media (min-width: 991px) {
+    display: none !important;
+  }
+  background-color: ${(props) => props.theme.navbg} !important;
+`;
 export const Nav = styled(Menu)`
   @media (min-width: 991px) {
     display: none !important;

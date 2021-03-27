@@ -49,7 +49,7 @@ class FriendCard extends React.Component {
     this.state = {
       modalIsOpen: false,
       user: {},
-      
+
     };
   }
   componentDidMount = () => {
@@ -81,7 +81,7 @@ class FriendCard extends React.Component {
       .then(() => {
         // console.log("successfullt deleted friend");
         // this.props.reloadComponent();
-        alert(`You have deleted ${this.props.name} from your friendlist.`);
+        // alert(`You have deleted ${this.props.name} from your friendlist.`);
         this.props.reloadComponentAction();
       })
       .catch((err) => {
@@ -92,15 +92,15 @@ class FriendCard extends React.Component {
   fetchRepos = () => {
     const currUser = this.state.user;
     if (currUser.pinnedrepos) {
-      if(currUser.pinnedrepos.length===0){
+      if (currUser.pinnedrepos.length === 0) {
         return (
           <FillerImageDiv>
-            <FillerImage centered src={filler} size="medium" rounded/>
+            <FillerImage centered src={filler} size="medium" rounded />
             <FillerContent>Have nothing to show</FillerContent>
           </FillerImageDiv>
         )
       }
-      console.log("repos are: ", currUser.pinnedrepos.length);
+      // console.log("repos are: ", currUser.pinnedrepos.length);
       const repos = currUser.pinnedrepos.map((repo) => {
         const currRepo = `https://github-readme-stats.vercel.app/api/pin/?username=${currUser.username}&repo=${repo}&show_icons=true&theme=blue-green&line_height=27&title_color=FFFFFF&bg_color=001E19&hide_border=true`;
         return <RepoCard key={currRepo} centered size="large" src={currRepo} />;
@@ -117,9 +117,9 @@ class FriendCard extends React.Component {
         // console.log("openModal: ", this.state.modalIsOpen);
       }
     );
-    
+
   };
-  
+
   closeModal = () => {
     this.setState(
       {

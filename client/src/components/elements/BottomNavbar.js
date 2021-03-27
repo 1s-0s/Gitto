@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Menu, MenuItem } from "semantic-ui-react";
+// import { Link } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
 //styles
 import { Nav, Icon } from "../styles/NavbarStyle";
 // ICONS

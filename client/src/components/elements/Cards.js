@@ -6,8 +6,6 @@ import {
   CardHeader,
   Gist,
   CardButton,
-  SubHeader,
-  LangLabel,
   // ReactIcon
 } from "../styles/CardStyle";
 // Action Creator
@@ -54,7 +52,7 @@ class Card extends React.Component {
     })
       .then((response) => {
         // console.log("friend added successfully", response);
-        alert(`${friend.name} has been added successfully!`);
+        // alert(`${friend.name} has been added successfully!`);
         this.props.reloadComponentAction();
       })
       .catch((err) => {
@@ -64,7 +62,7 @@ class Card extends React.Component {
   renderLanguages = () => {
     const languages = this.props.friend.technology.map((lang) => {
       const langsrc = require(`../images/languages/${lang}.svg`);
-      console.log("langsrc: ", langsrc.default);
+      // console.log("langsrc: ", langsrc.default);
       return (
         // <Image src={require(`${langsrc}${lang}.svg`)}/>
         <Image circular src={langsrc.default} key={lang} />
@@ -73,7 +71,7 @@ class Card extends React.Component {
     return languages;
   };
   render() {
-    console.log("friend tech stack : ", this.props.friend.technology);
+    // console.log("friend tech stack : ", this.props.friend.technology);
     const currTheme = this.props.theme.name;
     // console.log("currTheme is : ", currTheme)
     return (
