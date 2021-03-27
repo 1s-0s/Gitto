@@ -11,6 +11,7 @@ import { RiGroup2Line as Friends } from "react-icons/ri";
 import { IoMdLogOut as Logout } from "react-icons/io";
 import { CgProfile as ProfilePic, CgDarkMode as Darkmode } from "react-icons/cg";
 import logo from "../images/logo/cube3.svg";
+//Axios
 import axios from "axios";
 
 class Sidebar extends React.Component {

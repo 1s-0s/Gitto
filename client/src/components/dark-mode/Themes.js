@@ -7,6 +7,8 @@ export const LightTheme = {
     midbg: "rgba(0, 77, 64, 0.5)",
     midcard: "rgba(0,77,64,0.4)",
     sidebar: "rgba(0, 77, 64, 0.4)",
+    navbg:"rgba(0,77,64)",
+    navico:"#EEE3E3"
 }
 
 export const DarkTheme = {
@@ -18,6 +20,8 @@ export const DarkTheme = {
     midbg: "rgba(0, 77, 64, 0.4)",
     midcard: "rgba(0,77,64,0.3)",
     sidebar: "rgba(0, 77, 64, 0.3)",
+    navbg:"#06090F",
+    navico:"#EEE3E3"
 }
 
 //midBg- #001F19

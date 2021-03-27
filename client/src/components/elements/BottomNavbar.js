@@ -2,7 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Menu, MenuItem } from "semantic-ui-react";
 //styles
-import {Nav} from "../styles/NavbarStyle";
+import { Nav, Icon } from "../styles/NavbarStyle";
+// ICONS
+import { AiOutlineMessage as Chat } from "react-icons/ai";
+import { RiGroup2Line as Friends } from "react-icons/ri";
+import { IoMdLogOut as Logout } from "react-icons/io";
+import { CgProfile as Profile } from "react-icons/cg";
+//React ICon styling
+import { IconContext } from "react-icons";
+
 class BottomNavbar extends React.Component {
   state = {};
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -16,7 +24,14 @@ class BottomNavbar extends React.Component {
           active={activeItem === "chat"}
           onClick={this.handleItemClick}
         >
-            <Link to="#">Chat</Link>
+          <Icon to="#">
+            <IconContext.Provider
+              value={{ className: "ico1", size: "2em" }}
+            >
+              <Chat />
+            </IconContext.Provider >
+            
+          </Icon>
         </Menu.Item>
 
         <Menu.Item
@@ -24,7 +39,13 @@ class BottomNavbar extends React.Component {
           active={activeItem === "friends"}
           onClick={this.handleItemClick}
         >
-          <Link to="/" onClick={()=>this.props.toggleRightDiv("middle")}>Friends</Link>
+          <Icon to="/" onClick={() => this.props.toggleRightDiv("middle")}>
+          <IconContext.Provider
+              value={{ className: "ico2", size: "2em" }}
+            >
+              <Friends />
+            </IconContext.Provider >
+          </Icon>
         </Menu.Item>
 
         <Menu.Item
@@ -32,7 +53,16 @@ class BottomNavbar extends React.Component {
           active={activeItem === "profile"}
           onClick={this.handleItemClick}
         >
-          <Link to="/profile" onClick={()=>this.props.toggleRightDiv("right")}>Profile</Link>
+          <Icon
+            to="/profile"
+            onClick={() => this.props.toggleRightDiv("middle")}
+          >
+           <IconContext.Provider
+              value={{ className: "ico3", size: "2em" }}
+            >
+              <Profile />
+            </IconContext.Provider >
+          </Icon>
         </Menu.Item>
 
         <Menu.Item
@@ -40,9 +70,14 @@ class BottomNavbar extends React.Component {
           active={activeItem === "logout"}
           onClick={this.handleItemClick}
         >
-          <Link to="/login">Logout</Link>
+          <Icon to="/login">
+          <IconContext.Provider
+              value={{ className: "ico4", size: "2em" }}
+            >
+              <Logout />
+            </IconContext.Provider >
+          </Icon>
         </Menu.Item>
-
       </Nav>
     );
   }
