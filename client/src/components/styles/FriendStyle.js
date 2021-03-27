@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Image} from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 // CARD SECTION
 export const Container = styled.div`
   @media (min-width: 991px) {
@@ -20,6 +20,6 @@ export const FillerImageDiv = styled.div`
 export const FillerImage = styled(Image)`
   opacity:0.2 !important;
 `;
-export const FillerContent = styled.h1`
+export const FillerContent = styled.h3`
   color:rgba(126,202,156,0.5);
 `;

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Segment, Button, Label } from "semantic-ui-react";
+import { Segment, Button } from "semantic-ui-react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 export const CardSegment = styled(Segment)`
   @media (max-width: 991px) {
-    margin-top: 5vh !important;
+    margin-top: 15vh !important;
     margin-left: 5vw !important;
     margin-right: 5vw !important; 
     margin-bottom:10vh !important;
@@ -16,7 +16,7 @@ export const CardSegment = styled(Segment)`
     margin-bottom:5vh !important;
   }
   
-  background-color:${(props)=>props.theme.cardbg} !important;
+  background-color:${(props) => props.theme.cardbg} !important;
   /* background-color: #0D1117 ; */
 `;
 export const CardDetails = styled.div`
@@ -26,7 +26,7 @@ export const CardDetails = styled.div`
 export const CardHeader = styled.h3`
   margin-top: 3vh !important;
   margin-bottom: 0 ;
-  color:${(props)=>props.theme.text};
+  color:${(props) => props.theme.text};
 `;
 export const SubHeader = styled.p`
   margin-top: 2vh !important;
@@ -37,7 +37,7 @@ export const LangLabel = styled.span`
   border-radius: 5px;
   margin-right:1vh;
   padding:0.5vh 1vh;
-  background-color:${(props)=>props.theme.cardbg} !important;
+  background-color:${(props) => props.theme.cardbg} !important;
   
 `;
 export const GistSegment = styled.div`
@@ -70,6 +70,6 @@ export const ButtonGroup = styled.div`
 //   margin: auto auto;
 // `;
 
-export const Gist  = styled(SyntaxHighlighter)`
+export const Gist = styled(SyntaxHighlighter)`
   height:30vh;
 `;

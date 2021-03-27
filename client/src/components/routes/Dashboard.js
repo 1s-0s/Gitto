@@ -28,6 +28,8 @@ import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 //bottom navbar
 import BottomNavbar from "../elements/BottomNavbar";
+//top navbar
+import TopNavbar from "../elements/TopNavbar";
 //Router
 import { Switch } from "react-router-dom";
 import PrivateRoute from "./privateRoute/PrivateRoute";
@@ -37,15 +39,15 @@ import axios from "axios";
 import { ThemeProvider } from "styled-components";
 import { LightTheme, DarkTheme } from "../dark-mode/Themes";
 //Mode
-import {Right,Middle} from "../mode/Mode";
+import { Right, Middle } from "../mode/Mode";
 
 const themes = {
   light: LightTheme,
   dark: DarkTheme,
 };
-const active={
-  right:Right,
-  middle:Middle
+const active = {
+  right: Right,
+  middle: Middle
 }
 class Dashboard extends React.Component {
   //? reload-to reload the page when user delete a friend
@@ -55,7 +57,7 @@ class Dashboard extends React.Component {
       users: [],
       isLoading: true,
       theme: "light",
-      isActiveDiv:"right"
+      isActiveDiv: "right"
       // reload: false,
     };
   }
@@ -81,27 +83,27 @@ class Dashboard extends React.Component {
   }
   //? RENDERING FRIENDS CARDS
   renderCards(currTheme) {
-    if(this.state.users.length===0){
+    if (this.state.users.length === 0) {
       return (
         <FillerImageDiv>
           <Image centered src={filler} size="medium"></Image>
         </FillerImageDiv>
       )
     }
-    else{
+    else {
       const users = this.state.users.map((currUser, i) => {
         //console.log("currUser: ", currUser._id);
         return <Card name={currUser.name} friend={currUser} key={i} gist={currUser.gist} theme={currTheme} />;
       });
       return users;
     }
-    
+
   }
 
   //? called when wanted to reload the component
   reloadComponent = (section) => {
-    console.log("reload called");
-    this.setState({ isActiveDiv: section});
+    // console.log("reload called");
+    this.setState({ isActiveDiv: section });
   };
   //? DARK THEME IMPLEMENTATION
   setMode = (localTheme) => {
@@ -111,9 +113,9 @@ class Dashboard extends React.Component {
   handleChange = (newTheme) => {
     this.setMode(newTheme);
   };
-  toggleRightDiv=(status)=>{
-    console.log("toggle right div");
-    this.setState({isActiveDiv:status})
+  toggleRightDiv = (status) => {
+    // console.log("toggle right div");
+    this.setState({ isActiveDiv: status })
   }
   render() {
     //? Link: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
@@ -122,15 +124,14 @@ class Dashboard extends React.Component {
       return (
         <LoaderDiv>
           <Image centered src={loader} size="medium" />
-          
         </LoaderDiv>
       );
     } else {
-      console.log("--------------",active[this.state.isActiveDiv]);
+      //console.log("--------------", active[this.state.isActiveDiv]);
       return (
         <ThemeProvider theme={themes[this.state.theme]} >
-          
-          <BottomNavbar toggleRightDiv={this.toggleRightDiv}/>
+          <BottomNavbar toggleRightDiv={this.toggleRightDiv} />
+          <TopNavbar toggleRightDiv={this.toggleRightDiv} handleChange={this.handleChange} theme={themes[this.state.theme]} />
           <Div>
             {/* //? LEFT SECTION */}
             <LeftDiv>

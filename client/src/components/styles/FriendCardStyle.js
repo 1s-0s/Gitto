@@ -36,7 +36,7 @@ export const DelIcon = styled.span`
   cursor: pointer;
   float:right;
   &:hover{
-    color: #AAB8C2;
+    color: #f10726;
   }
 `;
 export const IconGroup = styled.div`
@@ -87,6 +87,7 @@ export const ModalProfileLeft = styled.div`
   float: left ;
   border-collapse: collapse ;
   background-color: rgba(0,77,64,0.4);
+  overflow-y:auto;
 `;
 export const ModalProfileRight = styled.div`
   padding:3vh;
@@ -94,6 +95,7 @@ export const ModalProfileRight = styled.div`
   height: 100% ;
   float: right ;
   border-collapse: collapse ;
+  overflow-y:auto;
 `;
 //Filler Image
 export const FillerImageDiv = styled.div`
@@ -102,6 +104,6 @@ export const FillerImageDiv = styled.div`
 export const FillerImage = styled(Image)`
   opacity:0.2 !important;
 `;
-export const FillerContent = styled.h1`
+export const FillerContent = styled.h3`
   color:rgba(126,202,156,0.5);
 `;
