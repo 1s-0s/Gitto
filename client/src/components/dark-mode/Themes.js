@@ -10,6 +10,7 @@ export const LightTheme = {
     navbg:"rgba(0,77,64)",
     navico:"#EEE3E3",
     logoshadow:"#ecf4ee",
+    terminalheader:"linear-gradient( 270deg, #ebebeb, #d4d4d4 )"
 }
 
 export const DarkTheme = {
@@ -24,6 +25,7 @@ export const DarkTheme = {
     navbg:"#06090F",
     navico:"#EEE3E3",
     logoshadow:"#001E19",
+    terminalheader:"#3D3D3D"
 }
 
 //midBg- #001F19

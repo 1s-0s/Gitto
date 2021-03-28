@@ -19,13 +19,47 @@ export const CardSegment = styled(Segment)`
   background-color:${(props) => props.theme.cardbg} !important;
   /* background-color: #0D1117 ; */
 `;
+export const TerminalBar= styled.div`
+  width:100%;
+  height:35px;
+  background: ${(props) => props.theme.terminalheader}; 
+  margin: 0 auto;
+  float: none;
+  border-radius: 10px 10px 0 0;
+`;
+export const TerminalButtonRed = styled.div`
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  background-color: #ff6261;
+  top: 10px;
+  left: 10px;
+`;
+export const TerminalButtonYellow = styled.div`
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  background-color: #ffc134;
+  top: -5px;
+  left: 35px;
+`;
+export const TerminalButtonGreen = styled.div`
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  background-color: #2dcc46;
+  top: -20px;
+  left: 60px;
+`;
 export const CardDetails = styled.div`
   margin-left: 1.5vh ;
   margin-right: 1.5vh ;
 `;
 export const CardHeader = styled.h3`
   margin-top: 3vh !important;
-  margin-bottom: 0 ;
   color:${(props) => props.theme.text};
 `;
 export const SubHeader = styled.p`
@@ -71,5 +105,6 @@ export const ButtonGroup = styled.div`
 // `;
 
 export const Gist = styled(SyntaxHighlighter)`
+  margin-top:0 ;
   height:30vh;
 `;

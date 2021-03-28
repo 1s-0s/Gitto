@@ -6,6 +6,10 @@ import {
   CardHeader,
   Gist,
   CardButton,
+  TerminalBar,
+  TerminalButtonGreen,
+  TerminalButtonRed,
+  TerminalButtonYellow,
   // ReactIcon
 } from "../styles/CardStyle";
 // Action Creator
@@ -76,6 +80,11 @@ class Card extends React.Component {
     // console.log("currTheme is : ", currTheme)
     return (
       <CardSegment>
+        <TerminalBar>
+          <TerminalButtonRed/>
+          <TerminalButtonYellow/>
+          <TerminalButtonGreen/>
+        </TerminalBar>
         <Gist
           showLineNumbers
           language="javascript"
