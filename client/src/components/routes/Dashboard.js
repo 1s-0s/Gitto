@@ -27,6 +27,8 @@ import Sidebar from "../elements/Sidebar";
 import FriendList from "./FriendList";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
+import ChatRoom from "./ChatRoom";
+import JoinChat from "./JoinChat";
 //bottom navbar
 import BottomNavbar from "../elements/BottomNavbar";
 //top navbar
@@ -41,6 +43,7 @@ import { ThemeProvider } from "styled-components";
 import { LightTheme, DarkTheme } from "../dark-mode/Themes";
 //Mode
 import { Right, Middle } from "../mode/Mode";
+
 
 const themes = {
   light: LightTheme,
@@ -150,6 +153,9 @@ class Dashboard extends React.Component {
                   path="/editprofile"
                   component={EditProfile}
                 />
+                <PrivateRoute exact path="/joinchat" component={() => <JoinChat />} />
+                <PrivateRoute exact path="/chatroom" component={() => <ChatRoom location={this.props.location}/>} />
+                
                 <PrivateRoute exact path="/" component={() => <FriendList />} />
               </Switch>
               {/*//? to fix overflow padding-bottom issue */}

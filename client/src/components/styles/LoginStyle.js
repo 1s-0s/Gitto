@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import loginbg from "../images/login.gif";
+import loginbg from "../images/worldmap.svg";
 export const Anchor = styled.a`
     position: absolute !important;
     top: 50% !important;

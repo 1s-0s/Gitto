@@ -44,7 +44,7 @@ class Sidebar extends React.Component {
       <div>
         <Logo src={logo} color="white" />
         <IconGroup>
-          <Icon replace to="#">
+          <Icon replace to="/joinchat">
             <Chat />
             <IconContent>Chat</IconContent>
           </Icon>

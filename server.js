@@ -8,6 +8,15 @@ const userinfo = require("./routes/userinfo");
 const mongoose = require("mongoose");
 const morgan = require("morgan"); //HTTP logger
 const cookieSession = require("cookie-session");
+//!------socket.io------
+const cors = require("cors");
+const http = require("http");
+const socketio = require("socket.io")(3001, {
+  cors: {
+    origin: "*",
+  },
+});
+//!---------------------
 //dotenv configuration
 require("dotenv").config();
 //database
@@ -31,11 +40,11 @@ const app = express();
 // HTTP request logger
 app.use(morgan("tiny"));
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 app.use(methodOverride());
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 //?cookie session
 app.use(
@@ -49,8 +58,47 @@ app.use(passport.session());
 app.use("/auth", auth);
 app.use("/userinfo", userinfo);
 
-//! app.use(express.static)
-
 app.listen(PORT, () => {
   console.log(chalk.hex("#448EF6").bold("Server is running boiss"));
 });
+
+//!---socket IO----
+app.use(cors());
+socketio.on("connection", (socket) => {
+  // either with send()
+  socket.send("Hello!");
+
+  // or with emit() and custom event names
+  socket.emit("greetings", "Hey!", { ms: "jane" }, Buffer.from([4, 3, 3, 1]));
+
+  // handle the event sent with socket.send()
+  socket.on("message", (data) => {
+    console.log(data);
+  });
+
+  // handle the event sent with socket.emit()
+  socket.on("salutations", (elem1, elem2, elem3) => {
+    console.log(elem1, elem2, elem3);
+  });
+});
+
+// const server = http.createServer(app);
+// const io = socketio(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   },
+// });
+
+// io.on("connection", (socket) => {
+//   console.log("connection established successfully");
+//   socket.on("join",()=>{
+//     console.log("joined");
+//   })
+//   socket.on("disconnect", () => {
+//     console.log("user has left");
+//     socket.close();
+//   });
+// });
+//!----------------

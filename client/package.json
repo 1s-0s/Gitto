@@ -10,6 +10,7 @@
     "highlight.js": "^10.6.0",
     "is-empty": "^1.2.0",
     "js-cookie": "^2.2.1",
+    "query-string": "^7.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-embed-gist": "^1.0.11",
@@ -25,6 +26,7 @@
     "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^2.0.3",
+    "socket.io-client": "^4.0.1",
     "styled-components": "^5.2.1",
     "typewriter-effect": "^2.17.0",
     "web-vitals": "^0.2.4"

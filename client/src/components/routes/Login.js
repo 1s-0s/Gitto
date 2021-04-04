@@ -25,6 +25,7 @@ class Login extends React.Component {
                 <SubHeader>
                     GIT to find your pair-programmer
                 </SubHeader>
+                
                 <Anchor className="ui github circular button massive" href="http://localhost:5000/auth/github/">
                     <Icon className="github icon "></Icon>
                     Github
