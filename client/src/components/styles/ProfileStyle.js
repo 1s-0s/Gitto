@@ -71,3 +71,9 @@ export const Loading = styled(Loader)`
   margin-left: -20vw !important;
   color: #EEE3E3 !important;
 `;
+export const RepoCard = styled.div`
+  margin-top: 10vh;
+  text-align: center;
+  height:20vh;
+  color: white;
+`;

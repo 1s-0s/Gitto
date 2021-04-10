@@ -4,7 +4,6 @@ import {
   LeftDiv,
   MiddleDiv,
   RightDiv,
-  // Loading,
   LoaderDiv,
   FillerImageDiv,
   PaddingBox
@@ -27,6 +26,7 @@ import Sidebar from "../elements/Sidebar";
 import FriendList from "./FriendList";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
+import RepoSearch from "./RepoSearch";
 //bottom navbar
 import BottomNavbar from "../elements/BottomNavbar";
 //top navbar
@@ -145,6 +145,7 @@ class Dashboard extends React.Component {
             <MiddleDiv status={active[this.state.isActiveDiv]}>
               <Switch>
                 <PrivateRoute exact path="/profile" component={Profile} />
+                <PrivateRoute exact path="/reposearch" component={RepoSearch} />
                 <PrivateRoute
                   exact
                   path="/editprofile"

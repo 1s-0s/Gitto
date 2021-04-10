@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Statistic } from "semantic-ui-react";
-import {connect} from "react-redux"
+import { connect } from "react-redux"
 import {
     Container,
     ProfileCard,
@@ -10,13 +10,13 @@ import {
     StatNum,
     Section,
     ButtonLink,
-    Loading
+    Loading,
 } from "../styles/ProfileStyle";
 import { FaEdit as Edit } from "react-icons/fa";
 
 // const contributionAPI = "https://activity-graph.herokuapp.com/graph?username=Samridhi-98&theme=blue-green";
 class Profile extends React.Component {
-    
+
     render() {
         if (this.props.loading) {
             return (
@@ -74,13 +74,14 @@ class Profile extends React.Component {
                         {/* <Image src={} /> */}
                         <Image src={githubStat} />
                     </ProfileCard>
+
                 </Container>
             )
         }
     }
 }
-const mapStateToProps=(state)=>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         userData: state.auth
     }
 }

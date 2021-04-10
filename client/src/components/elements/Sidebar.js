@@ -6,7 +6,7 @@ import {
   Icon,
 } from "../styles/DashboardStyle";
 // ICONS
-import { AiOutlineMessage as Chat, } from "react-icons/ai";
+import { AiOutlineMessage as Chat, AiOutlineFileSearch as Search } from "react-icons/ai";
 import { RiGroup2Line as Friends } from "react-icons/ri";
 import { IoMdLogOut as Logout } from "react-icons/io";
 import { CgProfile as ProfilePic, CgDarkMode as Darkmode } from "react-icons/cg";
@@ -55,6 +55,10 @@ class Sidebar extends React.Component {
           <Icon replace to="/profile">
             <ProfilePic />
             <IconContent>Profile</IconContent>
+          </Icon>
+          <Icon replace to="/reposearch">
+            <Search />
+            <IconContent>RepoSearch</IconContent>
           </Icon>
           <Icon onClick={this.onLogOutUser} to="/login">
             <Logout />
