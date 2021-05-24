@@ -66,10 +66,11 @@ app.listen(PORT, () => {
 app.use(cors());
 socketio.on("connection", (socket) => {
   // either with send()
-  socket.send("Hello!");
+  socket.send("Connecting established from server");
 
   // or with emit() and custom event names
-  socket.emit("greetings", "Hey!", { ms: "jane" }, Buffer.from([4, 3, 3, 1]));
+  socket.emit("greetings! welcome to the room", Buffer.from([4, 3, 3, 1]));
+
 
   // handle the event sent with socket.send()
   socket.on("message", (data) => {
@@ -80,6 +81,11 @@ socketio.on("connection", (socket) => {
   socket.on("salutations", (elem1, elem2, elem3) => {
     console.log(elem1, elem2, elem3);
   });
+
+  socket.on("join",({name,room})=>{
+    console.log("name: ",name," room: ",room);
+  })
+
 });
 
 // const server = http.createServer(app);

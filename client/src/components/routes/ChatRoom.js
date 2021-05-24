@@ -1,7 +1,10 @@
 import React from "react";
 import io from "socket.io-client";
 import queryString from "query-string";
-
+//styles
+import {Div,Header,Image} from "../styles/ChatRoomStyle";
+//img
+import construction from "../images/chatroom/Construct2.svg";
 let socket;
 
 
@@ -15,10 +18,11 @@ class ChatRoom extends React.Component {
     };
   }
   componentDidMount() {
-    // const {name,room} = queryString.parse(this.props.location.search);
+    const {name,room} = queryString.parse(this.props.location.search);
+    this.setState({name:name,room:room});
     // // console.log("props",this.props);
     // // console.log(name,room);
-    // this.setState({name:name,room:room});
+    
     // var connectionOptions =  {
     //     "force new connection" : true,
     //     "reconnectionAttempts": "Infinity",
@@ -32,17 +36,20 @@ class ChatRoom extends React.Component {
 
     socket.on("connect", () => {
       // either with send()
-      socket.send("Hello!");
-
+      socket.send("Connection established from client");
+      
+      //when connection is esyablished send name and room
+      socket.emit('join',{name:this.state.name,room:this.state.room})
+      
       // or with emit() and custom event names
-      socket.emit(
-        "salutations",
-        "Hello!",
-        { mr: "john" },
-        Uint8Array.from([1, 2, 3, 4])
-      );
+      // socket.emit(
+      //   "salutations",
+      //   "Hello!",
+      //   { mr: "john" },
+      //   Uint8Array.from([1, 2, 3, 4])
+      // );
     });
-
+    
     // handle the event sent with socket.send()
     socket.on("message", (data) => {
       console.log(data);
@@ -56,9 +63,11 @@ class ChatRoom extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Chat room</h1>
-      </div>
+      <Div>
+        
+        <Image src={construction}/>      
+        <Header>Under Contruction!!</Header>  
+      </Div>
     );
   }
 }

@@ -93,7 +93,7 @@ export const CardButton = styled(Button)`
   margin-top: 0vh !important;
   color: #EEE3E3;
   &:hover{
-    color: #AAB8C2;;
+    color: #AAB8C2;
   }
 `;
 export const ButtonGroup = styled.div`
