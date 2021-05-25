@@ -16,6 +16,7 @@ const socketio = require("socket.io")(3001, {
     origin: "*",
   },
 });
+
 //!---------------------
 //dotenv configuration
 require("dotenv").config();
@@ -59,10 +60,10 @@ app.use("/auth", auth);
 app.use("/userinfo", userinfo);
 
 //! Heroku Deloyment
-if(process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.get('*', (request, response) => {
-      response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
 
@@ -90,8 +91,8 @@ socketio.on("connection", (socket) => {
     console.log(elem1, elem2, elem3);
   });
 
-  socket.on("join",({name,room})=>{
-    console.log("name: ",name," room: ",room);
+  socket.on("join", ({ name, room }) => {
+    console.log("name: ", name, " room: ", room);
   })
 
 });
