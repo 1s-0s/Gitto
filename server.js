@@ -59,16 +59,16 @@ app.use("/auth", auth);
 app.use("/userinfo", userinfo);
 
 //! Heroku Deloyment
-if(process.env.NODE_ENV === 'production'){
-  app.use(express.static('client/build'));
-  app.get('*', (request, response) => {
-      response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
+// if(process.env.NODE_ENV === 'production'){
+//   app.use(express.static('client/build'));
+//   app.get('*', (request, response) => {
+//       response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+//   });
+// }
 
-app.listen(PORT, () => {
-  console.log(chalk.hex("#448EF6").bold("Server is running boiss"));
-});
+// app.listen(PORT, () => {
+//   console.log(chalk.hex("#448EF6").bold("Server is running boiss"));
+// });
 
 //!---socket IO----
 app.use(cors());
