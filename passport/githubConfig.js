@@ -28,7 +28,7 @@ passport.use(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/auth/github/dashboard",
+      callbackURL: "https://git-to.herokuapp.com/auth/github/dashboard",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
