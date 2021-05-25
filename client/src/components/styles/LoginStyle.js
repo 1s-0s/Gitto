@@ -28,8 +28,11 @@ export const SubHeader = styled.p`
     color: white;
 `;
 export const Div = styled.div`
-    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(${loginbg});
+    /* background-image:linear-gradient(rgba(6, 8, 10, 0.5),rgba(10, 10,40, 0.5)),url(${loginbg}); */
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(54,42,18,1) 100%);
     background-size: cover;
     background-position: center;
     height: 100vh;
+
 `;
