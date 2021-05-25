@@ -90,8 +90,8 @@ socketio.on("connection", (socket) => {
     console.log(elem1, elem2, elem3);
   });
 
-  socket.on("join",({name,room})=>{
-    console.log("name: ",name," room: ",room);
+  socket.on("join", ({ name, room }) => {
+    console.log("name: ", name, " room: ", room);
   })
 
 });
@@ -116,3 +116,5 @@ socketio.on("connection", (socket) => {
 //   });
 // });
 //!----------------
+// GITHUB_CLIENT_ID=8f7bec9060511659b631
+// GITHUB_CLIENT_SECRET=f360b91c782e36fb467be2fa2e8caee171330a66
