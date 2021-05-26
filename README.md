@@ -1,5 +1,5 @@
 <h1>Git-To <a><img src="https://github.com/1s-0s/Gitto/blob/master/client/src/components/images/logo/cube3.svg" width="4%"></a></h1>
-Plateform that allows one to find, collaborate and chat with the other like minded contributors.
+Platform that allows one to find, collaborate and chat with the other like minded contributors.
 
 <h2>Technology Stack <a><img src="https://github.com/Samridhi-98/Images/blob/master/Images/atom.svg" width="3%"></a></h2>
 
